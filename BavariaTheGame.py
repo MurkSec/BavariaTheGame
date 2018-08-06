@@ -1,14 +1,18 @@
+
+
 import random
-import replit
 import time
 import textwrap
+import class_player
+import class_support
+import class_monster
 
 
 running = True
 mod_name = ""
 
 def clear_screen():
-  replit.clear()
+  print('\033[H\033[J')
   time.sleep(0.1)
 
 
@@ -43,290 +47,10 @@ def ending():
   print("King: Will you please stay with us as the head of my Knights?", end="\r")
   time.sleep(1)
   Print_Img("Fin")
-
-
-
-
-
   print('')
-
   input('')
   exit()
 
-class monster:
-    def __init__(self,pn, plvl, php_top, ps_top, pTyp):
-      self.lvl = plvl
-      self.health = random.randint(2, php_top)
-      self.max_health = self.health
-      self.strength = random.randint(2,ps_top)
-      self.mName = pn
-      self.mobtype = pTyp
-
-class Weapon:
-  def __init__(self, wn, watk, whit, wType):
-    self.wname = wn
-    self.watk = watk
-    self.w_hit = whit
-    self.wType = wType
-
-class Armor:
-  def __init__(self, armn, armrate, armwg, aType):
-    self.aname = armn
-    self.arate = armrate
-    self.aweight = armwg
-    self.aType = aType
-
-class Item:
-  def __init__(self, inm, ityp, ia, iD=0):
-    self.iname = inm      #name of the item
-    self.itype = ityp     #type of item heal, Consumable, key
-    self.iamount = ia     #You can guess what this is for
-    self.iDmg = iD     #You can guess what this is for
-
-class Spell:
-  def __init__(self, sNm, slvl, sTyp, sC, sDmg):
-    self.sname = sNm      #name of the Spell
-    self.slevel = slvl
-    self.stype = sTyp     #type of Spell: heal, Dmg
-    self.sCost = sC     #mana Cost
-    self.sDmg = sDmg     #Spell Dmg: For Heal this is amount
-
-class player:
-  def __init__(self):
-    self.pname = ""
-    self.pclass = ""
-    self.lvl = 1
-    self.health = 25
-    self.max_health = 25
-    self.mp = 0
-    self.max_mp = 0
-    self.exp = 0
-    self.Evasion = 5
-    self.Accuracy = 5
-    self.HitPer = 0
-    self.strength = 5
-    self.gold = 0
-    self.steps = 0
-    self.Armor = []
-    self.Weapon = []
-    self.Spells = []
-    self.inv = []
-
-  def char_setup(self):
-    finished = False
-    while finished == False:
-      #Setup Character
-      clear_screen()
-      self.pname=input('Please enter your name')
-      clear_screen()
-      print('         Please choice your class')
-      print('')
-      print('')
-      print('1 = Fighter')
-      print('2 = Monk')
-      print('3 = Thief')
-      print('4 = Mage')
-      print('')
-      print('')
-      tmp = input('')
-
-      if tmp == "1":
-        #Figher class
-        clear_screen()
-        self.strength=random.randint(8,13)
-        self.pclass = "Fighter"
-        weapon = "Short Sword"
-        armor = "Cloth Armor"
-        health = 35
-        Ev = 8
-        Acc = 45
-      elif tmp == "2":
-        #Monk Class
-        clear_screen()
-        self.strength=random.randint(7,10)
-        self.pclass = "Monk"
-        weapon = "Brass Knuckles"
-        armor = "Shirt"
-        health = 25
-        Ev = 12
-        Acc = 35
-      elif tmp == "3":
-        #Thief Class
-        clear_screen()
-        self.pclass = "Thief"
-        weapon = "Small Knife"
-        armor = "Lether Armor"
-        health = 15
-        Ev = 20
-        Acc = 30
-        self.strength=random.randint(5,8)
-      elif tmp == "4":
-        #Mage Class
-        self.pclass = "Mage"
-        health = 15
-        Ev = 12
-        Acc = 20
-        weapon = "Wooden Staff"
-        armor = "Robe"
-        self.max_mp = 30
-        self.mp = self.max_mp
-        self.strength=random.randint(4,6)
-      else:
-        #User didn't choice a class so we will assign open
-        #They get a Loser Class
-        print("""
-        Guess you didn't want to choice a class. 
-        Well i will choice for you slacker!
-        """)
-        self.pclass = "Loser"
-        self.strength = random.randint(1,3)
-        weapon = "Stick"
-        armor = "Cover-all"
-        health = 10
-        Ev = 5
-        Acc = 5
-      #Display to the user what they choose
-      if self.pname != "GOD":
-        self.health = health
-        self.max_health = health
-        self.Evasion = Ev
-        self.Accuracy = Acc
-        for item in Calradia.weapons:
-            if item.wname == weapon:
-              wpn = item
-        self.addWeapon(wpn.wname, wpn.watk, wpn.w_hit, wpn.wType)
-        for item in Calradia.armors:
-            if item.aname == armor:
-              amn = item
-        self.addArmor(amn.aname,amn.arate,amn.aweight, amn.aType)
-        self.inv.clear()
-      else:
-        self.addItem("Door Key", 1)
-        self.addItem("Skull Key", 1)
-        self.addItem("Potion", 10)
-        self.addItem("Ether", 10)
-        self.addSpell("Cure")
-        self.addSpell("Fireball")
-        self.health = 60
-        self.max_health = self.health
-        self.Evasion = 40
-        self.Accuracy = 40
-        self.strength = 25
-        for item in Calradia.weapons:
-            if item.wname == weapon:
-              wpn = item
-        self.addWeapon(wpn.wname, wpn.watk, wpn.w_hit, wpn.wType)
-        for item in Calradia.armors:
-            if item.aname == armor:
-              amn = item
-        self.addArmor(amn.aname,amn.arate,amn.aweight, amn.aType)
-      clear_screen()
-      print("")
-      print(f'You choose :')
-      print(f"Name: {Calradia.player.pname}")
-      print(f"Class: {Calradia.player.pclass}")
-      print(f"Health: {Calradia.player.health}/{Calradia.player.max_health}")
-      if Calradia.player.pclass == "Mage":
-        print(f"Mana: {Calradia.player.mp}/{Calradia.player.max_mp}")
-      print(f"Evasion: {Calradia.player.Evasion}   Accuracy: {Calradia.player.Accuracy}")
-      print(f"Strength: {Calradia.player.strength} ")
-      print(f"Weapon: {Calradia.player.Weapon[0].wname}  Atk rate: {Calradia.player.Weapon[0].watk}")
-      print(f"Armor: {Calradia.player.Armor[0].aname}  Def rate: {Calradia.player.Armor[0].arate}")
-      tmp = input("Do you want to reroll your Character? y/n")
-      if tmp.lower() != "y":
-        finished = True
-      
-
-  def addItem(self, iname, iAmount=1):
-    #Check to see if player already has the Item
-    for item in self.inv:
-      if item.iname == iname:
-        if item.itype != "Key":
-          #Update Amount
-          item.iamount += iAmount
-          return True
-    #couldn't find the item so we are going to add it
-    for item in Calradia.items:
-      if item.iname == iname:
-        self.inv.append(Item(item.iname, item.itype, iAmount, item.iDmg))
-        return True
-
-  def RemoveItem(self, pn, pA=1):
-    #Remove an item from our inventory
-    for i in self.inv:
-      if i.iname == pn:
-        if i.iamount > pA:
-          i.iamount -= pA
-        else:
-          del self.inv[self.GetItemIDbyName(pn)]
-        return True
-    return False
-
-  def GetItemIDbyName(self, pn):
-    for x,m in enumerate(self.inv):
-      if m.iname == pn:
-        return x
-    return -1
-
-  def addWeapon(self, wn, watk, whit, wType):
-    #add an Weapons to our slot
-    if len(self.Weapon) > 0:
-      self.Weapon[0].wname = wn
-      self.Weapon[0].watk = watk
-      self.Weapon[0].w_hit = whit
-      self.Weapon[0].wType = wType
-      return True
-    else:
-      self.Weapon.append(Weapon(wn, watk, whit, wType))
-      return True
-
-  def addArmor(self, armN, armRate, armwg, armType):
-    #add Armor to our slot
-    if len(self.Armor) > 0:
-      self.Armor[0].aname = armN
-      self.Armor[0].arate = armRate
-      self.Armor[0].aweight = armwg
-      self.Armor[0].aType = armType
-      return True
-    else:
-      self.Armor.append(Armor(armN, armRate, armwg, armType))
-      return True
-
-  def addSpell(self, sname):
-    #Check to see if player already has the Spell
-    for spell in self.Spells:
-      if spell.sname == sname:
-        #Upgrade Spell
-        if spell.slevel <= 9:
-          spell.slevel += 1
-          print(f" You have Upgraded your {sname} spell to {spell.slevel}!")
-          spell.sCost += (spell.slevel*2)
-          spell.sDmg += (spell.slevel*int(random.randint(1,6)))
-          return True
-        return False
-    #couldn't find the spell so we are going to add it
-    for spell in Calradia.Spells:
-      if spell.sname == sname:
-        self.Spells.append(Spell(spell.sname, spell.slevel, spell.stype, spell.sCost, spell.sDmg))
-        print(f" You have learned the {spell.sname} spell!")
-        return True
-    return False
-     
-  def HealPlayer(self, Amount):
-    #Use a Potion/Heal spell
-    self.health += Amount
-    if self.health > self.max_health:
-      self.health = self.max_health
-      return False
-    return True
-
-  def RestoreMana(self, Amount):
-    #Use a Ether
-    self.mp += Amount
-    if self.mp > self.max_mp:
-      self.mp = self.max_mp
-      return False
-    return True
 
 class gameWorld:
   #Initialize our game world
@@ -334,7 +58,7 @@ class gameWorld:
     self.position = (0,0) #location x,y
     self.Max_X = 15
     self.Max_Y = 15
-    self.player = player()
+    self.player = class_player.player()
     self.encounters = 0
     self.BossFound = False
     self.BossKilled = False
@@ -355,10 +79,10 @@ class gameWorld:
 
 
     #Creating Item list
-    self.Spells= [Spell("Cure", 1, "Heal", 15, 30), Spell("Fireball", 1, "Atk", 15, 15), Spell("Str Up", 1, "Buff", 20, 5)]
-    self.weapons = [Weapon("Short Sword", 5, 10, "sword"), Weapon("Brass Knuckles", 10, 14, "bare"), Weapon("Wooden Staff", 5, 10, "staff"), Weapon("Rapier", 9, 5, "sword"), Weapon("Long Sword", 20, 10, "sword"), Weapon("light Axe", 28, 15, "axe"), Weapon("Small Knife", 5, 15, "knife"), Weapon("Stick", 1, 3, "knife")]
-    self.armors = [Armor("Cloth Armor", 10, 5, "cloth"), Armor("Shirt", 10, 3, "cloth"), Armor("Lether Armor", 15, 8, "lether"), Armor("Robe", 10, 3, "cloth"), Armor("Cover-all", 5, 7, "cloth")]
-    self.items = [Item("Potion", "Heal", 1, 30), Item("Ether", "Heal", 1, 25),Item("Kings Crown", "Key", 1), Item('Door Key', "Consumable", 1), Item("Skull Key", "Consumable", 1)]
+    self.Spells= [class_support.Spell("Cure", 1, "Heal", 15, 30), class_support.Spell("Fireball", 1, "Atk", 15, 15), class_support.Spell("Str Up", 1, "Buff", 20, 5)]
+    self.weapons = [class_support.Weapon("Short Sword", 5, 10, "sword"), class_support.Weapon("Brass Knuckles", 10, 14, "bare"), class_support.Weapon("Wooden Staff", 5, 10, "staff"), class_support.Weapon("Rapier", 9, 5, "sword"), class_support.Weapon("Long Sword", 20, 10, "sword"), class_support.Weapon("light Axe", 28, 15, "axe"), class_support.Weapon("Small Knife", 5, 15, "knife"), class_support.Weapon("Stick", 1, 3, "knife")]
+    self.armors = [class_support.Armor("Cloth Armor", 10, 5, "cloth"), class_support.Armor("Shirt", 10, 3, "cloth"), class_support.Armor("Lether Armor", 15, 8, "lether"), class_support.Armor("Robe", 10, 3, "cloth"), class_support.Armor("Cover-all", 5, 7, "cloth")]
+    self.items = [class_support.Item("Potion", "Heal", 1, 30), class_support.Item("Ether", "Heal", 1, 25),class_support.Item("Kings Crown", "Key", 1), class_support.Item('Door Key', "Consumable", 1), class_support.Item("Skull Key", "Consumable", 1)]
     self.moblist = []
     self.addMonster("Goblin", 1, 20, 8, "Goblin")
     self.addMonster("Red Goblin", 2,23, 5, "Goblin")
@@ -375,7 +99,7 @@ class gameWorld:
     for m in self.moblist:
       if m.mName == pn:
         return False
-    self.moblist.append(monster(pn, plvl, php_top, ps_top, pTyp))
+    self.moblist.append(class_monster.monster(pn, plvl, php_top, ps_top, pTyp))
     return True
 
   def game_hud(self):
@@ -399,7 +123,161 @@ class gameWorld:
           tmpStr += (item.iname + ", ")
       print('Items : ' + tmpStr)
     print(f'Location: {self.position}     Boss Loc: {self.boss[0]}')
-    
+
+  def GiveItem(self, iname, iAmount=1):
+    #Check to see if player already has the Item
+    for item in self.player.inv:
+      if item.iname == iname:
+        if item.itype != "Key":
+          #Update Amount
+          item.iamount += iAmount
+          return True
+    #couldn't find the item so we are going to add it
+    for item in self.items:
+      if item.iname == iname:
+        self.player.inv.append(class_support.Item(item.iname, item.itype, iAmount, item.iDmg))
+        return True    
+ 
+  def RemoveItem(self, pn, pA=1):
+    #Remove an item from our inventory
+    for i in self.player.inv:
+      if i.iname == pn:
+        if i.iamount > pA:
+          i.iamount -= pA
+        else:
+          del self.player.inv[self.GetItemIDbyName(pn)]
+        return True
+    return False
+
+  def GetItemIDbyName(self, pn):
+    for x,m in enumerate(self.inv):
+      if m.iname == pn:
+        return x
+    return -1
+
+  def char_setup(self):
+    finished = False
+    while finished == False:
+      #Setup Character
+      clear_screen()
+      self.player.pname=input('Please enter your name')
+      clear_screen()
+      print('         Please choice your class')
+      print('')
+      print('')
+      print('1 = Fighter')
+      print('2 = Monk')
+      print('3 = Thief')
+      print('4 = Mage')
+      print('')
+      print('')
+      tmp = input('')
+
+      if tmp == "1":
+        #Figher class
+        clear_screen()
+        self.player.strength=random.randint(8,13)
+        self.player.pclass = "Fighter"
+        weapon = "Short Sword"
+        armor = "Cloth Armor"
+        health = 35
+        Ev = 8
+        Acc = 45
+      elif tmp == "2":
+        #Monk Class
+        clear_screen()
+        self.player.strength=random.randint(7,10)
+        self.player.pclass = "Monk"
+        weapon = "Brass Knuckles"
+        armor = "Shirt"
+        health = 25
+        Ev = 12
+        Acc = 35
+      elif tmp == "3":
+        #Thief Class
+        clear_screen()
+        self.player.pclass = "Thief"
+        weapon = "Small Knife"
+        armor = "Lether Armor"
+        health = 15
+        Ev = 20
+        Acc = 30
+        self.player.strength=random.randint(5,8)
+      elif tmp == "4":
+        #Mage Class
+        self.player.pclass = "Mage"
+        health = 15
+        Ev = 12
+        Acc = 20
+        weapon = "Wooden Staff"
+        armor = "Robe"
+        self.player.max_mp = 30
+        self.player.mp = self.player.max_mp
+        self.player.strength=random.randint(4,6)
+      else:
+        #User didn't choice a class so we will assign open
+        #They get a Loser Class
+        print("""
+        Guess you didn't want to choice a class. 
+        Well i will choice for you slacker!
+        """)
+        self.player.pclass = "Loser"
+        self.player.strength = random.randint(1,3)
+        weapon = "Stick"
+        armor = "Cover-all"
+        health = 10
+        Ev = 5
+        Acc = 5
+      #Display to the user what they choose
+      if self.player.pname != "GOD":
+        self.player.health = health
+        self.player.max_health = health
+        self.player.Evasion = Ev
+        self.player.Accuracy = Acc
+        for item in self.weapons:
+            if item.wname == weapon:
+              wpn = item
+        self.addWeapon(wpn.wname, wpn.watk, wpn.w_hit, wpn.wType)
+        for item in self.armors:
+            if item.aname == armor:
+              amn = item
+        self.addArmor(amn.aname,amn.arate,amn.aweight, amn.aType)
+        self.player.inv.clear()
+      else:
+        self.GiveItem("Door Key", 1)
+        self.GiveItem("Skull Key", 1)
+        self.GiveItem("Potion", 10)
+        self.GiveItem("Ether", 10)
+        self.addSpell("Cure")
+        self.addSpell("Fireball")
+        self.player.health = 60
+        self.player.max_health = self.player.health
+        self.player.Evasion = 40
+        self.player.Accuracy = 40
+        self.player.strength = 25
+        for item in self.weapons:
+            if item.wname == weapon:
+              wpn = item
+        self.addWeapon(wpn.wname, wpn.watk, wpn.w_hit, wpn.wType)
+        for item in self.armors:
+            if item.aname == armor:
+              amn = item
+        self.addArmor(amn.aname,amn.arate,amn.aweight, amn.aType)
+      clear_screen()
+      print("")
+      print(f'You choose :')
+      print(f"Name: {self.player.pname}")
+      print(f"Class: {self.player.pclass}")
+      print(f"Health: {self.player.health}/{self.player.max_health}")
+      if self.player.pclass == "Mage":
+        print(f"Mana: {self.player.mp}/{self.player.max_mp}")
+      print(f"Evasion: {self.player.Evasion}   Accuracy: {self.player.Accuracy}")
+      print(f"Strength: {self.player.strength} ")
+      print(f"Weapon: {self.player.Weapon[0].wname}  Atk rate: {self.player.Weapon[0].watk}")
+      print(f"Armor: {self.player.Armor[0].aname}  Def rate: {self.player.Armor[0].arate}")
+      tmp = input("Do you want to reroll your Character? y/n")
+      if tmp.lower() != "y":
+        finished = True
 
   def GetRandomMonster(self):
     return random.choice(self.moblist)
@@ -429,6 +307,50 @@ class gameWorld:
         return True
     return False
 
+  def addArmor(self, armN, armRate, armwg, armType):
+    #add Armor to our slot
+    if len(self.player.Armor) > 0:
+      self.player.Armor[0].aname = armN
+      self.player.Armor[0].arate = armRate
+      self.player.Armor[0].aweight = armwg
+      self.player.Armor[0].aType = armType
+      return True
+    else:
+      self.player.Armor.append(class_support.Armor(armN, armRate, armwg, armType))
+      return True
+
+  def addWeapon(self, wn, watk, whit, wType):
+    #add an Weapons to our slot
+    if len(self.player.Weapon) > 0:
+      self.player.Weapon[0].wname = wn
+      self.player.Weapon[0].watk = watk
+      self.player.Weapon[0].w_hit = whit
+      self.player.Weapon[0].wType = wType
+      return True
+    else:
+      self.player.Weapon.append(class_support.Weapon(wn, watk, whit, wType))
+      return True
+
+  def addSpell(self, sname):
+    #Check to see if player already has the Spell
+    for spell in self.player.Spells:
+      if spell.sname == sname:
+        #Upgrade Spell
+        if spell.slevel <= 9:
+          spell.slevel += 1
+          print(f" You have Upgraded your {sname} spell to {spell.slevel}!")
+          spell.sCost += (spell.slevel*2)
+          spell.sDmg += (spell.slevel*int(random.randint(1,6)))
+          return True
+        return False
+    #couldn't find the spell so we are going to add it
+    for spell in self.Spells:
+      if spell.sname == sname:
+        self.player.Spells.append(class_support.Spell(spell.sname, spell.slevel, spell.stype, spell.sCost, spell.sDmg))
+        print(f" You have learned the {spell.sname} spell!")
+        return True
+    return False
+
   def lvl_up(self, plvl):
     print(f'You have leveled up!! You have gained {plvl} levels')
     self.player.lvl += plvl
@@ -446,7 +368,7 @@ class gameWorld:
         self.player.addSpell("Fireball")
 
     #lvl up mobs
-    for bad in Calradia.moblist:
+    for bad in self.moblist:
       bad.lvl += plvl
       bad.max_health += int((plvl*(random.randint(5,8))))
       bad.health = bad.max_health
@@ -480,8 +402,10 @@ class gameWorld:
     clear_screen()
     self.game_hud()
     Print_Img("Cave_fairy")
-    Calradia.player.health = Calradia.player.max_health
-    Calradia.player.mp = Calradia.player.max_mp
+    self.player.health = self.player.max_health
+    self.player.mp = self.player.max_mp
+    del self.fairys[self.fairys.index(self.position)]
+
     
 
   def Cave_Door(self):
@@ -533,11 +457,6 @@ class gameWorld:
           if tmp.lower() == "y":
             print(f'  **You have equiped a {rdm.aname}**')
             self.player.addWeapon(rdm.aname, rdm.arate, rdm.aweight, rdm.aType)
-      #else:
-        #Print_Img("Cave_Door")
-    #else:
-      #Door is still locked
-      #Print_Img("Cave_Door")
     
   def Cave_Boss(self):
     clear_screen()
@@ -573,23 +492,23 @@ class gameWorld:
     clear_screen()
     self.game_hud()
     Print_Img("Cave_shop")
-    wpn = random.choice(Calradia.weapons)
+    wpn = random.choice(self.weapons)
     rdn = random.randint(10,50)
     tmp=input(f'Would you like to buy a {wpn.wname} for {rdn} gold? (y/n)')
     if tmp.lower() == "y":
       if self.player.gold >= rdn:
         print(' It will serve you well!')
-        Calradia.player.addWeapon(wpn.wname, wpn.watk, wpn.w_hit, wpn.wType)
+        self.player.addWeapon(wpn.wname, wpn.watk, wpn.w_hit, wpn.wType)
         print(f'   ****{wpn.wname} equiped****')
-        Calradia.player.gold -= rdn
+        self.player.gold -= rdn
       else:
         print(" You don't have enough gold")
     else:
       print('Good Bye')
     
     #remove the shop from the list
-    del self.shops[self.shops.index(Calradia.position)]
-    Calradia.Cave_tunnel()
+    del self.shops[self.shops.index(self.position)]
+    self.Cave_tunnel()
 
 
   def Cave_Treasure(self):
@@ -597,8 +516,8 @@ class gameWorld:
     self.game_hud()
     Print_Img("Cave_box")
     if self.treasurefound != True:
-      wpn = random.choice(Calradia.weapons)
-      arm = random.choice(Calradia.armors)
+      wpn = random.choice(self.weapons)
+      arm = random.choice(self.armors)
       rdn = random.randint(10,50)
       print("You have found the Goblin King's treasure room")
       print(f" **** You found {wpn.wname} ****")
@@ -609,13 +528,13 @@ class gameWorld:
       #ask about equiping the stuff found
       tmp=input(f'Would you like to equipe the {wpn.wname}? (y/n)')
       if tmp.lower() == "y":
-        Calradia.player.addWeapon(wpn.wname, wpn.watk, wpn.w_hit, wpn.wType)
+        self.player.addWeapon(wpn.wname, wpn.watk, wpn.w_hit, wpn.wType)
         print(f'   **** {wpn.wname} equiped ****')
       else:
         print(f'   **** {wpn.wname} discorded ****')
       tmp=input(f'Would you like to equipe the {arm.aname}? (y/n)')
       if tmp.lower() == "y":
-        Calradia.player.addArmor(arm.aname, arm.arate, arm.aweight, arm.aType)
+        self.player.addArmor(arm.aname, arm.arate, arm.aweight, arm.aType)
         print(f'   **** {arm.aname} equiped ****')
       else:
         print(f'   **** {arm.aname} discorded ****')
@@ -641,7 +560,7 @@ class gameWorld:
       print(f'you have encountered the {self.enemy.mName}')
     else:
       print(f'you have encountered a {self.enemy.mName}')
-    Print_Img(Calradia.enemy.mobtype)
+    Print_Img(self.enemy.mobtype)
     input('Press Enter to continue...')
     self.battle()
 
@@ -650,7 +569,6 @@ class gameWorld:
     cng_block = int(((5+eEv)+pArmor))
     cng_crit = int(((5+eEv)-pWeight)*0.5)
     cng_miss = int((100-pAcc)*0.2)
-    #cng_hit = int(100-((pwHit*pAcc)*0.3))
     cng_hit = int(((pwHit*pAcc)*0.3))
     #print(f'Block%: {cng_block}  Crit%: {cng_crit}  Miss%: {cng_miss}  hit%: {cng_hit}')
     #Build list of possiblilities
@@ -701,8 +619,11 @@ class gameWorld:
         Spells_Found = True
 
       #Check to see if player has Potion or Ether
-      if "Potion" in self.player.inv or "Ether" in self.player.inv:
-        Items_found = True
+
+      for i in self.player.inv:
+        if i.itype == "Heal":
+          Items_found = True
+          break
       
       while Action == "":
         if self.player.pclass == "Mage":
@@ -768,12 +689,10 @@ class gameWorld:
 
           elif Spells_Found == False and Items_found == True:
             #No Spell but they have some Items
-            
-
-            tmp_input = input(textwrap.dedent('''
+            tmp_input = input('''
             Press Enter to Attack
             Press I to use a Item
-            '''))
+            ''')
             if tmp_input.lower() == "i":
               #Item was selected
               for item in self.player.inv:
@@ -787,6 +706,8 @@ class gameWorld:
                   if tmp_answer.lower() == "y":
                     Item_Used = "Ether"
                     Action = "Item"
+            else:
+              Action = "Atk"
           else:
             input(" Press Enter to Attack")  
             Action = "Atk"
@@ -902,11 +823,11 @@ class gameWorld:
         self.ResMonsterbyName(self.enemy.mName)
 
         if self.enemy.mobtype != "Boss":
-          self.badKilled.append((Calradia.position[0],Calradia.position[1]))
-          del self.badguys[self.badguys.index(Calradia.position)]
+          self.badKilled.append((self.position[0],self.position[1]))
+          del self.badguys[self.badguys.index(self.position)]
         else:
-          Calradia.BossKilled = True
-          Calradia.BossFound = False
+          self.BossKilled = True
+          self.BossFound = False
         #Calculate different between mod lvl and ours
         #make sure its at least 1
         if self.enemy.lvl - self.player.lvl < 1:
@@ -925,22 +846,22 @@ class gameWorld:
         rdnNum = random.randint(0,10)
         if rdnNum > 8:
           #used to heal your player
-          Calradia.player.addItem("Potion")
+          self.GiveItem("Potion")
           itemAdr = "Potion"
         elif rdnNum == 7:
           #used to heal your player
-          Calradia.player.addItem("Ether")
+          self.GiveItem("Ether")
           itemAdr = "Ether"
         elif self.enemy.mName == "Goblin King":
           #used to end the game
-          Calradia.player.addItem("Kings Crown",1)
+          self.GiveItem("Kings Crown",1)
           itemAdr = "Crown"
         elif rdnNum == 2:
           #used to open doors
-          Calradia.player.addItem("Door Key")
-        elif rdnNum == 5 or len(Calradia.badguys) <= 1:
+          self.GiveItem("Door Key")
+        elif rdnNum == 5 or len(self.badguys) <= 1:
           #needed for the Boss
-          Calradia.player.addItem("Skull Key")
+          Self.GiveItem("Skull Key")
    
         #print out the end of battle screen
         clear_screen()
@@ -965,7 +886,7 @@ class gameWorld:
         #return so we don't fight the monster we just revived
         input('Press Enter to continue')
         clear_screen()
-        Calradia.Cave_tunnel()
+        self.Cave_tunnel()
         return
         
 
@@ -1455,7 +1376,7 @@ def Gen_Map():
   Max_Shops = int((Max_X*Max_Y)*0.05) # 11.25
   Max_BadGuys = int((Max_X*Max_Y)*0.3) #22.5
   Max_Doors = int((Max_X*Max_Y)*0.12) #27
-  Max_Fairys = int((Max_X*Max_Y)*0.08) #18
+  Max_Fairys = int((Max_X*Max_Y)*0.03) #18
   Max_Walls = int((Max_X*Max_Y)*0.32) #72
   #tunnels will fill in the blanks
 
@@ -1643,10 +1564,10 @@ def Debug_Menu():
     elif tmp.lower() == "lvl":
       Calradia.lvl_up(1)
     elif tmp.lower() == "greed":
-      Calradia.player.addItem("Door Key", 1)
-      Calradia.player.addItem("Skull Key", 1)
-      Calradia.player.addItem("Potion", 10)
-      Calradia.player.addItem("Ether", 10)
+      Calradia.GiveItem("Door Key", 1)
+      Calradia.GiveItem("Skull Key", 1)
+      Calradia.GiveItem("Potion", 10)
+      Calradia.GiveItem("Ether", 10)
       working = False
     else:
       working = False
@@ -1657,7 +1578,7 @@ def Debug_Menu():
 #start of the game
 Calradia = gameWorld()
 Gen_Map()
-Calradia.player.char_setup()
+Calradia.char_setup()
 clear_screen()
 
 #start of the adventer
