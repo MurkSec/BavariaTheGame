@@ -1,5 +1,5 @@
 import random
-import replit
+#import replit
 import time
 import textwrap
 
@@ -8,7 +8,8 @@ running = True
 mod_name = ""
 
 def clear_screen():
-  replit.clear()
+ # replit.clear()
+  print('\033[H\033[J')
   time.sleep(0.1)
 
 
