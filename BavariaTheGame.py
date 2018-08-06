@@ -701,8 +701,11 @@ class gameWorld:
         Spells_Found = True
 
       #Check to see if player has Potion or Ether
-      if "Potion" in self.player.inv or "Ether" in self.player.inv:
-        Items_found = True
+
+      for i in self.player.inv:
+        if i.itype == "Heal":
+          Items_found = True
+          break
       
       while Action == "":
         if self.player.pclass == "Mage":
@@ -768,12 +771,10 @@ class gameWorld:
 
           elif Spells_Found == False and Items_found == True:
             #No Spell but they have some Items
-            
-
-            tmp_input = input(textwrap.dedent('''
+            tmp_input = input('''
             Press Enter to Attack
             Press I to use a Item
-            '''))
+            ''')
             if tmp_input.lower() == "i":
               #Item was selected
               for item in self.player.inv:
@@ -787,6 +788,8 @@ class gameWorld:
                   if tmp_answer.lower() == "y":
                     Item_Used = "Ether"
                     Action = "Item"
+            else:
+              Action = "Atk"
           else:
             input(" Press Enter to Attack")  
             Action = "Atk"
