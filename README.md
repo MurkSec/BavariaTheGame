@@ -6,21 +6,7 @@
 
 A Text-Based Rogue-Like Adventure Game.  Based around games of old, you are an adventurer set on discovering a secret.  More to come.
 
-                     ,     \    /      ,                     
-                    / \    )\__/(     / \                    
-                   /   \  (_\  /_)   /   \                   
-__________________/_____\__\@  @/___/_____\_________________ 
-|            ____          |\../|        _                 | 
-|           |  _ \          \VV/        (_)                | 
-|           | |_) | __ ___   ____ _ _ __ _  __ _           | 
-|           |  _ < / _` \ \ / / _` | '__| |/ _` |          | 
-|           | |_) | (_| |\ V / (_| | |  | | (_| |          | 
-|           |____/ \__,_| \_/ \__,_|_|  |_|\__,_|          | 
-|__________________________________________________________| 
-            |    /\ /      \\       \ /\    |                
-            |  /   V        ))       V   \  |                
-            |/     `       //        '     \|                
-            `              V                '               
+![alt text](https://github.com/redwiz666/BavariaTheGame/blob/Development/bavarialogo.PNG "Logo Title Text 1")
 
 ## Installation
 
