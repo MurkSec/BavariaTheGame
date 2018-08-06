@@ -1455,11 +1455,11 @@ def Gen_Map():
   #0,0 is reserved for entrence
   Max_X=Calradia.Max_X
   Max_Y=Calradia.Max_Y
-  Max_Shops = int((Max_X*Max_Y)*0.05) # 11.25
-  Max_BadGuys = int((Max_X*Max_Y)*0.3) #22.5
-  Max_Doors = int((Max_X*Max_Y)*0.12) #27
-  Max_Fairys = int((Max_X*Max_Y)*0.08) #18
-  Max_Walls = int((Max_X*Max_Y)*0.32) #72
+  Max_Shops = int((Max_X*Max_Y)*0.05) 
+  Max_BadGuys = int((Max_X*Max_Y)*0.3) 
+  Max_Doors = int((Max_X*Max_Y)*0.12) 
+  Max_Fairys = int((Max_X*Max_Y)*0.03) 
+  Max_Walls = int((Max_X*Max_Y)*0.32) 
   #tunnels will fill in the blanks
 
   max_slots = Max_X*Max_Y
