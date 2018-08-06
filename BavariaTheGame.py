@@ -135,7 +135,7 @@ class gameWorld:
     #couldn't find the item so we are going to add it
     for item in self.items:
       if item.iname == iname:
-        self.player.inv.append(Item(item.iname, item.itype, iAmount, item.iDmg))
+        self.player.inv.append(class_support.Item(item.iname, item.itype, iAmount, item.iDmg))
         return True    
  
   def RemoveItem(self, pn, pA=1):
@@ -1562,12 +1562,12 @@ def Debug_Menu():
       Calradia.position = (int(tmpX), int(tmpY))
       working = False
     elif tmp.lower() == "lvl":
-      self.lvl_up(1)
+      Calradia.lvl_up(1)
     elif tmp.lower() == "greed":
-      self.GiveItem("Door Key", 1)
-      self.GiveItem("Skull Key", 1)
-      self.GiveItem("Potion", 10)
-      self.GiveItem("Ether", 10)
+      Calradia.GiveItem("Door Key", 1)
+      Calradia.GiveItem("Skull Key", 1)
+      Calradia.GiveItem("Potion", 10)
+      Calradia.GiveItem("Ether", 10)
       working = False
     else:
       working = False
