@@ -1,3 +1,5 @@
+import random
+
 class monster:
     def __init__(self,pn, plvl, php_top, ps_top, pTyp):
       self.lvl = plvl
