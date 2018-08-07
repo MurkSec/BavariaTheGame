@@ -550,12 +550,14 @@ class gameWorld:
         update = False
       Items_found = False
       Spells_found = False
+      
       for item in self.player.inv:
         if item.itype == "Heal":
           Items_found = True
       for spell in self.player.Spells:
         if spell.sname == "Cure":
           Spells_found = True
+          
       if Items_found == True and Spells_found == True:
         #player has spells and items
         tmp_input = input('''
@@ -586,30 +588,30 @@ class gameWorld:
                 update = True
               else:
                 update = True
-        elif tmp_input.lower() == "s":
-          #Spell was selected
-          for spell in self.player.Spells:
-          #Check to see if they can cast it
-            if self.player.mp >= spell.sCost:
-            #Ask if they want to use item
-              if spell.sname == "Cure":
-                tmp_answer = input(f'Use {spell.sname} Cost {spell.sCost}? y/n')
-                if tmp_answer.lower() == "y":
-                #Use Spell
-                  self.player.HealPlayer(int(spell.sDmg))
-                  print(f' You healed for {spell.sDmg}', end='\r')
-                  self.player.mp -= spell.sCost
-                  update = True
-                else:
-                  update = True
-            else:
-              print("You don't have enough mana to cast any spells", end='\r')
-              update = True
-        else:
-          #exit clause
-          update = False
-          working = False
-          break
+          elif tmp_input.lower() == "s":
+            #Spell was selected
+            for spell in self.player.Spells:
+            #Check to see if they can cast it
+              if self.player.mp >= spell.sCost:
+              #Ask if they want to use item
+                if spell.sname == "Cure":
+                  tmp_answer = input(f'Use {spell.sname} Cost {spell.sCost}? y/n')
+                  if tmp_answer.lower() == "y":
+                  #Use Spell
+                    self.player.HealPlayer(int(spell.sDmg))
+                    print(f' You healed for {spell.sDmg}', end='\r')
+                    self.player.mp -= spell.sCost
+                    update = True
+                  else:
+                    update = True
+              else:
+                print("You don't have enough mana to cast any spells", end='\r')
+                update = True
+          else:
+            #exit clause
+            update = False
+            working = False
+            break
       elif Spells_found == True and Items_found == False:
         #Spells but no items
         tmp_input = input('''
@@ -674,11 +676,11 @@ class gameWorld:
           update = False
           working = False
           break
-        else:
-          input(' Press Enter to go back to the map')
-          update = False
-          working = False
-          break
+       else:
+         input(' Press Enter to go back to the map')
+         update = False
+         working = False
+         break
 
   def Stats(self):
     print(f' Position {self.position}')
