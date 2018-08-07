@@ -287,7 +287,7 @@ while running==True:
   #Show the stats/item screen
     helper_functions.clear_screen()
     Calradia.Stats()
-    class_world.Status_Screen()
+    Calradia.Status_Screen()
   elif tmp.lower() == "w":
     class_world.player.steps += 1
   #move Foward if possible
