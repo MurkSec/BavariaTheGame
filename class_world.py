@@ -666,20 +666,20 @@ class gameWorld:
               #Use a Ether
                 self.player.RemoveItem("Ether",1)
                 self.player.RestoreMana(30)
-               print('30 mana restored', end='\r')
-               update = True
-              else:
-               update = True
-        else:
+                print('30 mana restored', end='\r')
+                update = True
+                else:
+                update = True
+          else:
          #Exit Clause
-         update = False
-         working = False
-         break
-      else:
-       input(' Press Enter to go back to the map')
-       update = False
-       working = False
-       break
+          update = False
+          working = False
+          break
+        else:
+        input(' Press Enter to go back to the map')
+        update = False
+        working = False
+        break
 
   def Stats(self):
     print(f' Position {self.position}')
