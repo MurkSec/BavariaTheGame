@@ -265,7 +265,7 @@ tmp=input('''
 Press Enter when you are ready to begin your adventer
   
   ''')
-class_world.Cave_Enter()
+Calradia.Cave_Enter()
 
 #helper_functions.clear_screen()
 #We are now in the Cave
