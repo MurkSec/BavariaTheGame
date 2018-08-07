@@ -28,7 +28,7 @@ class Graphics_Engine:
       self.AddArt(1,p_graphics_string)
     else:
       self.CallArtByName(pname).AddLine(p_graphics_string)
-  
+
   def AddArt(self, pname, pnumparts, pparts=[]):
     self.artList.append(Art(pname))
 
@@ -37,7 +37,7 @@ class Graphics_Engine:
           if a.artName == pname:
               return a
       return False
-  
+
   def CallArtByID(self, pID):
     return self.artList[pID]
 
