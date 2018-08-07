@@ -51,7 +51,7 @@ def Status_Screen():
   while working == True:
     if update == True:
       class_support.clear_screen()
-      Print_Img("Stats")
+      class_world.status()
       update = False
     Items_found = False
     Spells_found = False
@@ -428,7 +428,7 @@ while running==True:
   if tmp.lower() == "c":
   #Show the stats/item screen
     helper_functions.clear_screen()
-    #Print_Img("Stats")
+    class_world.status()
     Status_Screen()
   elif tmp.lower() == "w":
     Calradia.player.steps += 1
