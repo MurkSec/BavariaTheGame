@@ -668,9 +668,8 @@ class gameWorld:
                 self.player.RestoreMana(30)
                 print('30 mana restored', end='\r')
                 update = True
-                else:
+            else:
                 update = True
-          else:
          #Exit Clause
           update = False
           working = False
