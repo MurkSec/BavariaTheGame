@@ -1,3 +1,5 @@
+
+
 #Graphic Engine
 def Print_Img(img_name):
   if img_name == "Cave_Enter":
@@ -224,8 +226,8 @@ def Print_Img(img_name):
   elif img_name == "Goblin":
     print('')
     print('.......................................')
-    print(f' Lvl: {Calradia.enemy.lvl}   Name: {Calradia.enemy.mName}   ')
-    print(f'       Health {Calradia.enemy.health} ')
+    print(' ')
+    print('  ')
     print('..........___________________..........')
     print('......../                     \........')
     print('.......|          , ,          |.......')
@@ -240,8 +242,8 @@ def Print_Img(img_name):
   elif img_name == "Spider":
     print('')
     print('.......................................')
-    print(f' Lvl: {Calradia.enemy.lvl}   Name: {Calradia.enemy.mName}   ')
-    print(f'       Health {Calradia.enemy.health} ')
+    print('    ')
+    print('     ')
     print('.......................................')
     print('.......-------------------------.......')
     print('...../                           \.....')
@@ -256,8 +258,8 @@ def Print_Img(img_name):
   elif img_name == "Boss":
     print('')
     print('.......................................')
-    print(f' Lvl: {Calradia.enemy.lvl}   Name: {Calradia.enemy.mName}   ')
-    print(f'       Health {Calradia.enemy.health} ')
+    print('   ')
+    print('      ')
     print('                                       ')
     print('.......................................')
     print('........._____________________.........')
@@ -270,50 +272,4 @@ def Print_Img(img_name):
     print('.......-------------------------.......')
     print('.......................................')
 
-  elif img_name == "Stats":
-    print(f' Position {Calradia.position}')
-    print('.......................................')
-    print(f' Name : {Calradia.player.pname}   Class: {Calradia.player.pclass}     Lvl: {Calradia.player.lvl}')
-    #If player is a mage show their MP
-    if Calradia.player.pclass == "Mage":
-      print(f' HP: {Calradia.player.health}/{Calradia.player.max_health}      MP: {Calradia.player.mp}/{Calradia.player.max_mp} ')
-    else:
-      print(f' HP: {Calradia.player.health}/{Calradia.player.max_health} ')
-    print('.......................................')
-    #player has a weapon equiped
-    print(f' Weapon: {Calradia.player.Weapon[0].wname}   Dmg: {Calradia.player.Weapon[0].watk}')
-
-    #Block% = (5+Evasion) - Armor Rating
-    #Crit% = 100-((5 + Evasion)- Armor Weight)
-    #Miss% = Player Accuracy
-    #Hit% = (Weapon Hit rate * Player Accuracy)* 0.3
-
-    cng_block = int(((5+Calradia.player.Evasion)+Calradia.player.Armor[0].arate))
-    cng_crit = int(((5+Calradia.player.Evasion)-Calradia.player.Armor[0].aweight)*0.5)
-    cng_miss = int(Calradia.player.Accuracy)
-    cng_hit = int(((Calradia.player.Weapon[0].w_hit*Calradia.player.Accuracy)*0.3))
-    print('.......................................')
-
-    print(f' Block%: {cng_block}     Crit%: {cng_crit}   ')
-    print(f" Miss%: {cng_miss}       Hit%: {cng_hit}")
-    print('.......................................')
-    print(f' Armor: {Calradia.player.Armor[0].aname}     Def Rating: {Calradia.player.Armor[0].arate}')
-    print('.......................................')
-    #Check for items in the Inventory
-    print(" Inventory:")
-    if len(Calradia.player.inv) > 0:
-      for item in Calradia.player.inv:
-        print(f' {item.iname}     {item.iamount}')
-    else:
-      print(" You don't have any items")
-    print('.......................................')
-
-    #Check for Spells
-    print(" Spells:")
-    if len(Calradia.player.Spells) > 0:
-      for spell in Calradia.player.Spells:
-        print(f' {spell.sname}     Lvl: {spell.slevel}    Dmg: {spell.sDmg}')
-    else:
-      print(" You don't have any Spells")
-    print('.......................................')
-    print('')
+  
