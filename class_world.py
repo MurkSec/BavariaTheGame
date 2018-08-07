@@ -638,50 +638,49 @@ class gameWorld:
               update = True
         else:
         #Exit clause
-        update = False
-        working = False
-        break
-    elif Spells_found == False and Items_found == True:
-      #No Spell but they have some Items
-      tmp_input = input('''
-      Press Enter to go back to the map
-      Press I to use a Item
-      ''')
-      if tmp_input.lower() == "i":
-      #Item was selected
-        for item in self.player.inv:
-          if item.iname == "Potion":
-            tmp_answer = input("Use a Potion? y/n")
+          update = False
+          working = False
+          break
+      elif Spells_found == False and Items_found == True:
+        #No Spell but they have some Items
+        tmp_input = input('''
+        Press Enter to go back to the map
+        Press I to use a Item
+        ''')
+        if tmp_input.lower() == "i":
+        #Item was selected
+          for item in self.player.inv:
+            if item.iname == "Potion":
+             tmp_answer = input("Use a Potion? y/n")
+             if tmp_answer.lower() == "y":
+               #use a potion
+               self.player.HealPlayer(30)
+               self.player.RemoveItem('Potion')
+               print(' You healed for 30 hp', end='\r')
+               update = True
+             else:
+               update = True
+            elif item.iname == "Ether":
+             tmp_answer = input('Use a Ether? y/n')
             if tmp_answer.lower() == "y":
-              #use a potion
-              self.player.HealPlayer(30)
-              self.player.RemoveItem('Potion')
-              print(' You healed for 30 hp', end='\r')
-              update = True
-            else:
-              update = True
-          elif item.iname == "Ether":
-            tmp_answer = input('Use a Ether? y/n')
-            if tmp_answer.lower() == "y":
-            #Use a Ether
-              self.player.RemoveItem("Ether",1)
-              self.player.RestoreMana(30)
-              print('30 mana restored', end='\r')
-              update = True
-            else:
-              update = True
+              #Use a Ether
+                self.player.RemoveItem("Ether",1)
+                self.player.RestoreMana(30)
+               print('30 mana restored', end='\r')
+               update = True
+              else:
+               update = True
+        else:
+         #Exit Clause
+         update = False
+         working = False
+         break
       else:
-        #Exit Clause
-        update = False
-        working = False
-        break
-    else:
-      input(' Press Enter to go back to the map')
-      update = False
-      working = False
-      break
+       input(' Press Enter to go back to the map')
+       update = False
+       working = False
+       break
 
-        
   def Stats(self):
     print(f' Position {self.position}')
     print('.......................................')
