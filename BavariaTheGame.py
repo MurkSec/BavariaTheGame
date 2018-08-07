@@ -3,6 +3,7 @@
 import random
 import time
 import textwrap
+import class_world
 import class_player
 import class_support
 import class_monster
