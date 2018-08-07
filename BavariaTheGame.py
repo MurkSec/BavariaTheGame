@@ -8,16 +8,13 @@ import class_player
 import class_support
 import class_monster
 
-
+#defining Variables
 running = True
 mod_name = ""
 
 def clear_screen():
   print('\033[H\033[J')
   time.sleep(0.1)
-
-
-
 
 def game_over():
   clear_screen()
@@ -664,8 +661,6 @@ def Gen_Map():
       Y-=1
     X+=1
   print("Map Complete")
-
-
 
 def Move_Char(X,Y):
   #Checks for valid movement
