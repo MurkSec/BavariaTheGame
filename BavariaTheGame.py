@@ -11,16 +11,6 @@ import helper_functions
 running = True
 mod_name = ""
 
-def game_over():
-  helper_functions.clear_screen()
-  print('__  ______  __  __       ____  ______________  ')
-  print('\ \/ / __ \/ / / /      / __ \/  _/ ____/ __ \ ')
-  print(' \  / / / / / / /      / / / // // __/ / / / / ')
-  print(' / / /_/ / /_/ /      / /_/ // // /___/ /_/ /  ')
-  print('/_/\____/\____/      /_____/___/_____/_____/   ')
-  input('')
-  exit()
-
 def ending():
   helper_functions.clear_screen()
   Print_Img("Logo")
