@@ -675,10 +675,10 @@ class gameWorld:
           working = False
           break
         else:
-        input(' Press Enter to go back to the map')
-        update = False
-        working = False
-        break
+          input(' Press Enter to go back to the map')
+          update = False
+          working = False
+          break
 
   def Stats(self):
     print(f' Position {self.position}')
