@@ -1,5 +1,3 @@
-
-
 import random
 import time
 import textwrap
@@ -147,8 +145,7 @@ def Print_Img(img_name):
     print("  |!|      | |    /^\    | |     |!|   ")
     print("  | |      |!|   |   |   |!|     | |   ")
     print("  |_|______|_|__ |   |___|_|_____|_|   ")
-
-    
+ 
   elif img_name == "Logo":
     print("                      ,     \    /      ,                     ")
     print("                     / \    )\__/(     / \                    ")
@@ -300,7 +297,7 @@ def Print_Img(img_name):
     print('....|                             |....')
     print('....|                             |....')
     print('....|        _ _ _ _ _ _ _        |....')
-    print('....| ミ /╲/( ͜。 ͜。 ͡ʖ ͜。 ͜。)/\╱\   |....')
+    print('....| ミ /╲/( ͜。 ͜͡     )/\╱\   |....')
     print('....|   / /\              / /\ \  |....')
     print('....|_____________________________|....')
     print('.......................................')
@@ -351,7 +348,6 @@ def Print_Img(img_name):
     print('.......................................')
     print(f' Armor: {Calradia.player.Armor[0].aname}     Def Rating: {Calradia.player.Armor[0].arate}')
     print('.......................................')
-    
     #Check for items in the Inventory
     print(" Inventory:")
     if len(Calradia.player.inv) > 0:
@@ -388,7 +384,6 @@ def Status_Screen():
     for spell in Calradia.player.Spells:
       if spell.sname == "Cure":
         Spells_found = True
-      
     if Items_found == True and Spells_found == True:
       #player has spells and items
       tmp_input = input('''
@@ -419,7 +414,6 @@ def Status_Screen():
               update = True
             else:
               update = True
-
       elif tmp_input.lower() == "s":
         #Spell was selected
         for spell in Calradia.player.Spells:
@@ -444,7 +438,6 @@ def Status_Screen():
         update = False
         working = False
         break
-            
     elif Spells_found == True and Items_found == False:
       #Spells but no items
       tmp_input = input('''
@@ -476,7 +469,6 @@ def Status_Screen():
         update = False
         working = False
         break
-
     elif Spells_found == False and Items_found == True:
       #No Spell but they have some Items
       tmp_input = input('''
@@ -506,19 +498,17 @@ def Status_Screen():
               update = True
             else:
               update = True
-
       else:
         #Exit Clause
         update = False
         working = False
         break
-
     else:
       input(' Press Enter to go back to the map')
       update = False
       working = False
       break
-    
+
 def Gen_Map():
   #randomly place the boss in the world
   #map grid is 15x15
@@ -534,7 +524,6 @@ def Gen_Map():
 
   max_slots = Max_X*Max_Y
   Calradia.boss.append((random.randint(int(Max_X/2),Max_Y),random.randint(int(Max_X/2),Max_Y)))
-  
   MaxMobs = random.randint(int(Max_BadGuys*0.75),Max_BadGuys)
   i = 0
   while i < MaxMobs:
@@ -656,8 +645,7 @@ def Gen_Map():
                  if tmpLoc not in Calradia.walls:
                    if tmpLoc != Calradia.entrence:
                     Calradia.tunnels.append(tmpLoc)
-                    cnt +=1
-                    
+                    cnt +=1 
       Y-=1
     X+=1
   print("Map Complete")
@@ -694,35 +682,6 @@ def Move_Char(X,Y):
     return "Cave_Wall"
   elif ckCord in Calradia.tunnels:
     return "Cave_tunnel"
-
-def Debug_Menu():
-  working = True
-  while working == True:
-    clear_screen()
-    print("this is the debug menu")
-    print(f"Enemey Locations {Calradia.badguys}")
-    print(f"Treausre Room {Calradia.treasure}")
-    print(f"Boss {Calradia.boss}")
-    print(f"Shops {Calradia.shops}")
-    print('')
-    tmp = input("Please enter command")
-    if tmp.lower() == "goto":
-      tmpX = input("enter X")
-      tmpY = input("enter Y")
-      Calradia.position = (int(tmpX), int(tmpY))
-      working = False
-    elif tmp.lower() == "lvl":
-      Calradia.lvl_up(1)
-    elif tmp.lower() == "greed":
-      Calradia.GiveItem("Door Key", 1)
-      Calradia.GiveItem("Skull Key", 1)
-      Calradia.GiveItem("Potion", 10)
-      Calradia.GiveItem("Ether", 10
-      working = False
-    else:
-      working = False
-    
-  
 
 
 #start of the game
