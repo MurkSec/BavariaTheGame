@@ -3,7 +3,7 @@ import class_player
 import class_support
 import class_monster
 import helper_functions
-import BavariaTheGame
+import class_oldgraphic
 
 class gameWorld:
   #Initialize our game world
@@ -383,12 +383,12 @@ class gameWorld:
         #We found a key so we unlock the door
         helper_functions.clear_screen()
         self.game_hud()
-        BavariaTheGame.Print_Img("Cave_Door_Unlocked")
+        class_oldgraphic.Print_Img("Cave_Door_Unlocked")
         time.sleep(2)
         helper_functions.clear_screen()
         self.game_hud()
         #Show the treasure room
-        BavariaTheGame.Print_Img("Cave_box")
+        class_oldgraphic.Print_Img("Cave_box")
         print(' The treasure box contained')
         #Calculate the gold found
         rdmNum = random.randint(20,75)
@@ -426,7 +426,7 @@ class gameWorld:
 
       if found == True:
         #We found a key so we unlock the door
-        BavariaTheGame.Print_Img("Boss_Door_Unlocked")
+        class_oldgraphic.Print_Img("Boss_Door_Unlocked")
         time.sleep(1)
         helper_functions.clear_screen()
         self.game_hud()
@@ -435,16 +435,16 @@ class gameWorld:
         self.Cave_Encounter()
       else:
         #Door is still locked
-        BavariaTheGame.Print_Img("Boss_Door")
+        class_oldgraphic.Print_Img("Boss_Door")
     else:
-      BavariaTheGame.Print_Img("Boss_Killed")
+      class_oldgraphic.Print_Img("Boss_Killed")
       print('')
       print(' Now that you found the crown, its time to return it to the King')
 
   def Cave_shop(self):
     helper_functions.clear_screen()
     self.game_hud()
-    BavariaTheGame.Print_Img("Cave_shop")
+    class_oldgraphic.Print_Img("Cave_shop")
     wpn = random.choice(self.weapons)
     rdn = random.randint(10,50)
     tmp=input(f'Would you like to buy a {wpn.wname} for {rdn} gold? (y/n)')
@@ -467,7 +467,7 @@ class gameWorld:
   def Cave_Treasure(self):
     helper_functions.clear_screen()
     self.game_hud()
-    BavariaTheGame.Print_Img("Cave_box")
+    class_oldgraphic.Print_Img("Cave_box")
     if self.treasurefound != True:
       wpn = random.choice(self.weapons)
       arm = random.choice(self.armors)
@@ -513,7 +513,7 @@ class gameWorld:
       print(f'you have encountered the {self.enemy.mName}')
     else:
       print(f'you have encountered a {self.enemy.mName}')
-    BavariaTheGame.Print_Img(self.enemy.mobtype)
+    class_oldgraphic.Print_Img(self.enemy.mobtype)
     input('Press Enter to continue...')
     self.battle()
 
@@ -558,7 +558,7 @@ class gameWorld:
     while self.enemy.health > 0 and self.player.health > 0:
       helper_functions.clear_screen()
       self.game_hud()
-      BavariaTheGame.Print_Img(self.enemy.mobtype)
+      class_oldgraphic.Print_Img(self.enemy.mobtype)
 
       #Clear out the variables
       Action = ""  #atk, spell, item, flee
