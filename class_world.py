@@ -1037,7 +1037,7 @@ class gameWorld:
           self.GiveItem("Door Key")
         elif rdnNum == 5 or len(self.badguys) <= 1:
           #needed for the Boss
-          Self.GiveItem("Skull Key")
+          self.GiveItem("Skull Key")
    
         #print out the end of battle screen
         helper_functions.clear_screen()
