@@ -5,13 +5,14 @@ import class_world
 import class_player
 import class_support
 import class_monster
+import helper_functions
 
 #defining Variables
 running = True
 mod_name = ""
 
 def game_over():
-  class_support.clear_screen()
+  helper_functions.clear_screen()
   print('__  ______  __  __       ____  ______________  ')
   print('\ \/ / __ \/ / / /      / __ \/  _/ ____/ __ \ ')
   print(' \  / / / / / / /      / / / // // __/ / / / / ')
@@ -21,16 +22,16 @@ def game_over():
   exit()
 
 def ending():
-  class_support.clear_screen()
+  helper_functions.clear_screen()
   Print_Img("Logo")
   print(" After a long jounery you arive back at Bavaria")
   print("")
   time.sleep(2)
-  class_support.clear_screen()
+  helper_functions.clear_screen()
   Print_Img("Castle")
   print(" Shortly after ariving in town you head to the castle to give the king back the Crown")
   time.sleep(1)
-  class_support.clear_screen()
+  helper_functions.clear_screen()
   Print_Img('King')
   print("Greetings King. I have returned with your lost crown", end="\r")
   time.sleep(1)
@@ -644,7 +645,6 @@ def Gen_Map():
                     cnt +=1 
       Y-=1
     X+=1
-  print("Map Complete")
 
 def Move_Char(X,Y):
   #Checks for valid movement
@@ -679,44 +679,11 @@ def Move_Char(X,Y):
   elif ckCord in Calradia.tunnels:
     return "Cave_tunnel"
 
-<<<<<<< HEAD
-=======
-def Debug_Menu():
-  working = True
-  while working == True:
-    class_support.clear_screen()
-    print("this is the debug menu")
-    print(f"Enemey Locations {Calradia.badguys}")
-    print(f"Treausre Room {Calradia.treasure}")
-    print(f"Boss {Calradia.boss}")
-    print(f"Shops {Calradia.shops}")
-    print('')
-    tmp = input("Please enter command")
-    if tmp.lower() == "goto":
-      tmpX = input("enter X")
-      tmpY = input("enter Y")
-      Calradia.position = (int(tmpX), int(tmpY))
-      working = False
-    elif tmp.lower() == "lvl":
-      Calradia.lvl_up(1)
-    elif tmp.lower() == "greed":
-      Calradia.GiveItem("Door Key", 1)
-      Calradia.GiveItem("Skull Key", 1)
-      Calradia.GiveItem("Potion", 10)
-      Calradia.GiveItem("Ether", 10
-      working = False
-    else:
-      working = False
-    
-  
-
->>>>>>> b762e8e7691a13d25d544330e35274efe66a676a
-
 #start of the game
 Calradia = class_world.gameWorld()
 Gen_Map()
 Calradia.char_setup()
-class_support.clear_screen()
+helper_functions.clear_screen()
 
 #start of the adventer
 print('')
@@ -746,7 +713,7 @@ if tmp == "2":
   print('This is a game, so you really don\'t have a choice.')
   print('Man up and save the world!!')
   time.sleep(1)
-class_support.clear_screen()
+helper_functions.clear_screen()
 print('''
 
 Thank you, adventurer. 
@@ -762,7 +729,7 @@ Press Enter when you are ready to begin your adventer
   ''')
 Calradia.Cave_Enter()
 
-class_support.clear_screen()
+helper_functions.clear_screen()
 #We are now in the Cave
 while running==True:
   X = 0
@@ -780,28 +747,28 @@ while running==True:
   '''))
   if tmp.lower() == "c":
   #Show the stats/item screen
-    class_support.clear_screen()
+    helper_functions.clear_screen()
     #Print_Img("Stats")
     Status_Screen()
   elif tmp.lower() == "w":
     Calradia.player.steps += 1
   #move Foward if possible
-    class_support.clear_screen()
+    helper_functions.clear_screen()
     Y+=1
   elif tmp.lower() == "a":
   #move left if possible
     Calradia.player.steps += 1
-    class_support.clear_screen()
+    helper_functions.clear_screen()
     X-=1
   elif tmp.lower() == "s":
   #move back if possible
     Calradia.player.steps += 1
-    class_support.clear_screen()
+    helper_functions.clear_screen()
     Y-=1
   elif tmp.lower() == "d":
   #move right if possible
     Calradia.player.steps += 1
-    class_support.clear_screen()
+    helper_functions.clear_screen()
     X+=1
   elif tmp.lower() == "debug":
     Debug_Menu()

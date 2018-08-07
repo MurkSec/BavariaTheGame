@@ -2,7 +2,7 @@ import random
 import class_player
 import class_support
 import class_monster
-
+import helper_functions
 
 class gameWorld:
   #Initialize our game world
@@ -111,9 +111,9 @@ class gameWorld:
     finished = False
     while finished == False:
       #Setup Character
-      clear_screen()
+      helper_functions.clear_screen()
       self.player.pname=input('Please enter your name')
-      clear_screen()
+      helper_functions.clear_screen()
       print('         Please choice your class')
       print('')
       print('')
@@ -127,7 +127,7 @@ class gameWorld:
 
       if tmp == "1":
         #Figher class
-        clear_screen()
+        helper_functions.clear_screen()
         self.player.strength=random.randint(8,13)
         self.player.pclass = "Fighter"
         weapon = "Short Sword"
@@ -137,7 +137,7 @@ class gameWorld:
         Acc = 45
       elif tmp == "2":
         #Monk Class
-        clear_screen()
+        helper_functions.clear_screen()
         self.player.strength=random.randint(7,10)
         self.player.pclass = "Monk"
         weapon = "Brass Knuckles"
@@ -147,7 +147,7 @@ class gameWorld:
         Acc = 35
       elif tmp == "3":
         #Thief Class
-        clear_screen()
+        helper_functions.clear_screen()
         self.player.pclass = "Thief"
         weapon = "Small Knife"
         armor = "Lether Armor"
@@ -215,7 +215,7 @@ class gameWorld:
             if item.aname == armor:
               amn = item
         self.addArmor(amn.aname,amn.arate,amn.aweight, amn.aType)
-      clear_screen()
+      helper_functions.clear_screen()
       print("")
       print(f'You choose :')
       print(f"Name: {self.player.pname}")
@@ -328,7 +328,7 @@ class gameWorld:
 
 
   def Cave_Enter(self):
-    clear_screen()
+    helper_functions.clear_screen()
     self.game_hud()
     if self.BossKilled == False:
       Print_Img('Cave_Enter')
@@ -339,19 +339,19 @@ class gameWorld:
     
 
   def Cave_tunnel(self):
-    clear_screen()
+    helper_functions.clear_screen()
     self.game_hud()
     Print_Img("Cave_tunnel")
     
 
   def Cave_Wall(self):
-    clear_screen()
+    helper_functions.clear_screen()
     self.game_hud()
     Print_Img("Cave_Wall")
     
 
   def Cave_fairy(self):
-    clear_screen()
+    helper_functions.clear_screen()
     self.game_hud()
     Print_Img("Cave_fairy")
     self.player.health = self.player.max_health
@@ -361,7 +361,7 @@ class gameWorld:
     
 
   def Cave_Door(self):
-    clear_screen()
+    helper_functions.clear_screen()
     self.game_hud()
     found = False
     Print_Img("Cave_Door")
@@ -380,11 +380,11 @@ class gameWorld:
       if tmp == "y":
         self.player.RemoveItem('Door Key',1)
         #We found a key so we unlock the door
-        clear_screen()
+        helper_functions.clear_screen()
         self.game_hud()
         Print_Img("Cave_Door_Unlocked")
         time.sleep(2)
-        clear_screen()
+        helper_functions.clear_screen()
         self.game_hud()
         #Show the treasure room
         Print_Img("Cave_box")
@@ -411,7 +411,7 @@ class gameWorld:
             self.player.addWeapon(rdm.aname, rdm.arate, rdm.aweight, rdm.aType)
     
   def Cave_Boss(self):
-    clear_screen()
+    helper_functions.clear_screen()
     self.game_hud()
     #check to see if the boss was killed yet
     if self.BossKilled != True:
@@ -427,7 +427,7 @@ class gameWorld:
         #We found a key so we unlock the door
         Print_Img("Boss_Door_Unlocked")
         time.sleep(1)
-        clear_screen()
+        helper_functions.clear_screen()
         self.game_hud()
         #Enter battle with Boss
         self.BossFound = True
@@ -441,7 +441,7 @@ class gameWorld:
       print(' Now that you found the crown, its time to return it to the King')
 
   def Cave_shop(self):
-    clear_screen()
+    helper_functions.clear_screen()
     self.game_hud()
     Print_Img("Cave_shop")
     wpn = random.choice(self.weapons)
@@ -464,7 +464,7 @@ class gameWorld:
 
 
   def Cave_Treasure(self):
-    clear_screen()
+    helper_functions.clear_screen()
     self.game_hud()
     Print_Img("Cave_box")
     if self.treasurefound != True:
@@ -505,7 +505,7 @@ class gameWorld:
     else:
       self.enemy = self.GetMonsterbyName('Goblin King')
 
-    clear_screen()
+    helper_functions.clear_screen()
     self.game_hud()
     print('')
     if self.enemy.mobtype == 'Boss':
@@ -555,7 +555,7 @@ class gameWorld:
   def battle(self):
     #start main battle loop
     while self.enemy.health > 0 and self.player.health > 0:
-      clear_screen()
+      helper_functions.clear_screen()
       self.game_hud()
       Print_Img(self.enemy.mobtype)
 
@@ -816,7 +816,7 @@ class gameWorld:
           Self.GiveItem("Skull Key")
    
         #print out the end of battle screen
-        clear_screen()
+        helper_functions.clear_screen()
         self.game_hud()
         print('')
         print('  Congragulations you have defeated ')
@@ -837,7 +837,7 @@ class gameWorld:
 
         #return so we don't fight the monster we just revived
         input('Press Enter to continue')
-        clear_screen()
+        helper_functions.clear_screen()
         self.Cave_tunnel()
         return
         
