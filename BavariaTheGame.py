@@ -50,15 +50,15 @@ def Status_Screen():
   update = True
   while working == True:
     if update == True:
-      class_support.clear_screen()
-      class_world.status()
+      helper_functions.clear_screen()
+      Calradia.Stats()
       update = False
     Items_found = False
     Spells_found = False
-    for item in Calradia.player.inv:
+    for item in Calradoa.player.inv:
       if item.itype == "Heal":
         Items_found = True
-    for spell in Calradia.player.Spells:
+    for spell in self.player.Spells:
       if spell.sname == "Cure":
         Spells_found = True
     if Items_found == True and Spells_found == True:
@@ -428,7 +428,7 @@ while running==True:
   if tmp.lower() == "c":
   #Show the stats/item screen
     helper_functions.clear_screen()
-    class_world.status()
+    Calradia.Stats()
     Status_Screen()
   elif tmp.lower() == "w":
     Calradia.player.steps += 1
@@ -451,7 +451,7 @@ while running==True:
     helper_functions.clear_screen()
     X+=1
   elif tmp.lower() == "debug":
-    Debug_Menu()
+    Calradia.Debug_Menu()
 
 
 

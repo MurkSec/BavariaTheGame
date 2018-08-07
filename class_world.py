@@ -1,4 +1,5 @@
 import random
+import time
 import class_player
 import class_support
 import class_monster
@@ -316,9 +317,9 @@ class gameWorld:
     self.player.strength += int((plvl*(random.randint(1,4))))
     if self.player.pclass == "Mage":
       if self.player.lvl % 2:
-        self.player.addSpell("Cure")
+        self.addSpell("Cure")
       if self.player.lvl % 3:
-        self.player.addSpell("Fireball")
+        self.addSpell("Fireball")
 
     #lvl up mobs
     for bad in self.moblist:
@@ -477,13 +478,13 @@ class gameWorld:
       #ask about equiping the stuff found
       tmp=input(f'Would you like to equipe the {wpn.wname}? (y/n)')
       if tmp.lower() == "y":
-        self.player.addWeapon(wpn.wname, wpn.watk, wpn.w_hit, wpn.wType)
+        self.addWeapon(wpn.wname, wpn.watk, wpn.w_hit, wpn.wType)
         print(f'   **** {wpn.wname} equiped ****')
       else:
         print(f'   **** {wpn.wname} discorded ****')
       tmp=input(f'Would you like to equipe the {arm.aname}? (y/n)')
       if tmp.lower() == "y":
-        self.player.addArmor(arm.aname, arm.arate, arm.aweight, arm.aType)
+        self.addArmor(arm.aname, arm.arate, arm.aweight, arm.aType)
         print(f'   **** {arm.aname} equiped ****')
       else:
         print(f'   **** {arm.aname} discorded ****')
@@ -510,8 +511,35 @@ class gameWorld:
     class_oldgraphic.Print_Img(self.enemy.mobtype)
     input('Press Enter to continue...')
     self.battle()
-    
-  def Stats:
+
+  def Debug_Menu(self):
+    working = True
+    while working == True:
+      helper_functions.clear_screen()
+      print("this is the debug menu")
+      print(f"Enemey Locations {self.badguys}")
+      print(f"Treausre Room {self.treasure}")
+      print(f"Boss {self.boss}")
+      print(f"Shops {self.shops}")
+      print('')
+      tmp = input("Please enter command")
+      if tmp.lower() == "goto":
+        tmpX = input("enter X")
+        tmpY = input("enter Y")
+        self.position = (int(tmpX), int(tmpY))
+        working = False
+      elif tmp.lower() == "lvl":
+        self.lvl_up(1)
+      elif tmp.lower() == "greed":
+        self.GiveItem("Door Key", 1)
+        self.GiveItem("Skull Key", 1)
+        self.GiveItem("Potion", 10)
+        self.GiveItem("Ether", 10)
+        working = False
+      else:
+        working = False
+
+  def Stats(self):
     print(f' Position {self.position}')
     print('.......................................')
     print(f' Name : {self.player.pname}   Class: {self.player.pclass}     Lvl: {self.player.lvl}')
@@ -558,7 +586,7 @@ class gameWorld:
       print(" You don't have any Spells")
     print('.......................................')
     print('')
-    
+
   def calc_dmg(self, pStr, pAcc=10, eEv=5, pArmor=0, pWeight=0, pwHit=10):
 
     cng_block = int(((5+eEv)+pArmor))
