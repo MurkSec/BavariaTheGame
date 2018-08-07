@@ -722,7 +722,7 @@ def Debug_Menu():
       Calradia.GiveItem("Door Key", 1)
       Calradia.GiveItem("Skull Key", 1)
       Calradia.GiveItem("Potion", 10)
-      Calradia.GiveItem("Ether", 10)
+      Calradia.GiveItem("Ether", 10
       working = False
     else:
       working = False
@@ -731,7 +731,7 @@ def Debug_Menu():
 
 
 #start of the game
-Calradia = gameWorld()
+Calradia = class_world.gameWorld()
 Gen_Map()
 Calradia.char_setup()
 clear_screen()
