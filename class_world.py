@@ -511,7 +511,7 @@ class gameWorld:
     input('Press Enter to continue...')
     self.battle()
     
-def Stats:
+  def Stats:
     print(f' Position {self.position}')
     print('.......................................')
     print(f' Name : {self.player.pname}   Class: {self.player.pclass}     Lvl: {self.player.lvl}')
