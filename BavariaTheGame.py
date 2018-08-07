@@ -267,7 +267,7 @@ Press Enter when you are ready to begin your adventer
   ''')
 Calradia.Cave_Enter()
 
-helper_functions.clear_screen()
+#helper_functions.clear_screen()
 #We are now in the Cave
 while running==True:
   X = 0
