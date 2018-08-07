@@ -539,7 +539,7 @@ class gameWorld:
       else:
         working = False
         
-  def Status_Screen():
+  def Status_Screen(self):
   #Generate options for Status Screen
     working = True
     update = True
