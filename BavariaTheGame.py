@@ -680,8 +680,7 @@ def Move_Char(X,Y):
     return "Cave_tunnel"
 
 #start of the game
-#Calradia = class_world.gameWorld()
-Calradia = gameWorld()
+Calradia = class_world.gameWorld()
 Gen_Map()
 Calradia.char_setup()
 helper_functions.clear_screen()
