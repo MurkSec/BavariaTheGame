@@ -511,6 +511,54 @@ class gameWorld:
     input('Press Enter to continue...')
     self.battle()
     
+def Stats:
+    print(f' Position {self.position}')
+    print('.......................................')
+    print(f' Name : {self.player.pname}   Class: {self.player.pclass}     Lvl: {self.player.lvl}')
+    #If player is a mage show their MP
+    if self.player.pclass == "Mage":
+      print(f' HP: {self.player.health}/{self.player.max_health}      MP: {self.player.mp}/{self.player.max_mp} ')
+    else:
+      print(f' HP: {self.player.health}/{self.player.max_health} ')
+    print('.......................................')
+    #player has a weapon equiped
+    print(f' Weapon: {self.player.Weapon[0].wname}   Dmg: {self.player.Weapon[0].watk}')
+
+    #Block% = (5+Evasion) - Armor Rating
+    #Crit% = 100-((5 + Evasion)- Armor Weight)
+    #Miss% = Player Accuracy
+    #Hit% = (Weapon Hit rate * Player Accuracy)* 0.3
+
+    cng_block = int(((5+self.player.Evasion)+self.player.Armor[0].arate))
+    cng_crit = int(((5+self.player.Evasion)-self.player.Armor[0].aweight)*0.5)
+    cng_miss = int(self.player.Accuracy)
+    cng_hit = int(((self.player.Weapon[0].w_hit*self.player.Accuracy)*0.3))
+    print('.......................................')
+
+    print(f' Block%: {cng_block}     Crit%: {cng_crit}   ')
+    print(f" Miss%: {cng_miss}       Hit%: {cng_hit}")
+    print('.......................................')
+    print(f' Armor: {self.player.Armor[0].aname}     Def Rating: {self.player.Armor[0].arate}')
+    print('.......................................')
+    #Check for items in the Inventory
+    print(" Inventory:")
+    if len(self.player.inv) > 0:
+      for item in self.player.inv:
+        print(f' {item.iname}     {item.iamount}')
+    else:
+      print(" You don't have any items")
+    print('.......................................')
+
+    #Check for Spells
+    print(" Spells:")
+    if len(self.player.Spells) > 0:
+      for spell in self.player.Spells:
+        print(f' {spell.sname}     Lvl: {spell.slevel}    Dmg: {spell.sDmg}')
+    else:
+      print(" You don't have any Spells")
+    print('.......................................')
+    print('')
+    
   def calc_dmg(self, pStr, pAcc=10, eEv=5, pArmor=0, pWeight=0, pwHit=10):
 
     cng_block = int(((5+eEv)+pArmor))
