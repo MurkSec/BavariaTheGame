@@ -2,7 +2,7 @@
 > A Text-Based Rogue-Like Dungeon Adventure Game
 
 **Main Version** | v0.01
-**Dev Version**  | v0.01Dev
+**Dev Version**  | v0.15Dev
 
 A Text-Based Rogue-Like Adventure Game.  Based around games of old, you are an adventurer set on discovering a secret.  More to come.
 
@@ -33,7 +33,10 @@ Common Version String: v0.1.2D
 
 ## Release History
 
-* 0.1.1
+* 0.15
+    * Development copy for Version 0.1
+
+* 0.01
     * Initial Code Submission
 
 ## Meta
