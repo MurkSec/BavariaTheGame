@@ -338,7 +338,6 @@ class gameWorld:
       time.sleep(1)
       ending()
     
-
   def Cave_tunnel(self):
     helper_functions.clear_screen()
     self.game_hud()
@@ -358,9 +357,7 @@ class gameWorld:
     self.player.health = self.player.max_health
     self.player.mp = self.player.max_mp
     del self.fairys[self.fairys.index(self.position)]
-
     
-
   def Cave_Door(self):
     helper_functions.clear_screen()
     self.game_hud()
@@ -463,7 +460,6 @@ class gameWorld:
     del self.shops[self.shops.index(self.position)]
     self.Cave_tunnel()
 
-
   def Cave_Treasure(self):
     helper_functions.clear_screen()
     self.game_hud()
@@ -494,8 +490,6 @@ class gameWorld:
     else:
       print(" You have already discoverd these treasures ")
 
-      
-
   def Cave_Encounter(self):
     ready = False
     if self.BossFound != True:
@@ -516,7 +510,7 @@ class gameWorld:
     class_oldgraphic.Print_Img(self.enemy.mobtype)
     input('Press Enter to continue...')
     self.battle()
-
+    
   def calc_dmg(self, pStr, pAcc=10, eEv=5, pArmor=0, pWeight=0, pwHit=10):
 
     cng_block = int(((5+eEv)+pArmor))
