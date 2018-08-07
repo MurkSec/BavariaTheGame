@@ -289,23 +289,23 @@ while running==True:
     Calradia.Stats()
     class_world.Status_Screen()
   elif tmp.lower() == "w":
-    class_world.player.steps += 1
+    #class_world.player.steps += 1
   #move Foward if possible
     helper_functions.clear_screen()
     Y+=1
   elif tmp.lower() == "a":
   #move left if possible
-    class_world.player.steps += 1
+    #class_world.player.steps += 1
     helper_functions.clear_screen()
     X-=1
   elif tmp.lower() == "s":
   #move back if possible
-    class_world.player.steps += 1
+    #class_world.player.steps += 1
     helper_functions.clear_screen()
     Y-=1
   elif tmp.lower() == "d":
   #move right if possible
-    class_world.player.steps += 1
+    #class_world.player.steps += 1
     helper_functions.clear_screen()
     X+=1
   elif tmp.lower() == "debug":
