@@ -538,7 +538,150 @@ class gameWorld:
         working = False
       else:
         working = False
+        
+  def Status_Screen():
+  #Generate options for Status Screen
+    working = True
+    update = True
+    while working == True:
+      if update == True:
+        helper_functions.clear_screen()
+        self.Stats()
+        update = False
+      Items_found = False
+      Spells_found = False
+      for item in self.player.inv:
+        if item.itype == "Heal":
+          Items_found = True
+      for spell in self.player.Spells:
+        if spell.sname == "Cure":
+          Spells_found = True
+      if Items_found == True and Spells_found == True:
+        #player has spells and items
+        tmp_input = input('''
+            Press Enter to go back to the map
+            Press I to use a Item
+            Press S to use a Spell
+            ''')
+        if tmp_input.lower() == "i":
+          #Item was selected
+          for item in self.player.inv:
+            if item.iname == "Potion":
+              tmp_answer = input("Use a Potion? y/n")
+              if tmp_answer.lower() == "y":
+              #use a potion
+                self.player.HealPlayer(30)
+                self.player.RemoveItem('Potion')
+                print(' You healed for 30 hp', end='\r')
+                update = True
+              else:
+                update = True
+            elif item.iname == "Ether":
+              tmp_answer = input('Use a Ether? y/n')
+              if tmp_answer.lower() == "y":
+                #Use a Ether
+                self.player.RemoveItem("Ether",1)
+                self.player.RestoreMana(30)
+                print('30 mana restored', end='\r')
+                update = True
+              else:
+                update = True
+        elif tmp_input.lower() == "s":
+          #Spell was selected
+          for spell in self.player.Spells:
+          #Check to see if they can cast it
+            if self.player.mp >= spell.sCost:
+            #Ask if they want to use item
+              if spell.sname == "Cure":
+                tmp_answer = input(f'Use {spell.sname} Cost {spell.sCost}? y/n')
+                if tmp_answer.lower() == "y":
+                #Use Spell
+                  self.player.HealPlayer(int(spell.sDmg))
+                  print(f' You healed for {spell.sDmg}', end='\r')
+                  self.player.mp -= spell.sCost
+                  update = True
+                else:
+                  update = True
+            else:
+              print("You don't have enough mana to cast any spells", end='\r')
+              update = True
+        else:
+          #exit clause
+          update = False
+          working = False
+          break
+      elif Spells_found == True and Items_found == False:
+        #Spells but no items
+        tmp_input = input('''
+              Press Enter to go back to the map
+              Press S to use Spell
+              ''')
+        if tmp_input.lower() == "s":
+          #Spell was selected
+          for spell in self.player.Spells:
+            #Check to see if they can cast it
+            if self.player.mp >= spell.sCost:
+              #Ask if they want to use item
+              if spell.sname == "Cure":
+                tmp_answer = input(f'Use {spell.sname} Cost {spell.sCost}? y/n')
+                if tmp_answer.lower() == "y":
+                #Use Spell
+                  self.player.HealPlayer(int(spell.sDmg))
+                  print(f' You healed for {spell.sDmg}', end='\r')
+                  self.player.mp -= spell.sCost
+                  update = True
+                  break
+                else:
+                  update = True
+            else:
+              print("You don't have enough mana to cast any spells", end='\r')
+              update = True
+        else:
+        #Exit clause
+        update = False
+        working = False
+        break
+    elif Spells_found == False and Items_found == True:
+      #No Spell but they have some Items
+      tmp_input = input('''
+      Press Enter to go back to the map
+      Press I to use a Item
+      ''')
+      if tmp_input.lower() == "i":
+      #Item was selected
+        for item in self.player.inv:
+          if item.iname == "Potion":
+            tmp_answer = input("Use a Potion? y/n")
+            if tmp_answer.lower() == "y":
+              #use a potion
+              self.player.HealPlayer(30)
+              self.player.RemoveItem('Potion')
+              print(' You healed for 30 hp', end='\r')
+              update = True
+            else:
+              update = True
+          elif item.iname == "Ether":
+            tmp_answer = input('Use a Ether? y/n')
+            if tmp_answer.lower() == "y":
+            #Use a Ether
+              self.player.RemoveItem("Ether",1)
+              self.player.RestoreMana(30)
+              print('30 mana restored', end='\r')
+              update = True
+            else:
+              update = True
+      else:
+        #Exit Clause
+        update = False
+        working = False
+        break
+    else:
+      input(' Press Enter to go back to the map')
+      update = False
+      working = False
+      break
 
+        
   def Stats(self):
     print(f' Position {self.position}')
     print('.......................................')
