@@ -332,7 +332,7 @@ class gameWorld:
     helper_functions.clear_screen()
     self.game_hud()
     if self.BossKilled == False:
-      BavariaTheGame.Print_Img('Cave_Enter')
+      class_oldgraphic.Print_Img('Cave_Enter')
     else:
       print(" You head back to Bavaria....")
       time.sleep(1)
@@ -342,19 +342,19 @@ class gameWorld:
   def Cave_tunnel(self):
     helper_functions.clear_screen()
     self.game_hud()
-    BavariaTheGame.Print_Img("Cave_tunnel")
+    class_oldgraphic.Print_Img("Cave_tunnel")
     
 
   def Cave_Wall(self):
     helper_functions.clear_screen()
     self.game_hud()
-    BavariaTheGame.Print_Img("Cave_Wall")
+    class_oldgraphic.Print_Img("Cave_Wall")
     
 
   def Cave_fairy(self):
     helper_functions.clear_screen()
     self.game_hud()
-    BavariaTheGame.Print_Img("Cave_fairy")
+    class_oldgraphic.Print_Img("Cave_fairy")
     self.player.health = self.player.max_health
     self.player.mp = self.player.max_mp
     del self.fairys[self.fairys.index(self.position)]
@@ -365,7 +365,7 @@ class gameWorld:
     helper_functions.clear_screen()
     self.game_hud()
     found = False
-    BavariaTheGame.Print_Img("Cave_Door")
+    class_oldgraphic.Print_Img("Cave_Door")
     #Check to see if the player has a key
     #If they do we removed it and unlock the door
     for item in self.player.inv:
