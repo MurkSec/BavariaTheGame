@@ -265,7 +265,7 @@ tmp=input('''
 Press Enter when you are ready to begin your adventer
   
   ''')
-Calradia.Cave_Enter()
+class_world.Cave_Enter()
 
 #helper_functions.clear_screen()
 #We are now in the Cave
@@ -286,7 +286,7 @@ while running==True:
   if tmp.lower() == "c":
   #Show the stats/item screen
     helper_functions.clear_screen()
-    Calradia.Stats()
+    class_world.Stats()
     class_world.Status_Screen()
   elif tmp.lower() == "w":
     #class_world.player.steps += 1
@@ -309,62 +309,62 @@ while running==True:
     helper_functions.clear_screen()
     X+=1
   elif tmp.lower() == "debug":
-    Calradia.Debug_Menu()
+    class_world.Debug_Menu()
 
 
 
   #Check X field
-  if Calradia.position[0] < 0:
-    Calradia.position = (0,Calradia.position[1])
-  if Calradia.position[0] > Calradia.Max_X:
-    Calradia.position = (Calradia.Max_X,Calradia.position[1])
-  if (Calradia.position[0]+X) < 0:
+  if class_world.position[0] < 0:
+    class_world.position = (0,class_world.position[1])
+  if class_world.position[0] > class_world.Max_X:
+    class_world.position = (class_world.Max_X,class_world.position[1])
+  if (class_world.position[0]+X) < 0:
     X=0
-  if (Calradia.position[0]+X) > Calradia.Max_X:
-    X=Calradia.Max_X
+  if (class_world.position[0]+X) > class_world.Max_X:
+    X=class_world.Max_X
 
   #Check Y field
-  if Calradia.position[1] < 0:
-    Calradia.position = (Calradia.position[0],0)
-  if Calradia.position[1] > Calradia.Max_Y:
-    Calradia.position = (Calradia.position[0],Calradia.Max_Y)
-  if (Calradia.position[1]+Y) < 0:
+  if class_world.position[1] < 0:
+    class_world.position = (class_world.position[0],0)
+  if class_world.position[1] > class_world.Max_Y:
+    class_world.position = (class_world.position[0],class_world.Max_Y)
+  if (class_world.position[1]+Y) < 0:
     Y=0
-  if (Calradia.position[1]+Y) > Calradia.Max_Y:
-    Y=Calradia.Max_Y
+  if (class_world.position[1]+Y) > class_world.Max_Y:
+    Y=class_world.Max_Y
   
-  tmpResult = Move_Char(Calradia.position[0]+X , Calradia.position[1]+Y)
-  Calradia.position = Calradia.position[0]+X , Calradia.position[1]+Y
+  tmpResult = Move_Char(class_world.position[0]+X , class_world.position[1]+Y)
+  class_world.position = class_world.position[0]+X , class_world.position[1]+Y
 
   #Check again for correct Value
-  if Calradia.position[1] < 0:
-    Calradia.position = (Calradia.position[0],0)
-  if Calradia.position[1] > Calradia.Max_X:
-    Calradia.position = (Calradia.position[0],Calradia.Max_X)
-  if Calradia.position[0] < 0:
-    Calradia.position = (0,Calradia.position[1])
-  if Calradia.position[0] > Calradia.Max_X:
-    Calradia.position = (Calradia.Max_X,Calradia.position[1])
+  if class_world.position[1] < 0:
+    class_world.position = (class_world.position[0],0)
+  if class_world.position[1] > class_world.Max_X:
+    class_world.position = (class_world.position[0],class_world.Max_X)
+  if class_world.position[0] < 0:
+    class_world.position = (0,class_world.position[1])
+  if class_world.position[0] > class_world.Max_X:
+    class_world.position = (class_world.Max_X,class_world.position[1])
 
 
   if tmpResult == "Cave_Encounter":
-    Calradia.Cave_Encounter()
+    class_world.Cave_Encounter()
   elif tmpResult == "Cave_Enter":
-    Calradia.Cave_Enter()
+    class_world.Cave_Enter()
   elif tmpResult == "Cave_Door":
-    Calradia.Cave_Door()
+    class_world.Cave_Door()
   elif tmpResult == "Cave_Wall":
-    Calradia.Cave_Wall()
+    class_world.Cave_Wall()
   elif tmpResult == "Cave_tunnel":
-    Calradia.Cave_tunnel()
+    class_world.Cave_tunnel()
   elif tmpResult == "Cave_fairy":
-    Calradia.Cave_fairy()
+    class_world.Cave_fairy()
   elif tmpResult == "Cave_shop":
-    Calradia.Cave_shop()
+    class_world.Cave_shop()
   elif tmpResult == "Boss":
-    Calradia.Cave_Boss()
+    class_world.Cave_Boss()
   elif tmpResult == "Treasure":
-    Calradia.Cave_Treasure()
+    class_world.Cave_Treasure()
   else:
-    Calradia.Cave_tunnel()
+    class_world.Cave_tunnel()
   
