@@ -6,13 +6,6 @@ import class_monster
 import helper_functions
 import class_graphics
 
-def game_over():
-  options = ["Death One","Death Two", "Death Three", "Death Four", "Death Five", "Death Six", "Death Seven"]
-  helper_functions.clear_screen()
-  self.graphics.CallArtByName(random.choice(options)).ShowArt()
-  print("")
-  print("")
-  print("Press Enter to try again")
 
 class gameWorld:
   #Initialize our game world
@@ -341,7 +334,6 @@ class gameWorld:
         self.addSpell("Cure")
       if self.player.lvl % 3:
         self.addSpell("Fireball")
-
     #lvl up mobs
     for bad in self.moblist:
       bad.lvl += plvl
@@ -360,6 +352,14 @@ class gameWorld:
       time.sleep(1)
       ending()
     
+  def game_over():
+    options = ["Death One","Death Two", "Death Three", "Death Four", "Death Five", "Death Six", "Death Seven"]
+    helper_functions.clear_screen()
+    self.graphics.CallArtByName(random.choice(options)).ShowArt()
+    print("")
+    print("")
+    print("Press Enter to try again")
+
   def Cave_tunnel(self):
     helper_functions.clear_screen()
     self.game_hud()
@@ -792,7 +792,12 @@ class gameWorld:
     #start main battle loop
     while self.enemy.health > 0 and self.player.health > 0:
       helper_functions.clear_screen()
+      #Draw the screen
       self.game_hud()
+      print('.......................................')
+      print(f'         Lvl: {self.enemy.lvl}   ')
+      print(f'         Name: {self.enemy.mName} ')
+      print(f'         Health {self.enemy.health} ')
       self.graphics.CallArtByName(self.enemy.mobtype).ShowArt()
 
       #Clear out the variables
@@ -1082,4 +1087,4 @@ class gameWorld:
         #you were killed
         print('You were killed!')
         time.sleep(1)
-        game_over()
+        self.game_over()
