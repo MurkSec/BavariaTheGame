@@ -124,16 +124,12 @@ class gameWorld:
     while finished == False:
       #Setup Character
       helper_functions.clear_screen()
+      Print_Img("Logo")
       self.player.pname=input('Please enter your name')
       helper_functions.clear_screen()
-      print('         Please choice your class')
+      Print_Img("Class Selection")
       print('')
-      print('')
-      print('1 = Fighter')
-      print('2 = Monk')
-      print('3 = Thief')
-      print('4 = Mage')
-      print('')
+      print('Selection: ')
       print('')
       tmp = input('')
 
@@ -229,7 +225,8 @@ class gameWorld:
         self.addArmor(amn.aname,amn.arate,amn.aweight, amn.aType)
       helper_functions.clear_screen()
       print("")
-      print(f'You choose :')
+      print(f'You chose :')
+      print("")
       print(f"Name: {self.player.pname}")
       print(f"Class: {self.player.pclass}")
       print(f"Health: {self.player.health}/{self.player.max_health}")
@@ -239,8 +236,18 @@ class gameWorld:
       print(f"Strength: {self.player.strength} ")
       print(f"Weapon: {self.player.Weapon[0].wname}  Atk rate: {self.player.Weapon[0].watk}")
       print(f"Armor: {self.player.Armor[0].aname}  Def rate: {self.player.Armor[0].arate}")
-      tmp = input("Do you want to reroll your Character? y/n")
-      if tmp.lower() != "y":
+      print(' ')
+      if self.player.pclass == "Fighter":
+        Print_Img("Fighter")
+      elif self.player.pclass == "Monk":
+        Print_Img("Monk")
+      elif self.player.pclass == "Thief":
+        Print_Img("Thief")
+      elif self.player.pclass == "Mage":
+        Print_Img("Mage")
+      print("")
+      tmp = input("Do you want to keep this Character? y/n")
+      if tmp.lower() != "n":
         finished = True
 
   def GetRandomMonster(self):
