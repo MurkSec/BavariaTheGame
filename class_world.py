@@ -352,7 +352,7 @@ class gameWorld:
       time.sleep(1)
       ending()
     
-  def game_over():
+  def game_over(self):
     options = ["Death One","Death Two", "Death Three", "Death Four", "Death Five", "Death Six", "Death Seven"]
     helper_functions.clear_screen()
     self.graphics.CallArtByName(random.choice(options)).ShowArt()
