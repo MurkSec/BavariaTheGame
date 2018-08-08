@@ -6,6 +6,7 @@ import class_player
 import class_support
 import class_monster
 import helper_functions
+import class_oldgraphic
 
 #defining Variables
 running = True
@@ -13,16 +14,16 @@ mod_name = ""
 
 def ending():
   helper_functions.clear_screen()
-  Print_Img("Mountain Castle")
+  class_oldgraphic.Print_Img("Mountain Castle")
   print(" After a long journey you arrive back at Bavaria")
   print("")
   time.sleep(5)
   helper_functions.clear_screen()
-  Print_Img("Castle")
+  class_oldgraphic.Print_Img("Castle")
   print(" Shortly after reaching the town, you head to the castle to give the King back his crown")
   time.sleep(5)
   helper_functions.clear_screen()
-  Print_Img('King')
+  class_oldgraphic.Print_Img('King')
   print("Greetings, oh King. I have returned with your lost crown!", end="\r")
   time.sleep(5)
   print("")
@@ -31,7 +32,7 @@ def ending():
   print("King: Will you please stay with us as the head of my Royal Guard?", end="\r")
   time.sleep(5)
   helper_functions.clear_screen()
-  Print_Img("Fin")
+  class_oldgraphic.Print_Img("Fin")
 
 def Gen_Map():
   #randomly place the boss in the world
