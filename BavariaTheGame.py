@@ -14,16 +14,16 @@ mod_name = ""
 
 def ending():
   helper_functions.clear_screen()
-  self.graphics.CallArtByName("Mountain Castle").ShowArt()
+  Calradia.graphics.CallArtByName("Mountain Castle").ShowArt()
   print(" After a long journey you arrive back at Bavaria")
   print("")
   time.sleep(5)
   helper_functions.clear_screen()
-  self.graphics.CallArtByName("Castle").ShowArt()
+  Calradia.graphics.CallArtByName("Castle").ShowArt()
   print(" Shortly after reaching the town, you head to the castle to give the King back his crown")
   time.sleep(5)
   helper_functions.clear_screen()
-  self.graphics.CallArtByName("King").ShowArt()
+  Calradia.graphics.CallArtByName("King").ShowArt()
   print("Greetings, oh King. I have returned with your lost crown!", end="\r")
   time.sleep(5)
   print("")
@@ -32,7 +32,7 @@ def ending():
   print("King: Will you please stay with us as the head of my Royal Guard?", end="\r")
   time.sleep(5)
   helper_functions.clear_screen()
-  self.graphics.CallArtByName("Fin").ShowArt()
+  Calradia.graphics.CallArtByName("Fin").ShowArt()
 
 def Gen_Map():
   #randomly place the boss in the world
@@ -217,7 +217,7 @@ helper_functions.clear_screen()
 print('')
 print(f'Welcome to Bavaria, young {Calradia.player.pname}')
 print('')
-self.graphics.CallArtByName("Dwarf").ShowArt()
+Calradia.graphics.CallArtByName("Dwarf").ShowArt()
 print('')
 print('We are in need of your help. Yesterday, a goblin stole the king\'s crown.')
 print(' We tried to get it back but the Goblin King\' minions are to strong for our guards')

@@ -1,4 +1,3 @@
-#!/bin/python3.6
 import textwrap
 import time
 
@@ -11,6 +10,7 @@ def WrappedTextOutput(p_text, p_width=70):
     
 def clear_screen():
   print('\033[H\033[J')
+  print('\n'*250)
   time.sleep(0.1)
 
 """
@@ -21,5 +21,5 @@ params: operator  - sets the operator to be rendered to screen      | defailt "\
         lines     - literally prints the operator x number of times | default 250
 return: void
 """
-def Screenwipe(operator="\n", lines=250)#
+def Screenwipe(operator="\n", lines=250):
   print('\n'*250)
