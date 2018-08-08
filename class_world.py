@@ -4,18 +4,15 @@ import class_player
 import class_support
 import class_monster
 import helper_functions
-import class_oldgraphic
 import class_graphics
 
 def game_over():
+  options = ["Death One","Death Two", "Death Three", "Death Four", "Death Five", "Death Six", "Death Seven"]
   helper_functions.clear_screen()
-  print('__  ______  __  __       ____  ______________  ')
-  print('\ \/ / __ \/ / / /      / __ \/  _/ ____/ __ \ ')
-  print(' \  / / / / / / /      / / / // // __/ / / / / ')
-  print(' / / /_/ / /_/ /      / /_/ // // /___/ /_/ /  ')
-  print('/_/\____/\____/      /_____/___/_____/_____/   ')
-  input('')
-  exit()
+  self.graphics.CallArtByName(random.choice(options)).ShowArt()
+  print("")
+  print("")
+  print("Press Enter to try again")
 
 class gameWorld:
   #Initialize our game world
@@ -795,7 +792,7 @@ class gameWorld:
     while self.enemy.health > 0 and self.player.health > 0:
       helper_functions.clear_screen()
       self.game_hud()
-      self.graphics.CallArtByName("self.enemy.mobtype").ShowArt()
+      self.graphics.CallArtByName(self.enemy.mobtype).ShowArt()
 
       #Clear out the variables
       Action = ""  #atk, spell, item, flee
