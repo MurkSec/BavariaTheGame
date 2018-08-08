@@ -529,7 +529,7 @@ class gameWorld:
       print(f'you have encountered the {self.enemy.mName}')
     else:
       print(f'you have encountered a {self.enemy.mName}')
-    self.graphics.CallArtByName("self.enemy.mobtype").ShowArt()
+    self.graphics.CallArtByName(self.enemy.mobtype).ShowArt()
     input('Press Enter to continue...')
     self.battle()
 
