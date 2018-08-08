@@ -215,7 +215,7 @@ helper_functions.clear_screen()
 
 #start of the adventer
 print('')
-print(f'Welcome to the Bavaria, young {Calradia.player.pname}')
+print(f'Welcome to Bavaria, young {Calradia.player.pname}')
 print('')
 print('.........          /\_[]_/\  ....')
 print('......     ___    |] _||_ [| ....')
@@ -238,7 +238,7 @@ Will you help us?
 ''')
 
 if tmp == "2":
-  print('This is a game, so you really don\'t have a choice.')
+  print("This is a game, so you really don't have a choice.")
   print('Man up and save the world!!')
   time.sleep(1)
 helper_functions.clear_screen()

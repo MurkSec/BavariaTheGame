@@ -45,7 +45,7 @@ class gameWorld:
     #Creating Item list
     self.Spells= [class_support.Spell("Cure", 1, "Heal", 15, 30), class_support.Spell("Fireball", 1, "Atk", 15, 15), class_support.Spell("Str Up", 1, "Buff", 20, 5)]
     self.weapons = [class_support.Weapon("Short Sword", 5, 10, "sword"), class_support.Weapon("Brass Knuckles", 10, 14, "bare"), class_support.Weapon("Wooden Staff", 5, 10, "staff"), class_support.Weapon("Rapier", 9, 5, "sword"), class_support.Weapon("Long Sword", 20, 10, "sword"), class_support.Weapon("light Axe", 28, 15, "axe"), class_support.Weapon("Small Knife", 5, 15, "knife"), class_support.Weapon("Stick", 1, 3, "knife")]
-    self.armors = [class_support.Armor("Cloth Armor", 10, 5, "cloth"), class_support.Armor("Shirt", 10, 3, "cloth"), class_support.Armor("Lether Armor", 15, 8, "lether"), class_support.Armor("Robe", 10, 3, "cloth"), class_support.Armor("Cover-all", 5, 7, "cloth")]
+    self.armors = [class_support.Armor("Cloth Armor", 10, 5, "cloth"), class_support.Armor("Shirt", 10, 3, "cloth"), class_support.Armor("Leather Armor", 15, 8, "leather"), class_support.Armor("Robe", 10, 3, "cloth"), class_support.Armor("Cover-all", 5, 7, "cloth")]
     self.items = [class_support.Item("Potion", "Heal", 1, 30), class_support.Item("Ether", "Heal", 1, 25),class_support.Item("Kings Crown", "Key", 1), class_support.Item('Door Key', "Consumable", 1), class_support.Item("Skull Key", "Consumable", 1)]
     self.moblist = []
     self.addMonster("Goblin", 1, 20, 8, "Goblin")
@@ -158,7 +158,7 @@ class gameWorld:
         helper_functions.clear_screen()
         self.player.pclass = "Thief"
         weapon = "Small Knife"
-        armor = "Lether Armor"
+        armor = "Leather Armor"
         health = 15
         Ev = 20
         Acc = 30
@@ -178,8 +178,8 @@ class gameWorld:
         #User didn't choice a class so we will assign open
         #They get a Loser Class
         print("""
-        Guess you didn't want to choice a class. 
-        Well i will choice for you slacker!
+        Guess you didn't want to choose a class. 
+        Well I will make the choice for you slacker!
         """)
         self.player.pclass = "Loser"
         self.player.strength = random.randint(1,3)
@@ -458,7 +458,7 @@ class gameWorld:
     else:
       self.graphics.CallArtByName("Boss_Killed").ShowArt()
       print('')
-      print(' Now that you found the crown, its time to return it to the King')
+      print('Now that you found the crown, its time to return it to the King')
 
   def Cave_shop(self):
     helper_functions.clear_screen()
@@ -474,7 +474,7 @@ class gameWorld:
         print(f'   ****{wpn.wname} equiped****')
         self.player.gold -= rdn
       else:
-        print(" You don't have enough gold")
+        print("You don't have enough gold.")
     else:
       print('Good Bye')
     
@@ -490,27 +490,27 @@ class gameWorld:
       wpn = random.choice(self.weapons)
       arm = random.choice(self.armors)
       rdn = random.randint(10,50)
-      print("You have found the Goblin King's treasure room")
+      print("You have found the Goblin King's treasure room!!")
       print(f" **** You found {wpn.wname} ****")
       print(f" **** You found {arm.aname} ****")
       print(f" **** You found {rdn} Gold ****")
       self.player.gold += rdn
       self.treasurefound = True
       #ask about equiping the stuff found
-      tmp=input(f'Would you like to equipe the {wpn.wname}? (y/n)')
+      tmp=input(f'Would you like to equip the {wpn.wname}? (y/n)')
       if tmp.lower() == "y":
         self.addWeapon(wpn.wname, wpn.watk, wpn.w_hit, wpn.wType)
         print(f'   **** {wpn.wname} equiped ****')
       else:
-        print(f'   **** {wpn.wname} discorded ****')
-      tmp=input(f'Would you like to equipe the {arm.aname}? (y/n)')
+        print(f'   **** {wpn.wname} discarded ****')
+      tmp=input(f'Would you like to equip the {arm.aname}? (y/n)')
       if tmp.lower() == "y":
         self.addArmor(arm.aname, arm.arate, arm.aweight, arm.aType)
         print(f'   **** {arm.aname} equiped ****')
       else:
-        print(f'   **** {arm.aname} discorded ****')
+        print(f'   **** {arm.aname} discarded ****')
     else:
-      print(" You have already discoverd these treasures ")
+      print(" You have already discovered these treasures ")
 
   def Cave_Encounter(self):
     ready = False
@@ -537,9 +537,9 @@ class gameWorld:
     working = True
     while working == True:
       helper_functions.clear_screen()
-      print("this is the debug menu")
-      print(f"Enemey Locations {self.badguys}")
-      print(f"Treausre Room {self.treasure}")
+      print("This is the debug menu.")
+      print(f"Enemy Locations {self.badguys}")
+      print(f"Treasure Room {self.treasure}")
       print(f"Boss {self.boss}")
       print(f"Shops {self.shops}")
       print('')
@@ -657,7 +657,7 @@ class gameWorld:
                 else:
                   update = True
             else:
-              print("You don't have enough mana to cast any spells", end='\r')
+              print("You don't have enough mana to cast any spells.", end='\r')
               update = True
         else:
         #Exit clause
@@ -698,7 +698,7 @@ class gameWorld:
           working = False
           break
       else:
-        input(' Press Enter to go back to the map')
+        input('Press Enter to go back to the map')
         update = False
         working = False
         break
@@ -738,7 +738,7 @@ class gameWorld:
       for item in self.player.inv:
         print(f' {item.iname}     {item.iamount}')
     else:
-      print(" You don't have any items")
+      print("You don't have any items.")
     print('.......................................')
 
     #Check for Spells
@@ -747,7 +747,7 @@ class gameWorld:
       for spell in self.player.Spells:
         print(f' {spell.sname}     Lvl: {spell.slevel}    Dmg: {spell.sDmg}')
     else:
-      print(" You don't have any Spells")
+      print("You don't have any spells")
     print('.......................................')
     print('')
 
@@ -922,7 +922,7 @@ class gameWorld:
           else:
             Action = "Atk"
         else:
-          input('press Enter to attack')
+          input('Press Enter to attack')
           Action = "Atk"
 
 
