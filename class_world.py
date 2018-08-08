@@ -527,7 +527,7 @@ class gameWorld:
     while working == True:
       helper_functions.clear_screen()
       print("This is the debug menu.")
-      print(f"Enemey Locations {self.badguys}")
+      print(f"Enemy Locations {self.badguys}")
       print(f"Treasure Room {self.treasure}")
       print(f"Boss {self.boss}")
       print(f"Shops {self.shops}")
