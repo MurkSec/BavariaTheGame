@@ -6,7 +6,7 @@ import class_player
 import class_support
 import class_monster
 import helper_functions
-import class_oldgraphic
+import class_graphics
 
 #defining Variables
 running = True
@@ -14,16 +14,16 @@ mod_name = ""
 
 def ending():
   helper_functions.clear_screen()
-  class_oldgraphic.Print_Img("Mountain Castle")
+  self.graphics.CallArtByName("Mountain Castle").ShowArt()
   print(" After a long journey you arrive back at Bavaria")
   print("")
   time.sleep(5)
   helper_functions.clear_screen()
-  class_oldgraphic.Print_Img("Castle")
+  self.graphics.CallArtByName("Castle").ShowArt()
   print(" Shortly after reaching the town, you head to the castle to give the King back his crown")
   time.sleep(5)
   helper_functions.clear_screen()
-  class_oldgraphic.Print_Img('King')
+  self.graphics.CallArtByName("King").ShowArt()
   print("Greetings, oh King. I have returned with your lost crown!", end="\r")
   time.sleep(5)
   print("")
@@ -32,7 +32,7 @@ def ending():
   print("King: Will you please stay with us as the head of my Royal Guard?", end="\r")
   time.sleep(5)
   helper_functions.clear_screen()
-  class_oldgraphic.Print_Img("Fin")
+  self.graphics.CallArtByName("Fin").ShowArt()
 
 def Gen_Map():
   #randomly place the boss in the world
@@ -217,16 +217,8 @@ helper_functions.clear_screen()
 print('')
 print(f'Welcome to Bavaria, young {Calradia.player.pname}')
 print('')
-print('.........          /\_[]_/\  ....')
-print('......     ___    |] _||_ [| ....')
-print('....      /___\    \/ || \/  ....')
-print('...      (|0 0|)      ||     ....')
-print('..     _   {~}   _ |_P||     ....')
-print('..    | /\  ~   /_/   []    .....')
-print('...   |_| (____)           ......')   
-print('....  \_]/______\        ........') 
-print('.....    _\_||_/_       .........')    
-print('......  (_,_||_,_))   ...........')
+self.graphics.CallArtByName("Dwarf").ShowArt()
+print('')
 print('We are in need of your help. Yesterday, a goblin stole the king\'s crown.')
 print(' We tried to get it back but the Goblin King\' minions are to strong for our guards')
 print('')
