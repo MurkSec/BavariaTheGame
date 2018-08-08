@@ -1,1 +1,7 @@
 language: python
+python:
+  - "3.6"
+install:
+#tests
+script:
+  - pytest BavariaTheGame.py
