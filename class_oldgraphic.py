@@ -232,8 +232,9 @@ def Print_Img(img_name):
   elif img_name == "Goblin":
     print('')
     print('.......................................')
-    print(f' Lvl: {self.enemy.lvl}   Name: {self.enemy.mName}   ')
-    print(f'       Health {self.enemy.health} ')
+
+    print('')
+    print('')
     print('..........___________________..........')
     print('......../                     \........')
     print('.......|                       |.......')    
@@ -248,8 +249,8 @@ def Print_Img(img_name):
   elif img_name == "Spider2":
     print('')
     print('.......................................')
-    print(f' Lvl: {self.enemy.lvl}   Name: {self.enemy.mName}   ')
-    print(f'       Health {self.enemy.health} ')
+    print('')
+    print('')
     print('.......................................')
     print('.......-------------------------.......')
     print('...../                           \.....')
@@ -264,8 +265,8 @@ def Print_Img(img_name):
   elif img_name == "Spider":
     print('')
     print('.......................................')
-    print(f' Lvl: {self.enemy.lvl}   Name: {self.enemy.mName}   ')
-    print(f'       Health {self.enemy.health} ')
+    print('')
+    print('')
     print(".......___________________________......")
     print("...../._:_:__:_:_:__:____:_ _ _\\.\.....")
     print("....| :\`.;-._: : :  :_,-/  .  \ \'|....")
@@ -280,8 +281,8 @@ def Print_Img(img_name):
   elif img_name == "Boss":
     print('')
     print('.......................................')
-    print(f' Lvl: {self.enemy.lvl}   Name: {self.enemy.mName}   ')
-    print(f'       Health {self.enemy.health} ')
+    print('')
+    print('')
     print('                                       ')
     print('........._____________________.........')
     print('......./          ,w,          \.......')
@@ -436,7 +437,7 @@ def Print_Img(img_name):
     print("     \_|         The Story          |.    ")
     print("       |            of              |.    ")
     print("       |                            |.    ")
-    print(f"       |            {self.player.pname}            |.    ")    
+    #print(f"       |            {Calradia.player.pname}            |.    ")    
     print("       |                            |.    ")
     print("       |                            |.    ")
     print("       |   _________________________|___  ")

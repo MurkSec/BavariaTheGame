@@ -6,6 +6,7 @@ import class_player
 import class_support
 import class_monster
 import helper_functions
+import class_graphics
 
 #defining Variables
 running = True
@@ -13,26 +14,25 @@ mod_name = ""
 
 def ending():
   helper_functions.clear_screen()
-  Print_Img("Logo")
-  print(" After a long jounery you arive back at Bavaria")
+  Calradia.graphics.CallArtByName("Mountain Castle").ShowArt()
+  print(" After a long journey you arrive back at Bavaria")
   print("")
-  time.sleep(2)
+  time.sleep(5)
   helper_functions.clear_screen()
-  Print_Img("Castle")
-  print(" Shortly after ariving in town you head to the castle to give the king back the Crown")
-  time.sleep(1)
+  Calradia.graphics.CallArtByName("Castle").ShowArt()
+  print(" Shortly after reaching the town, you head to the castle to give the King back his crown")
+  time.sleep(5)
   helper_functions.clear_screen()
-  Print_Img('King')
-  print("Greetings King. I have returned with your lost crown", end="\r")
-  time.sleep(1)
-  print("King: Thank you for your service. It will not be forgoten", end="\r")
-  time.sleep(1)
-  print("King: Will you please stay with us as the head of my Knights?", end="\r")
-  time.sleep(1)
-  Print_Img("Fin")
-  print('')
-  input('')
-  exit()
+  Calradia.graphics.CallArtByName("King").ShowArt()
+  print("Greetings, oh King. I have returned with your lost crown!", end="\r")
+  time.sleep(5)
+  print("")
+  print("King: Thank you for your service. It will not be forgotten.", end="\r")
+  time.sleep(3)
+  print("King: Will you please stay with us as the head of my Royal Guard?", end="\r")
+  time.sleep(5)
+  helper_functions.clear_screen()
+  Calradia.graphics.CallArtByName("Fin").ShowArt()
 
 def Gen_Map():
   #randomly place the boss in the world
@@ -215,18 +215,10 @@ helper_functions.clear_screen()
 
 #start of the adventer
 print('')
-print(f'Welcome to the Bavaria, young {Calradia.player.pname}')
+print(f'Welcome to Bavaria, young {Calradia.player.pname}')
 print('')
-print('.........          /\_[]_/\  ....')
-print('......     ___    |] _||_ [| ....')
-print('....      /___\    \/ || \/  ....')
-print('...      (|0 0|)      ||     ....')
-print('..     _   {~}   _ |_P||     ....')
-print('..    | /\  ~   /_/   []    .....')
-print('...   |_| (____)           ......')   
-print('....  \_]/______\        ........') 
-print('.....    _\_||_/_       .........')    
-print('......  (_,_||_,_))   ...........')
+Calradia.graphics.CallArtByName("Dwarf").ShowArt()
+print('')
 print('We are in need of your help. Yesterday, a goblin stole the king\'s crown.')
 print(' We tried to get it back but the Goblin King\' minions are to strong for our guards')
 print('')
@@ -238,7 +230,7 @@ Will you help us?
 ''')
 
 if tmp == "2":
-  print('This is a game, so you really don\'t have a choice.')
+  print("This is a game, so you really don't have a choice.")
   print('Man up and save the world!!')
   time.sleep(1)
 helper_functions.clear_screen()

@@ -3,6 +3,7 @@ class Art:
   def __init__(self, pname, pnumparts, pparts=[]):
         self.artName = pname
         self.parts = pnumparts
+        self.lines = []
         self.lines = pparts
 
   def AddLine(self,ppart):
@@ -14,23 +15,26 @@ class Art:
             print(self.lines[x])
 
 class Graphics_Engine:
-  def __init__(self, pname, pnumparts, pparts=[]):
+  def __init__(self):
         self.artList = []
         self.currentGraphic = ''
+        self.InitImages()
 
   def SetCurrentGraphic(self, pname):
     self.currentGraphic = pname
 
-  def TPrint(self, p_graphics_string, pname=""):
+  def Tprint(self, p_graphics_string, pname=""):
     if pname == "":
       pname = self.currentGraphic
     if (self.CallArtByName(pname) == False):
-      self.AddArt(1,p_graphics_string)
+      self.AddArt(pname, 1, [p_graphics_string])
     else:
       self.CallArtByName(pname).AddLine(p_graphics_string)
 
-  def AddArt(self, pname, pnumparts, pparts=[]):
-    self.artList.append(Art(pname))
+  
+  def AddArt(self, pname, numparts, pparts=[]):
+    self.artList.append(Art(pname, numparts, pparts))
+
 
   def CallArtByName(self, pname):
       for a in self.artList:
@@ -439,7 +443,7 @@ class Graphics_Engine:
     self.Tprint("     \_|         The Story          |.    ")
     self.Tprint("       |            of              |.    ")
     self.Tprint("       |                            |.    ")
-    self.Tprint(f"       |            {Calradia.player.pname}            |.    ")
+    #self.Tprint(f"       |            {Calradia.player.pname}            |.    ")
     self.Tprint("       |                            |.    ")
     self.Tprint("       |                            |.    ")
     self.Tprint("       |   _________________________|___  ")

@@ -4,17 +4,15 @@ import class_player
 import class_support
 import class_monster
 import helper_functions
-import class_oldgraphic
+import class_graphics
 
 def game_over():
+  options = ["Death One","Death Two", "Death Three", "Death Four", "Death Five", "Death Six", "Death Seven"]
   helper_functions.clear_screen()
-  print('__  ______  __  __       ____  ______________  ')
-  print('\ \/ / __ \/ / / /      / __ \/  _/ ____/ __ \ ')
-  print(' \  / / / / / / /      / / / // // __/ / / / / ')
-  print(' / / /_/ / /_/ /      / /_/ // // /___/ /_/ /  ')
-  print('/_/\____/\____/      /_____/___/_____/_____/   ')
-  input('')
-  exit()
+  self.graphics.CallArtByName(random.choice(options)).ShowArt()
+  print("")
+  print("")
+  print("Press Enter to try again")
 
 class gameWorld:
   #Initialize our game world
@@ -28,7 +26,9 @@ class gameWorld:
     self.BossKilled = False
     self.treasurefound = False
     self.enemy = ""
-    
+    self.graphics = class_graphics.Graphics_Engine() 
+    #self.graphics.InitImages()
+
     #defining map list
     self.walls = []
     self.tunnels = []
@@ -124,16 +124,12 @@ class gameWorld:
     while finished == False:
       #Setup Character
       helper_functions.clear_screen()
+      self.graphics.CallArtByName("Logo").ShowArt()
       self.player.pname=input('Please enter your name')
       helper_functions.clear_screen()
-      print('         Please choose your class')
+      self.graphics.CallArtByName("Class Selection").ShowArt()
       print('')
-      print('')
-      print('1 = Fighter')
-      print('2 = Monk')
-      print('3 = Thief')
-      print('4 = Mage')
-      print('')
+      print('Selection: ')
       print('')
       tmp = input('')
 
@@ -229,7 +225,8 @@ class gameWorld:
         self.addArmor(amn.aname,amn.arate,amn.aweight, amn.aType)
       helper_functions.clear_screen()
       print("")
-      print(f'You choose :')
+      print(f'You chose :')
+      print("")
       print(f"Name: {self.player.pname}")
       print(f"Class: {self.player.pclass}")
       print(f"Health: {self.player.health}/{self.player.max_health}")
@@ -239,8 +236,22 @@ class gameWorld:
       print(f"Strength: {self.player.strength} ")
       print(f"Weapon: {self.player.Weapon[0].wname}  Atk rate: {self.player.Weapon[0].watk}")
       print(f"Armor: {self.player.Armor[0].aname}  Def rate: {self.player.Armor[0].arate}")
-      tmp = input("Do you want to reroll your Character? y/n")
-      if tmp.lower() != "y":
+      print(' ')
+      if self.player.pclass == "Fighter":
+        self.graphics.CallArtByName("Fighter").ShowArt()
+        #class_oldgraphic.Print_Img("Fighter")
+      elif self.player.pclass == "Monk":
+        self.graphics.CallArtByName("Monk").ShowArt()
+        #class_oldgraphic.Print_Img("Monk")
+      elif self.player.pclass == "Thief":
+        self.graphics.CallArtByName("Thief").ShowArt()
+        #class_oldgraphic.Print_Img("Thief")
+      elif self.player.pclass == "Mage":
+        self.graphics.CallArtByName("Mage").ShowArt()
+        #class_oldgraphic.Print_Img("Mage")
+      print("")
+      tmp = input("Do you want to keep this Character? y/n")
+      if tmp.lower() != "n":
         finished = True
 
   def GetRandomMonster(self):
@@ -343,7 +354,7 @@ class gameWorld:
     helper_functions.clear_screen()
     self.game_hud()
     if self.BossKilled == False:
-      class_oldgraphic.Print_Img('Cave_Enter')
+      self.graphics.CallArtByName("Cave_Enter").ShowArt()
     else:
       print(" You head back to Bavaria....")
       time.sleep(1)
@@ -352,19 +363,19 @@ class gameWorld:
   def Cave_tunnel(self):
     helper_functions.clear_screen()
     self.game_hud()
-    class_oldgraphic.Print_Img("Cave_tunnel")
+    self.graphics.CallArtByName("Cave_tunnel").ShowArt()
     
 
   def Cave_Wall(self):
     helper_functions.clear_screen()
     self.game_hud()
-    class_oldgraphic.Print_Img("Cave_Wall")
+    self.graphics.CallArtByName("Cave_Wall").ShowArt()
     
 
   def Cave_fairy(self):
     helper_functions.clear_screen()
     self.game_hud()
-    class_oldgraphic.Print_Img("Cave_fairy")
+    self.graphics.CallArtByName("Cave_fairy").ShowArt()
     self.player.health = self.player.max_health
     self.player.mp = self.player.max_mp
     del self.fairys[self.fairys.index(self.position)]
@@ -373,7 +384,7 @@ class gameWorld:
     helper_functions.clear_screen()
     self.game_hud()
     found = False
-    class_oldgraphic.Print_Img("Cave_Door")
+    self.graphics.CallArtByName("Cave_Door").ShowArt()
     #Check to see if the player has a key
     #If they do we removed it and unlock the door
     for item in self.player.inv:
@@ -391,12 +402,12 @@ class gameWorld:
         #We found a key so we unlock the door
         helper_functions.clear_screen()
         self.game_hud()
-        class_oldgraphic.Print_Img("Cave_Door_Unlocked")
+        self.graphics.CallArtByName("Cave_Door_unlocked").ShowArt()
         time.sleep(2)
         helper_functions.clear_screen()
         self.game_hud()
         #Show the treasure room
-        class_oldgraphic.Print_Img("Cave_box")
+        self.graphics.CallArtByName("Cave_box").ShowArt()
         print(' The treasure box contained')
         #Calculate the gold found
         rdmNum = random.randint(20,75)
@@ -434,7 +445,7 @@ class gameWorld:
 
       if found == True:
         #We found a key so we unlock the door
-        class_oldgraphic.Print_Img("Boss_Door_Unlocked")
+        self.graphics.CallArtByName("Boss_Door_Unlocked").ShowArt()
         time.sleep(1)
         helper_functions.clear_screen()
         self.game_hud()
@@ -443,16 +454,16 @@ class gameWorld:
         self.Cave_Encounter()
       else:
         #Door is still locked
-        class_oldgraphic.Print_Img("Boss_Door")
+        self.graphics.CallArtByName("Boss_Door").ShowArt()
     else:
-      class_oldgraphic.Print_Img("Boss_Killed")
+      self.graphics.CallArtByName("Boss_Killed").ShowArt()
       print('')
       print('Now that you found the crown, its time to return it to the King')
 
   def Cave_shop(self):
     helper_functions.clear_screen()
     self.game_hud()
-    class_oldgraphic.Print_Img("Cave_shop")
+    self.graphics.CallArtByName("Cave_shop").ShowArt()
     wpn = random.choice(self.weapons)
     rdn = random.randint(10,50)
     tmp=input(f'Would you like to buy a {wpn.wname} for {rdn} gold? (y/n)')
@@ -474,7 +485,7 @@ class gameWorld:
   def Cave_Treasure(self):
     helper_functions.clear_screen()
     self.game_hud()
-    class_oldgraphic.Print_Img("Cave_box")
+    self.graphics.CallArtByName("Cave_box").ShowArt()
     if self.treasurefound != True:
       wpn = random.choice(self.weapons)
       arm = random.choice(self.armors)
@@ -518,7 +529,7 @@ class gameWorld:
       print(f'you have encountered the {self.enemy.mName}')
     else:
       print(f'you have encountered a {self.enemy.mName}')
-    class_oldgraphic.Print_Img(self.enemy.mobtype)
+    self.graphics.CallArtByName(self.enemy.mobtype).ShowArt()
     input('Press Enter to continue...')
     self.battle()
 
@@ -682,7 +693,8 @@ class gameWorld:
                 update = True
             else:
                 update = True
-         #Exit Clause
+        else:
+        #Exit Clause
           update = False
           working = False
           break
@@ -781,7 +793,7 @@ class gameWorld:
     while self.enemy.health > 0 and self.player.health > 0:
       helper_functions.clear_screen()
       self.game_hud()
-      class_oldgraphic.Print_Img(self.enemy.mobtype)
+      self.graphics.CallArtByName(self.enemy.mobtype).ShowArt()
 
       #Clear out the variables
       Action = ""  #atk, spell, item, flee
