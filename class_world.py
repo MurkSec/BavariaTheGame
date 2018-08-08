@@ -114,7 +114,7 @@ class gameWorld:
     return False
 
   def GetItemIDbyName(self, pn):
-    for x,m in enumerate(self.inv):
+    for x,m in enumerate(self.player.inv):
       if m.iname == pn:
         return x
     return -1
@@ -402,7 +402,7 @@ class gameWorld:
         rdmNum = random.randint(20,75)
         print(f'  {rdmNum} Gold')
         self.player.gold += rdmNum
-        #Check if there was also an item found
+        #Check if there was also an item found.
         rdmNum = random.randint(0,10)
         if rdmNum == 8:
           rdm = random.choice(self.weapons)
