@@ -2,7 +2,8 @@
 > A Text-Based Rogue-Like Dungeon Adventure Game
 
 **Main Version** | v0.01
-**Dev Version**  | v0.01Dev
+
+**Dev Version**  | v0.01Dev | [![Build Status](https://travis-ci.com/MurkSec/BavariaTheGame.svg?branch=Dev0.15)](https://travis-ci.com/MurkSec/BavariaTheGame)
 
 A Text-Based Rogue-Like Adventure Game.  Based around games of old, you are an adventurer set on discovering a secret.  More to come.
 

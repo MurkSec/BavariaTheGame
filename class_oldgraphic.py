@@ -232,6 +232,7 @@ def Print_Img(img_name):
   elif img_name == "Goblin":
     print('')
     print('.......................................')
+
     print('')
     print('')
     print('..........___________________..........')
@@ -436,7 +437,7 @@ def Print_Img(img_name):
     print("     \_|         The Story          |.    ")
     print("       |            of              |.    ")
     print("       |                            |.    ")
-    print(f"       |            {Calradia.player.pname}            |.    ")    
+    #print(f"       |            {Calradia.player.pname}            |.    ")    
     print("       |                            |.    ")
     print("       |                            |.    ")
     print("       |   _________________________|___  ")
