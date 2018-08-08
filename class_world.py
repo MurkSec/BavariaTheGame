@@ -5,6 +5,7 @@ import class_support
 import class_monster
 import helper_functions
 import class_oldgraphic
+import class_graphics
 
 def game_over():
   helper_functions.clear_screen()
@@ -28,7 +29,9 @@ class gameWorld:
     self.BossKilled = False
     self.treasurefound = False
     self.enemy = ""
-    
+    self.graphics = class_graphics.Graphics_Engine() 
+    #self.graphics.InitImages()
+
     #defining map list
     self.walls = []
     self.tunnels = []
@@ -124,7 +127,8 @@ class gameWorld:
     while finished == False:
       #Setup Character
       helper_functions.clear_screen()
-      class_oldgraphic.Print_Img("Logo")
+     # class_oldgraphic.Print_Img("Logo")
+      self.graphics.CallArtByName("Logo").ShowArt()
       self.player.pname=input('Please enter your name')
       helper_functions.clear_screen()
       class_oldgraphic.Print_Img("Class Selection")
