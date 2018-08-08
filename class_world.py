@@ -66,6 +66,14 @@ class gameWorld:
     self.moblist.append(class_monster.monster(pn, plvl, php_top, ps_top, pTyp))
     return True
 
+  # Returns the item object by parameter input of the item name.
+  def GetItemByName(self, pItemName):
+    for i in self.items:
+      if i.iname == pItemName:
+        return i
+      else:
+        return False
+
   def game_hud(self):
     #Normal HUD
     print(f'Name : {self.player.pname}        Lvl : {self.player.lvl}     Exp : {self.player.exp}')
@@ -87,37 +95,6 @@ class gameWorld:
           tmpStr += (item.iname + ", ")
       print('Items : ' + tmpStr)
     print(f'Location: {self.position}     Boss Loc: {self.boss[0]}')
-
-  def GiveItem(self, iname, iAmount=1):
-    #Check to see if player already has the Item
-    for item in self.player.inv:
-      if item.iname == iname:
-        if item.itype != "Key":
-          #Update Amount
-          item.iamount += iAmount
-          return True
-    #couldn't find the item so we are going to add it
-    for item in self.items:
-      if item.iname == iname:
-        self.player.inv.append(class_support.Item(item.iname, item.itype, iAmount, item.iDmg))
-        return True    
- 
-  def RemoveItem(self, pn, pA=1):
-    #Remove an item from our inventory
-    for i in self.player.inv:
-      if i.iname == pn:
-        if i.iamount > pA:
-          i.iamount -= pA
-        else:
-          del self.player.inv[self.GetItemIDbyName(pn)]
-        return True
-    return False
-
-  def GetItemIDbyName(self, pn):
-    for x,m in enumerate(self.player.inv):
-      if m.iname == pn:
-        return x
-    return -1
 
   def char_setup(self):
     finished = False
@@ -208,10 +185,10 @@ class gameWorld:
         self.addArmor(amn.aname,amn.arate,amn.aweight, amn.aType)
         self.player.inv.clear()
       else:
-        self.GiveItem("Door Key", 1)
-        self.GiveItem("Skull Key", 1)
-        self.GiveItem("Potion", 10)
-        self.GiveItem("Ether", 10)
+        self.player.GiveItem(self.GetItemByName("Door Key"), 1)
+        self.player.GiveItem(self.GetItemByName("Skull Key"), 1)
+        self.player.GiveItem(self.GetItemByName("Potion"), 10)
+        self.player.GiveItem(self.GetItemByName("Ether"), 10)
         self.addSpell("Cure")
         self.addSpell("Fireball")
         self.player.health = 60
@@ -347,7 +324,7 @@ class gameWorld:
     else:
       print(" You head back to Bavaria....")
       time.sleep(1)
-      ending()
+      #ending()
     
   def Cave_tunnel(self):
     helper_functions.clear_screen()
@@ -541,10 +518,10 @@ class gameWorld:
       elif tmp.lower() == "lvl":
         self.lvl_up(1)
       elif tmp.lower() == "greed":
-        self.GiveItem("Door Key", 1)
-        self.GiveItem("Skull Key", 1)
-        self.GiveItem("Potion", 10)
-        self.GiveItem("Ether", 10)
+        self.player.GiveItem(self.GetItemByName("Door Key"), 1)
+        self.player.GiveItem(self.GetItemByName("Skull Key"), 1)
+        self.player.GiveItem(self.GetItemByName("Potion"), 10)
+        self.player.GiveItem(self.GetItemByName("Ether"), 10)
         working = False
       else:
         working = False
@@ -1022,22 +999,22 @@ class gameWorld:
         rdnNum = random.randint(0,10)
         if rdnNum > 8:
           #used to heal your player
-          self.GiveItem("Potion")
+          self.player.GiveItem(self.GetItemByName("Potion"))
           itemAdr = "Potion"
         elif rdnNum == 7:
           #used to heal your player
-          self.GiveItem("Ether")
+          self.player.GiveItem(self.GetItemByName("Ether"))
           itemAdr = "Ether"
         elif self.enemy.mName == "Goblin King":
           #used to end the game
-          self.GiveItem("Kings Crown",1)
+          self.player.GiveItem(self.GetItemByName("Kings Crown"),1)
           itemAdr = "Crown"
         elif rdnNum == 2:
           #used to open doors
-          self.GiveItem("Door Key")
+          self.player.GiveItem(self.GetItemByName("Door Key"))
         elif rdnNum == 5 or len(self.badguys) <= 1:
           #needed for the Boss
-          self.GiveItem("Skull Key")
+          self.player.GiveItem(self.GetItemByName("Skull Key"))
    
         #print out the end of battle screen
         helper_functions.clear_screen()

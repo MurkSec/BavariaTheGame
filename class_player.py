@@ -39,29 +39,41 @@ class player:
       return False
     return True
 
-  def GiveItem(self, iname, iAmount=1):
-    #Check to see if player already has the Item
+  # Give the player an item.
+  # Expects a parameter of type item from class_support.py
+  # Returns True.
+  def GiveItem(self, pItem, pAmount=1):
     for item in self.inv:
-      if item.iname == iname:
-        if item.itype != "Key":
+      if item.iname == pItem.iname:
+        item.iamount += pAmount
+        return True
+    self.inv.append(pItem)
+    return True
+
+  #Deprecated, we now pass the item as a parameter
+  #def GiveItem(self, iname, iAmount=1):
+    #Check to see if player already has the Item
+  #  for item in self.inv:
+  #    if item.iname == iname:
+  #      if item.itype != "Key":
           #Update Amount
-          item.iamount += iAmount
-          return True
-    return False
+  #        item.iamount += iAmount
+  #        return True
+  #  return False
     #couldn't find the item so we are going to add it
     #for item in self.items:
     #  if item.iname == iname:
     #    self.inv.append(class_support.Item(item.iname, item.itype, iAmount, item.iDmg))
     #    return True    
  
-  def RemoveItem(self, pn, pA=1):
+  def RemoveItem(self, pItemName, pAmount=1):
     #Remove an item from our inventory
     for i in self.inv:
-      if i.iname == pn:
-        if i.iamount > pA:
-          i.iamount -= pA
+      if i.iname == pItemName:
+        if i.iamount > pAmount:
+          i.iamount -= pAmount
         else:
-          del self.inv[self.GetItemIDbyName(pn)]
+          del self.inv[self.GetItemIDbyName(pItemName)]
         return True
     return False
 
@@ -70,6 +82,14 @@ class player:
       if m.iname == pn:
         return x
     return -1
+
+  # Returns the item object by parameter input of the item name.
+  def GetItemByName(self, pItemName):
+    for i in self.inv:
+      if i.iname == pItemName:
+        return i
+      else:
+        return False
 
   def addArmor(self, armN, armRate, armwg, armType):
     #add Armor to our slot
