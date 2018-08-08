@@ -127,11 +127,10 @@ class gameWorld:
     while finished == False:
       #Setup Character
       helper_functions.clear_screen()
-     # class_oldgraphic.Print_Img("Logo")
       self.graphics.CallArtByName("Logo").ShowArt()
       self.player.pname=input('Please enter your name')
       helper_functions.clear_screen()
-      class_oldgraphic.Print_Img("Class Selection")
+      self.graphics.CallArtByName("Class Selection").ShowArt()
       print('')
       print('Selection: ')
       print('')
@@ -242,13 +241,17 @@ class gameWorld:
       print(f"Armor: {self.player.Armor[0].aname}  Def rate: {self.player.Armor[0].arate}")
       print(' ')
       if self.player.pclass == "Fighter":
-        class_oldgraphic.Print_Img("Fighter")
+        self.graphics.CallArtByName("Fighter").ShowArt()
+        #class_oldgraphic.Print_Img("Fighter")
       elif self.player.pclass == "Monk":
-        class_oldgraphic.Print_Img("Monk")
+        self.graphics.CallArtByName("Monk").ShowArt()
+        #class_oldgraphic.Print_Img("Monk")
       elif self.player.pclass == "Thief":
-        class_oldgraphic.Print_Img("Thief")
+        self.graphics.CallArtByName("Thief").ShowArt()
+        #class_oldgraphic.Print_Img("Thief")
       elif self.player.pclass == "Mage":
-        class_oldgraphic.Print_Img("Mage")
+        self.graphics.CallArtByName("Mage").ShowArt()
+        #class_oldgraphic.Print_Img("Mage")
       print("")
       tmp = input("Do you want to keep this Character? y/n")
       if tmp.lower() != "n":
@@ -354,7 +357,7 @@ class gameWorld:
     helper_functions.clear_screen()
     self.game_hud()
     if self.BossKilled == False:
-      class_oldgraphic.Print_Img('Cave_Enter')
+      self.graphics.CallArtByName("Cave_Enter").ShowArt()
     else:
       print(" You head back to Bavaria....")
       time.sleep(1)
@@ -363,19 +366,19 @@ class gameWorld:
   def Cave_tunnel(self):
     helper_functions.clear_screen()
     self.game_hud()
-    class_oldgraphic.Print_Img("Cave_tunnel")
+    self.graphics.CallArtByName("Cave_tunnel").ShowArt()
     
 
   def Cave_Wall(self):
     helper_functions.clear_screen()
     self.game_hud()
-    class_oldgraphic.Print_Img("Cave_Wall")
+    self.graphics.CallArtByName("Cave_Wall").ShowArt()
     
 
   def Cave_fairy(self):
     helper_functions.clear_screen()
     self.game_hud()
-    class_oldgraphic.Print_Img("Cave_fairy")
+    self.graphics.CallArtByName("Cave_fairy").ShowArt()
     self.player.health = self.player.max_health
     self.player.mp = self.player.max_mp
     del self.fairys[self.fairys.index(self.position)]
@@ -384,7 +387,7 @@ class gameWorld:
     helper_functions.clear_screen()
     self.game_hud()
     found = False
-    class_oldgraphic.Print_Img("Cave_Door")
+    self.graphics.CallArtByName("Cave_Door").ShowArt()
     #Check to see if the player has a key
     #If they do we removed it and unlock the door
     for item in self.player.inv:
@@ -402,12 +405,12 @@ class gameWorld:
         #We found a key so we unlock the door
         helper_functions.clear_screen()
         self.game_hud()
-        class_oldgraphic.Print_Img("Cave_Door_Unlocked")
+        self.graphics.CallArtByName("Cave_Door_unlocked").ShowArt()
         time.sleep(2)
         helper_functions.clear_screen()
         self.game_hud()
         #Show the treasure room
-        class_oldgraphic.Print_Img("Cave_box")
+        self.graphics.CallArtByName("Cave_box").ShowArt()
         print(' The treasure box contained')
         #Calculate the gold found
         rdmNum = random.randint(20,75)
@@ -445,7 +448,7 @@ class gameWorld:
 
       if found == True:
         #We found a key so we unlock the door
-        class_oldgraphic.Print_Img("Boss_Door_Unlocked")
+        self.graphics.CallArtByName("Boss_Door_Unlocked").ShowArt()
         time.sleep(1)
         helper_functions.clear_screen()
         self.game_hud()
@@ -454,16 +457,16 @@ class gameWorld:
         self.Cave_Encounter()
       else:
         #Door is still locked
-        class_oldgraphic.Print_Img("Boss_Door")
+        self.graphics.CallArtByName("Boss_Door").ShowArt()
     else:
-      class_oldgraphic.Print_Img("Boss_Killed")
+      self.graphics.CallArtByName("Boss_Killed").ShowArt()
       print('')
       print(' Now that you found the crown, its time to return it to the King')
 
   def Cave_shop(self):
     helper_functions.clear_screen()
     self.game_hud()
-    class_oldgraphic.Print_Img("Cave_shop")
+    self.graphics.CallArtByName("Cave_shop").ShowArt()
     wpn = random.choice(self.weapons)
     rdn = random.randint(10,50)
     tmp=input(f'Would you like to buy a {wpn.wname} for {rdn} gold? (y/n)')
@@ -485,7 +488,7 @@ class gameWorld:
   def Cave_Treasure(self):
     helper_functions.clear_screen()
     self.game_hud()
-    class_oldgraphic.Print_Img("Cave_box")
+    self.graphics.CallArtByName("Cave_box").ShowArt()
     if self.treasurefound != True:
       wpn = random.choice(self.weapons)
       arm = random.choice(self.armors)
@@ -529,7 +532,7 @@ class gameWorld:
       print(f'you have encountered the {self.enemy.mName}')
     else:
       print(f'you have encountered a {self.enemy.mName}')
-    class_oldgraphic.Print_Img(self.enemy.mobtype)
+    self.graphics.CallArtByName("self.enemy.mobtype").ShowArt()
     input('Press Enter to continue...')
     self.battle()
 
@@ -792,7 +795,7 @@ class gameWorld:
     while self.enemy.health > 0 and self.player.health > 0:
       helper_functions.clear_screen()
       self.game_hud()
-      class_oldgraphic.Print_Img(self.enemy.mobtype)
+      self.graphics.CallArtByName("self.enemy.mobtype").ShowArt()
 
       #Clear out the variables
       Action = ""  #atk, spell, item, flee
