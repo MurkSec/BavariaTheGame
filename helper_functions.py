@@ -1,4 +1,3 @@
-#!/bin/python3.6
 import textwrap
 import time
 
@@ -11,6 +10,7 @@ def WrappedTextOutput(p_text, p_width=70):
     
 def clear_screen():
   print('\033[H\033[J')
+  print('\n'*250)
   time.sleep(0.1)
 
 """
