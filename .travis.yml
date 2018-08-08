@@ -4,4 +4,5 @@ python:
 install:
 #tests
 script:
-  - pytest BavariaTheGame.py
+  -python -m compileall .
+  #- pytest BavariaTheGame.py
