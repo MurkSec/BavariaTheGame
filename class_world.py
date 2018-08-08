@@ -124,10 +124,10 @@ class gameWorld:
     while finished == False:
       #Setup Character
       helper_functions.clear_screen()
-      Print_Img("Logo")
+      class_oldgraphic.Print_Img("Logo")
       self.player.pname=input('Please enter your name')
       helper_functions.clear_screen()
-      Print_Img("Class Selection")
+      class_oldgraphic.Print_Img("Class Selection")
       print('')
       print('Selection: ')
       print('')
@@ -238,13 +238,13 @@ class gameWorld:
       print(f"Armor: {self.player.Armor[0].aname}  Def rate: {self.player.Armor[0].arate}")
       print(' ')
       if self.player.pclass == "Fighter":
-        Print_Img("Fighter")
+        class_oldgraphic.Print_Img("Fighter")
       elif self.player.pclass == "Monk":
-        Print_Img("Monk")
+        class_oldgraphic.Print_Img("Monk")
       elif self.player.pclass == "Thief":
-        Print_Img("Thief")
+        class_oldgraphic.Print_Img("Thief")
       elif self.player.pclass == "Mage":
-        Print_Img("Mage")
+        class_oldgraphic.Print_Img("Mage")
       print("")
       tmp = input("Do you want to keep this Character? y/n")
       if tmp.lower() != "n":
