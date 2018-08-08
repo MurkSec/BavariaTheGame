@@ -17,7 +17,7 @@ def clear_screen():
 Screenwipe
 
 description: This will wipe the screen for multiple OS versions.
-params: operator  - sets the operator to be rendered to screen      | defailt "\n"
+params: operator  - sets the operator to be rendered to screen      | default "\n"
         lines     - literally prints the operator x number of times | default 250
 return: void
 """
