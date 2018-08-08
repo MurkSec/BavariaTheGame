@@ -21,5 +21,5 @@ params: operator  - sets the operator to be rendered to screen      | default "\
         lines     - literally prints the operator x number of times | default 250
 return: void
 """
-def Screenwipe(operator,lines):
+def Screenwipe(operator="\n", lines=250):
   print('\n'*250)
