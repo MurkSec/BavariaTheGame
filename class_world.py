@@ -693,7 +693,8 @@ class gameWorld:
                 update = True
             else:
                 update = True
-         #Exit Clause
+        else:
+        #Exit Clause
           update = False
           working = False
           break
