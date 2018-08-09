@@ -11,7 +11,6 @@ class Art:
     self.parts += 1
 
   def ShowArt(self):
-        #for x in range(0, self.parts - 1):
         for x in range(0, self.parts):
             print(self.lines[x])
 
