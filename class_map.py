@@ -26,7 +26,7 @@ def createMap():
             #Add a value to the column
             cols.append("1")
         #Add the Column to the row
-        row.append(cols)
+        rows.append(cols)
     #
     map.append(row)
     [print(row) for row in self.map]
