@@ -34,10 +34,10 @@ def createMap():
     input("")
     return map
 
- def drawMap(map):
+def drawMap(map):
     for row in map:
-      for col in row:
-        print(list(col))
+        for col in row:
+            print(list(col))
       
       
     
