@@ -30,7 +30,7 @@ def createMap():
     #
     map.append(row)
     #[print(row) for row in map]
-    drawmap(map)
+    drawMap(map)
     input("")
     return map
 
