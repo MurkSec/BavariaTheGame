@@ -426,19 +426,69 @@ class gameWorld:
     helper_functions.clear_screen()
     self.game_hud()
     self.graphics.CallArtByName("Cave_shop").ShowArt()
-    wpn = random.choice(self.weapons)
-    rdn = random.randint(10,50)
-    tmp=input(f'Would you like to buy a {wpn.wname} for {rdn} gold? (y/n)')
-    if tmp.lower() == "y":
-      if self.player.gold >= rdn:
-        print(' It will serve you well!')
-        self.player.addWeapon(wpn.wname, wpn.watk, wpn.w_hit, wpn.wType)
-        print(f'   ****{wpn.wname} equiped****')
-        self.player.gold -= rdn
+    ch = random.randint(0,3)
+    rdn = random.randint(10, 50)
+    if ch == 0:
+      #Choice random weapon
+      wpn = random.choice(self.weapons)
+      print(f'Would you like to buy a {wpn.wname} for {rdn} gold?')
+      if wpn.w_hit >= self.player.Weapon[0].w_hit:
+        print(f' ***increase of {wpn.w_hit - self.player.Weapon[0].w_hit} Attack')
       else:
-        print("You don't have enough gold.")
+        print(f' ***Decrease of -{self.player.Weapon[0].w_hit - wpn.w_hit} Attack')
+      tmp=input(" (y/n)")
+
+      if tmp.lower() == "y":
+        if self.player.gold >= rdn:
+          print(' It will serve you well!')
+          self.addWeapon(wpn.wname, wpn.watk, wpn.w_hit, wpn.wType)
+          print(f'   ****{wpn.wname} equiped****')
+          self.player.gold -= rdn
+        else:
+          print("You don't have enough gold.")
+      else:
+        print('Good Bye')
+    elif ch == 1:
+      #choice random armor
+      arm = random.choice(self.armors)
+      print(f'Would you like to buy a {arm.aname} for {rdn} gold?')
+      if arm.arate >= self.player.Armor[0].arate:
+        print(f' ***increase of {arm.arate - self.player.Armor[0].arate} Defence')
+      else:
+        print(f' ***Decrease of -{self.player.Armor[0].arate - arm.arate} Defence')
+      tmp=input(" (y/n)")
+      if tmp.lower() == "y":
+        if self.player.gold >= rdn:
+          print(' It will serve you well!')
+          self.player.addArmor(arm.aname, arm.arate, arm.aweight, arm.aType)
+          print(f'   ****{arm.aname} equiped****')
+          self.player.gold -= rdn
+        else:
+          print("You don't have enough gold.")
+      else:
+        print('Good Bye')
     else:
-      print('Good Bye')
+      #choice random heal item
+      found = False
+      while found != True:
+        itm = random.choice(self.items)
+        if itm.itype !="Key":
+          found = True
+      print(f'Would you like to buy a {itm.iname} for {rdn} gold?')
+      tmp=input(" (y/n)")
+      if tmp.lower() == "y":
+        if self.player.gold >= rdn:
+          print(' It will serve you well!')
+          self.GiveItem(itm.iname)
+          print(f'   ****{itm.iname} added to your inventory****')
+          self.player.gold -= rdn
+        else:
+          print("You don't have enough gold.")
+      else:
+        print('Good Bye')
+  
+
+    
     
     #remove the shop from the list
     del self.shops[self.shops.index(self.position)]
@@ -910,7 +960,7 @@ class gameWorld:
         Action = ""
       elif Action == "Spell":
         #Using Spell
-        for spells in self.player.Spells:
+        for spell in self.player.Spells:
           if spell.sname == Spell_Used:
             self.player.mp -= spell.sCost
             if spell.sname == "Cure":
