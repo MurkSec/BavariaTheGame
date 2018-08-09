@@ -216,15 +216,15 @@ while Calradia.running == True:
   helper_functions.clear_screen()
   print('''
 
-  Thank you, adventurer. 
+  Thank you, Adventurer. 
 
-  Our guards were able to track down the goblin's to a cave up north. 
-  Many guards have entered, but no one have returned.
-  We fear the worse for them.   
+  Our guards were able to track down the goblins to a cave up north. 
+  Many guards have entered, but not one has returned.
+  We fear the worst for them.   
     ''')
 
   tmp=input('''
-  Press Enter when you are ready to begin your adventer
+  Press Enter when you are ready to begin your adventure!
     
     ''')
   Calradia.Cave_Enter()
