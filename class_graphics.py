@@ -274,7 +274,6 @@ class Graphics_Engine:
     self.Tprint('........-----------------------........')
 
     self.SetCurrentGraphic("Goblin")
-    self.Tprint('')
     self.Tprint('..........___________________..........')
     self.Tprint('......../                     \........')
     self.Tprint('.......|                       |.......')
@@ -287,7 +286,6 @@ class Graphics_Engine:
     self.Tprint('........-----------------------........')
 
     self.SetCurrentGraphic("Spider2")
-    self.Tprint('')
     self.Tprint('.......................................')
     self.Tprint('.......................................')
     self.Tprint('.......-------------------------.......')
@@ -301,7 +299,6 @@ class Graphics_Engine:
     self.Tprint('.......................................')
 
     self.SetCurrentGraphic("Spider")
-    self.Tprint('')
     self.Tprint('.......................................')
     self.Tprint(".......___________________________......")
     self.Tprint("...../._:_:__:_:_:__:____:_ _ _\\.\.....")
@@ -315,7 +312,6 @@ class Graphics_Engine:
     self.Tprint("...................................|....")
 
     self.SetCurrentGraphic("Boss")
-    self.Tprint('')
     self.Tprint('........._____________________.........')
     self.Tprint('......./          ,w,          \.......')
     self.Tprint('......|          (ʘ,ʘ)   {#}    |......')
