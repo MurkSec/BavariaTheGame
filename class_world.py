@@ -93,7 +93,7 @@ class gameWorld:
 
   def char_setup(self):
     finished = False
-    while finished == False:
+    while not finished:
       #Setup Character
       helper_functions.clear_screen()
       self.graphics.CallArtByName("Logo").ShowArt()
@@ -315,7 +315,7 @@ class gameWorld:
   def Cave_Enter(self):
     helper_functions.clear_screen()
     self.game_hud()
-    if self.BossKilled == False:
+    if not self.BossKilled:
       self.graphics.CallArtByName("Cave_Enter").ShowArt()
     else:
       print(" You head back to Bavaria....")
@@ -352,7 +352,7 @@ class gameWorld:
       if item.iname == "Door Key":
         found = True
 
-    if found == True:
+    if found:
       for item in self.player.inv:
         if item.iname == "Door Key":
           print(f" You have {item.iamount} keys")
@@ -404,7 +404,7 @@ class gameWorld:
           self.player.RemoveItem('Skull Key',1)
           found = True
 
-      if found == True:
+      if found:
         #We found a key so we unlock the door
         self.graphics.CallArtByName("Boss_Door_Unlocked").ShowArt()
         time.sleep(1)
@@ -546,7 +546,7 @@ class gameWorld:
 
   def Debug_Menu(self):
     working = True
-    while working == True:
+    while working:
       helper_functions.clear_screen()
       print("This is the debug menu.")
       print(f"Enemy Locations {self.badguys}")
@@ -575,8 +575,8 @@ class gameWorld:
   #Generate options for Status Screen
     working = True
     update = True
-    while working == True:
-      if update == True:
+    while working:
+      if update:
         helper_functions.clear_screen()
         self.Stats()
         update = False
@@ -590,7 +590,7 @@ class gameWorld:
         if spell.sname == "Cure":
           Spells_found = True
           
-      if Items_found == True and Spells_found == True:
+      if Items_found and Spells_found:
         #player has spells and items
         tmp_input = input('''
             Press Enter to go back to the map
@@ -644,7 +644,7 @@ class gameWorld:
           update = False
           working = False
           break
-      elif Spells_found == True and Items_found == False:
+      elif Spells_found and not Items_found:
         #Spells but no items
         tmp_input = input('''
               Press Enter to go back to the map
@@ -675,7 +675,7 @@ class gameWorld:
           update = False
           working = False
           break
-      elif Spells_found == False and Items_found == True:
+      elif not Spells_found and Items_found:
         #No Spell but they have some Items
         tmp_input = input('''
         Press Enter to go back to the map
@@ -832,7 +832,7 @@ class gameWorld:
       while Action == "":
         if self.player.pclass == "Mage":
           #funtion for Mage Battle
-          if Spells_Found == True and Items_found == True:
+          if Spells_Found and Items_found:
             tmp_input = input('''
             Press Enter to Attack
             Press I to use a Item
@@ -868,7 +868,7 @@ class gameWorld:
               Action = "Atk"
 
           
-          elif Spells_Found == True and Items_found == False:
+          elif Spells_Found and not Items_found:
             #Spells but no items
             tmp_input = input('''
             Press Enter to Attack
@@ -891,7 +891,7 @@ class gameWorld:
               Action = "Atk"
 
 
-          elif Spells_Found == False and Items_found == True:
+          elif not Spells_Found and Items_found:
             #No Spell but they have some Items
             tmp_input = input('''
             Press Enter to Attack
@@ -916,7 +916,7 @@ class gameWorld:
             input(" Press Enter to Attack")  
             Action = "Atk"
 
-        elif Items_found == True:
+        elif Items_found:
           #Not a Mage but has Items
           tmp_input = input('''
           Press Enter to Attack
