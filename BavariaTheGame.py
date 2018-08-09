@@ -8,6 +8,7 @@ import class_monster
 import helper_functions
 import class_graphics
 import class_mapgen
+import class_map
 
 
 #defining Variables
@@ -441,7 +442,8 @@ if __name__ == '__main__':
 #start of the game
 Calradia = class_world.gameWorld()
 while Calradia.running == True:
-  lvl = Generator()
+  lvl = createMap()
+  #lvl = Generator()
   #print(list(lvl))
   Gen_Map()
   Calradia.char_setup()
