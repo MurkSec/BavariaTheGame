@@ -322,14 +322,6 @@ class gameWorld:
       print(" You head back to Bavaria....")
       time.sleep(1)
       self.ending()
-    
-  def game_over(self):
-    options = ["Death One","Death Two", "Death Three", "Death Four", "Death Five", "Death Six", "Death Seven"]
-    helper_functions.clear_screen()
-    self.graphics.CallArtByName(random.choice(options)).ShowArt()
-    print("")
-    print("")
-    print("Press Enter to try again")
 
   def Cave_tunnel(self):
     helper_functions.clear_screen()
