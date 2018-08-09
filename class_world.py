@@ -88,8 +88,8 @@ class gameWorld:
     for i in self.items:
       if i.iname == pItemName:
         return i
-      else:
-        return False
+    else:
+      return False
 
   def char_setup(self):
     finished = False
@@ -479,7 +479,7 @@ class gameWorld:
       if tmp.lower() == "y":
         if self.player.gold >= rdn:
           print(' It will serve you well!')
-          self.player.GiveItem(itm)
+          self.player.GiveItem(itm.iname)
           print(f'   ****{itm.iname} added to your inventory****')
           self.player.gold -= rdn
         else:
