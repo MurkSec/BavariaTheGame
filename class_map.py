@@ -9,7 +9,7 @@ reference place by map[1][2]
 '''
 
 
-def createMap():
+def createMap(self):
     #define variables
     map=[]
     rows=[]
