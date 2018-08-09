@@ -97,7 +97,7 @@ class gameWorld:
       #Setup Character
       helper_functions.clear_screen()
       self.graphics.CallArtByName("Logo").ShowArt()
-      self.player.pname=input('Please enter your name')
+      self.player.pname=input('Please enter your name: ')
       helper_functions.clear_screen()
       self.graphics.CallArtByName("Class Selection").ShowArt()
       print('')
