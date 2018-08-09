@@ -71,7 +71,7 @@ class gameWorld:
       print(f'MP : {self.player.mp}/{self.player.max_mp}')
 
     #Check if there is anything in the inventory
-    if not len(self.player.inv):
+    if not self.player.inv:
       print("Items : None")
     else:
       tmpStr = ""
@@ -747,7 +747,7 @@ class gameWorld:
     print('.......................................')
     #Check for items in the Inventory
     print(" Inventory:")
-    if len(self.player.inv) > 0:
+    if self.player.inv:
       for item in self.player.inv:
         print(f' {item.iname}     {item.iamount}')
     else:
@@ -820,7 +820,7 @@ class gameWorld:
       Item_Used = "" # name of item used
 
       #Check to see if the player has any Spells
-      if len(self.player.Spells) > 0:
+      if self.player.Spells:
         Spells_Found = True
 
       #Check to see if player has Potion or Ether
