@@ -11,7 +11,7 @@ reference place by map[1][2]
 
 def createMap():
     #define variables
-    map=[]
+    lvl_map=[]
     rows=[]
     cols=[]
     maxX = 15
@@ -20,24 +20,27 @@ def createMap():
     #Boss = (random.randint(maxX-random.randint(0-5),maxY-random.randint(0-5)),random.randint(maxX-random.randint(0-5),maxY-random.randint(0-5)))
     
     #Cycle throu each Row
-    for row in range(0,maxX):
+    for row in range(0,maxY):
         #Cycle throu each Column
-        for col in range(0,maxY):
+        for col in range(0,maxX):
             #Add a value to the column
-            cols.append("1")
+            #cols.append("1")
+            lvl_map[row].append("1")
         #Add the Column to the row
-        rows.append(cols)
+        #rows.append(cols)
     #
-    map.append(row)
+    #lvl_map.append(row)
     #[print(row) for row in map]
-    drawMap(map)
+    drawMap(lvl_map)
     input("")
-    return map
+    return lvl_map
 
-def drawMap(map):
-    for row in map:
-        for col in row:
-            print(list(col))
+def drawMap(lvl_map):
+    for row in lvl_map:
+      for col in row:
+        print(col)
+        #for col in row:
+        #    print(col)
       
       
     
