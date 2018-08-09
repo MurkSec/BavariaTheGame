@@ -71,7 +71,7 @@ class gameWorld:
       print(f'MP : {self.player.mp}/{self.player.max_mp}')
 
     #Check if there is anything in the inventory
-    if not len(self.player.inv):
+    if not self.player.inv:
       print("Items : None")
     else:
       tmpStr = ""
@@ -88,8 +88,8 @@ class gameWorld:
     for i in self.items:
       if i.iname == pItemName:
         return i
-    else:
-      return False
+    return False
+
 
   def char_setup(self):
     finished = False
@@ -238,8 +238,7 @@ class gameWorld:
   def GetMonsterByID(self, pid):
     if pid > -1 and pid <= len(self.moblist):
       return self.moblist[pid]
-    else:
-      return -1
+    return -1
 
   def GetMonsterbyName(self, pn):
     for m in self.moblist:
@@ -747,7 +746,7 @@ class gameWorld:
     print('.......................................')
     #Check for items in the Inventory
     print(" Inventory:")
-    if len(self.player.inv) > 0:
+    if self.player.inv:
       for item in self.player.inv:
         print(f' {item.iname}     {item.iamount}')
     else:
@@ -756,7 +755,7 @@ class gameWorld:
 
     #Check for Spells
     print(" Spells:")
-    if len(self.player.Spells) > 0:
+    if self.player.Spells:
       for spell in self.player.Spells:
         print(f' {spell.sname}     Lvl: {spell.slevel}    Dmg: {spell.sDmg}')
     else:
@@ -820,7 +819,7 @@ class gameWorld:
       Item_Used = "" # name of item used
 
       #Check to see if the player has any Spells
-      if len(self.player.Spells) > 0:
+      if self.player.Spells:
         Spells_Found = True
 
       #Check to see if player has Potion or Ether

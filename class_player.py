@@ -88,32 +88,30 @@ class player:
     for i in self.inv:
       if i.iname == pItemName:
         return i
-    else:
-      return False
+    return False
+
 
   def addArmor(self, armN, armRate, armwg, armType):
     #add Armor to our slot
-    if len(self.Armor) > 0:
+    if self.Armor:
       self.Armor[0].aname = armN
       self.Armor[0].arate = armRate
       self.Armor[0].aweight = armwg
       self.Armor[0].aType = armType
-      return True
     else:
       self.Armor.append(class_support.Armor(armN, armRate, armwg, armType))
-      return True
+    return True
 
   def addWeapon(self, wn, watk, whit, wType):
     #add an Weapons to our slot
-    if len(self.Weapon) > 0:
+    if self.Weapon:
       self.Weapon[0].wname = wn
       self.Weapon[0].watk = watk
       self.Weapon[0].w_hit = whit
       self.Weapon[0].wType = wType
-      return True
     else:
       self.Weapon.append(class_support.Weapon(wn, watk, whit, wType))
-      return True
+    return True
 
   def addSpell(self, sname):
     #Check to see if player already has the Spell
