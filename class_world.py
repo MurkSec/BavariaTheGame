@@ -756,7 +756,7 @@ class gameWorld:
 
     #Check for Spells
     print(" Spells:")
-    if len(self.player.Spells) > 0:
+    if self.player.Spells:
       for spell in self.player.Spells:
         print(f' {spell.sname}     Lvl: {spell.slevel}    Dmg: {spell.sDmg}')
     else:
