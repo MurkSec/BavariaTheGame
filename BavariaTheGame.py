@@ -9,30 +9,8 @@ import helper_functions
 import class_graphics
 
 #defining Variables
-running = True
 mod_name = ""
 
-def ending():
-  helper_functions.clear_screen()
-  Calradia.graphics.CallArtByName("Mountain Castle").ShowArt()
-  print(" After a long journey you arrive back at Bavaria")
-  print("")
-  time.sleep(5)
-  helper_functions.clear_screen()
-  Calradia.graphics.CallArtByName("Castle").ShowArt()
-  print(" Shortly after reaching the town, you head to the castle to give the King back his crown")
-  time.sleep(5)
-  helper_functions.clear_screen()
-  Calradia.graphics.CallArtByName("King").ShowArt()
-  print("Greetings, oh King. I have returned with your lost crown!", end="\r")
-  time.sleep(5)
-  print("")
-  print("King: Thank you for your service. It will not be forgotten.", end="\r")
-  time.sleep(3)
-  print("King: Will you please stay with us as the head of my Royal Guard?", end="\r")
-  time.sleep(5)
-  helper_functions.clear_screen()
-  Calradia.graphics.CallArtByName("Fin").ShowArt()
 
 def Gen_Map():
   #randomly place the boss in the world
@@ -207,146 +185,148 @@ def Move_Char(X,Y):
   elif ckCord in Calradia.tunnels:
     return "Cave_tunnel"
 
+
 #start of the game
 Calradia = class_world.gameWorld()
-Gen_Map()
-Calradia.char_setup()
-helper_functions.clear_screen()
+while Calradia.running == True:
+  Gen_Map()
+  Calradia.char_setup()
+  helper_functions.clear_screen()
 
-#start of the adventer
-print('')
-print(f'Welcome to Bavaria, young {Calradia.player.pname}')
-print('')
-Calradia.graphics.CallArtByName("Dwarf").ShowArt()
-print('')
-print('We are in need of your help. Yesterday, a goblin stole the king\'s crown.')
-print(' We tried to get it back but the Goblin King\' minions are to strong for our guards')
-print('')
+  #start of the adventer
+  print('')
+  print(f'Welcome to Bavaria, young {Calradia.player.pname}')
+  print('')
+  Calradia.graphics.CallArtByName("Dwarf").ShowArt()
+  print('')
+  print('We are in need of your help. Yesterday, a goblin stole the king\'s crown.')
+  print(' We tried to get it back but the Goblin King\' minions are to strong for our guards')
+  print('')
 
-tmp=input('''
-Will you help us?
-1 = Yes, I will help!
-2 = No thanks, I have better things to do.
-''')
-
-if tmp == "2":
-  print("This is a game, so you really don't have a choice.")
-  print('Man up and save the world!!')
-  time.sleep(1)
-helper_functions.clear_screen()
-print('''
-
-Thank you, adventurer. 
-
-Our guards were able to track down the goblin's to a cave up north. 
-Many guards have entered, but no one have returned.
-We fear the worse for them.   
+  tmp=input('''
+  Will you help us?
+  1 = Yes, I will help!
+  2 = No thanks, I have better things to do.
   ''')
 
-tmp=input('''
-Press Enter when you are ready to begin your adventer
-  
-  ''')
-Calradia.Cave_Enter()
+  if tmp == "2":
+    print("This is a game, so you really don't have a choice.")
+    print('Man up and save the world!!')
+    time.sleep(1)
+  helper_functions.clear_screen()
+  print('''
 
-#helper_functions.clear_screen()
-#We are now in the Cave
-while running==True:
-  X = 0
-  Y = 0
+  Thank you, adventurer. 
 
-  tmp = input(textwrap.dedent('''
-  Options:
+  Our guards were able to track down the goblin's to a cave up north. 
+  Many guards have entered, but no one have returned.
+  We fear the worse for them.   
+    ''')
 
-  Press C to see stats
-  Press W to move Foward
-  Press A to move Left
-  Press S to move Back
-  Press D to move Right
-  
-  '''))
-  if tmp.lower() == "c":
-  #Show the stats/item screen
-    helper_functions.clear_screen()
-    Calradia.Stats()
-    Calradia.Status_Screen()
-  elif tmp.lower() == "w":
-    #class_world.player.steps += 1
-  #move Foward if possible
-    helper_functions.clear_screen()
-    Y+=1
-  elif tmp.lower() == "a":
-  #move left if possible
-    #class_world.player.steps += 1
-    helper_functions.clear_screen()
-    X-=1
-  elif tmp.lower() == "s":
-  #move back if possible
-    #class_world.player.steps += 1
-    helper_functions.clear_screen()
-    Y-=1
-  elif tmp.lower() == "d":
-  #move right if possible
-    #class_world.player.steps += 1
-    helper_functions.clear_screen()
-    X+=1
-  elif tmp.lower() == "debug":
-    Calradia.Debug_Menu()
+  tmp=input('''
+  Press Enter when you are ready to begin your adventer
+    
+    ''')
+  Calradia.Cave_Enter()
+  Calradia.started = True
+  #helper_functions.clear_screen()
+  #We are now in the Cave
+  while Calradia.started==True:
+    X = 0
+    Y = 0
 
+    tmp = input(textwrap.dedent('''
+    Options:
 
-
-  #Check X field
-  if Calradia.position[0] < 0:
-    Calradia.position = (0,Calradia.position[1])
-  if Calradia.position[0] > Calradia.Max_X:
-    Calradia.position = (Calradia.Max_X,Calradia.position[1])
-  if (Calradia.position[0]+X) < 0:
-    X=0
-  if (Calradia.position[0]+X) > Calradia.Max_X:
-    X=Calradia.Max_X
-
-  #Check Y field
-  if Calradia.position[1] < 0:
-    Calradia.position = (Calradia.position[0],0)
-  if Calradia.position[1] > Calradia.Max_Y:
-    Calradia.position = (Calradia.position[0],Calradia.Max_Y)
-  if (Calradia.position[1]+Y) < 0:
-    Y=0
-  if (Calradia.position[1]+Y) > Calradia.Max_Y:
-    Y=Calradia.Max_Y
-  
-  tmpResult = Move_Char(Calradia.position[0]+X , Calradia.position[1]+Y)
-  Calradia.position = Calradia.position[0]+X , Calradia.position[1]+Y
-
-  #Check again for correct Value
-  if Calradia.position[1] < 0:
-    Calradia.position = (Calradia.position[0],0)
-  if Calradia.position[1] > Calradia.Max_X:
-    Calradia.position = (Calradia.position[0],Calradia.Max_X)
-  if Calradia.position[0] < 0:
-    Calradia.position = (0,Calradia.position[1])
-  if Calradia.position[0] > Calradia.Max_X:
-    Calradia.position = (Calradia.Max_X,Calradia.position[1])
+    Press C to see stats
+    Press W to move Foward
+    Press A to move Left
+    Press S to move Back
+    Press D to move Right
+    
+    '''))
+    if tmp.lower() == "c":
+    #Show the stats/item screen
+      helper_functions.clear_screen()
+      Calradia.Stats()
+      Calradia.Status_Screen()
+    elif tmp.lower() == "w":
+      #class_world.player.steps += 1
+    #move Foward if possible
+      helper_functions.clear_screen()
+      Y+=1
+    elif tmp.lower() == "a":
+    #move left if possible
+      #class_world.player.steps += 1
+      helper_functions.clear_screen()
+      X-=1
+    elif tmp.lower() == "s":
+    #move back if possible
+      #class_world.player.steps += 1
+      helper_functions.clear_screen()
+      Y-=1
+    elif tmp.lower() == "d":
+    #move right if possible
+      #class_world.player.steps += 1
+      helper_functions.clear_screen()
+      X+=1
+    elif tmp.lower() == "debug":
+      Calradia.Debug_Menu()
 
 
-  if tmpResult == "Cave_Encounter":
-    Calradia.Cave_Encounter()
-  elif tmpResult == "Cave_Enter":
-    Calradia.Cave_Enter()
-  elif tmpResult == "Cave_Door":
-    Calradia.Cave_Door()
-  elif tmpResult == "Cave_Wall":
-    Calradia.Cave_Wall()
-  elif tmpResult == "Cave_tunnel":
-    Calradia.Cave_tunnel()
-  elif tmpResult == "Cave_fairy":
-    Calradia.Cave_fairy()
-  elif tmpResult == "Cave_shop":
-    Calradia.Cave_shop()
-  elif tmpResult == "Boss":
-    Calradia.Cave_Boss()
-  elif tmpResult == "Treasure":
-    Calradia.Cave_Treasure()
-  else:
-    Calradia.Cave_tunnel()
-  
+
+    #Check X field
+    if Calradia.position[0] < 0:
+      Calradia.position = (0,Calradia.position[1])
+    if Calradia.position[0] > Calradia.Max_X:
+      Calradia.position = (Calradia.Max_X,Calradia.position[1])
+    if (Calradia.position[0]+X) < 0:
+      X=0
+    if (Calradia.position[0]+X) > Calradia.Max_X:
+      X=Calradia.Max_X
+
+    #Check Y field
+    if Calradia.position[1] < 0:
+      Calradia.position = (Calradia.position[0],0)
+    if Calradia.position[1] > Calradia.Max_Y:
+      Calradia.position = (Calradia.position[0],Calradia.Max_Y)
+    if (Calradia.position[1]+Y) < 0:
+      Y=0
+    if (Calradia.position[1]+Y) > Calradia.Max_Y:
+      Y=Calradia.Max_Y
+    
+    tmpResult = Move_Char(Calradia.position[0]+X , Calradia.position[1]+Y)
+    Calradia.position = Calradia.position[0]+X , Calradia.position[1]+Y
+
+    #Check again for correct Value
+    if Calradia.position[1] < 0:
+      Calradia.position = (Calradia.position[0],0)
+    if Calradia.position[1] > Calradia.Max_X:
+      Calradia.position = (Calradia.position[0],Calradia.Max_X)
+    if Calradia.position[0] < 0:
+      Calradia.position = (0,Calradia.position[1])
+    if Calradia.position[0] > Calradia.Max_X:
+      Calradia.position = (Calradia.Max_X,Calradia.position[1])
+
+
+    if tmpResult == "Cave_Encounter":
+      Calradia.Cave_Encounter()
+    elif tmpResult == "Cave_Enter":
+      Calradia.Cave_Enter()
+    elif tmpResult == "Cave_Door":
+      Calradia.Cave_Door()
+    elif tmpResult == "Cave_Wall":
+      Calradia.Cave_Wall()
+    elif tmpResult == "Cave_tunnel":
+      Calradia.Cave_tunnel()
+    elif tmpResult == "Cave_fairy":
+      Calradia.Cave_fairy()
+    elif tmpResult == "Cave_shop":
+      Calradia.Cave_shop()
+    elif tmpResult == "Boss":
+      Calradia.Cave_Boss()
+    elif tmpResult == "Treasure":
+      Calradia.Cave_Treasure()
+    else:
+      Calradia.Cave_tunnel()
+    
