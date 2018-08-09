@@ -443,7 +443,7 @@ if __name__ == '__main__':
 Calradia = class_world.gameWorld()
 while Calradia.running == True:
   new_lvl = []
-  new_lvl = createMap()
+  new_lvl = class_map.createMap()
   #lvl = Generator()
   #print(list(lvl))
   Gen_Map()
