@@ -6,13 +6,6 @@ import class_monster
 import helper_functions
 import class_graphics
 
-def game_over():
-  options = ["Death One","Death Two", "Death Three", "Death Four", "Death Five", "Death Six", "Death Seven"]
-  helper_functions.clear_screen()
-  self.graphics.CallArtByName(random.choice(options)).ShowArt()
-  print("")
-  print("")
-  print("Press Enter to try again")
 
 class gameWorld:
   #Initialize our game world
@@ -26,6 +19,8 @@ class gameWorld:
     self.BossKilled = False
     self.treasurefound = False
     self.enemy = ""
+    self.running = True
+    self.started = False
     self.graphics = class_graphics.Graphics_Engine() 
     #self.graphics.InitImages()
 
@@ -225,7 +220,7 @@ class gameWorld:
         self.addArmor(amn.aname,amn.arate,amn.aweight, amn.aType)
       helper_functions.clear_screen()
       print("")
-      print(f'You chose :')
+      print(f'You choose :')
       print("")
       print(f"Name: {self.player.pname}")
       print(f"Class: {self.player.pclass}")
@@ -350,6 +345,42 @@ class gameWorld:
       bad.strength += int((plvl*(random.randint(1,4))))
 
 
+  def game_over(self):
+    options = ["Death One","Death Two", "Death Three", "Death Four", "Death Five", "Death Six", "Death Seven"]
+    helper_functions.clear_screen()
+    self.graphics.CallArtByName(random.choice(options)).ShowArt()
+    print("")
+    print("")
+    print("Would you like to try again? y/n")
+    tmp = input("")
+    if tmp.lower() == "y":
+      self.started = False
+    else:
+      self.running = False
+      self.started = False
+
+  def ending(self):
+    helper_functions.clear_screen()
+    self.graphics.CallArtByName("Mountain Castle").ShowArt()
+    print(" After a long journey you arrive back at Bavaria")
+    print("")
+    time.sleep(5)
+    helper_functions.clear_screen()
+    self.graphics.CallArtByName("Castle").ShowArt()
+    print(" Shortly after reaching the town, you head to the castle to give the King back his crown")
+    time.sleep(5)
+    helper_functions.clear_screen()
+    self.graphics.CallArtByName("King").ShowArt()
+    print("Greetings, oh King. I have returned with your lost crown!", end="\r")
+    time.sleep(5)
+    print("")
+    print("King: Thank you for your service. It will not be forgotten.", end="\r")
+    time.sleep(3)
+    print("King: Will you please stay with us as the head of my Royal Guard?", end="\r")
+    time.sleep(5)
+    helper_functions.clear_screen()
+    self.graphics.CallArtByName("Fin").ShowArt()
+
   def Cave_Enter(self):
     helper_functions.clear_screen()
     self.game_hud()
@@ -358,14 +389,13 @@ class gameWorld:
     else:
       print(" You head back to Bavaria....")
       time.sleep(1)
-      ending()
+      self.ending()
     
   def Cave_tunnel(self):
     helper_functions.clear_screen()
     self.game_hud()
     self.graphics.CallArtByName("Cave_tunnel").ShowArt()
     
-
   def Cave_Wall(self):
     helper_functions.clear_screen()
     self.game_hud()
@@ -1082,4 +1112,4 @@ class gameWorld:
         #you were killed
         print('You were killed!')
         time.sleep(1)
-        game_over()
+        self.game_over()
