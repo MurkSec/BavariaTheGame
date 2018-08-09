@@ -88,8 +88,8 @@ class gameWorld:
     for i in self.items:
       if i.iname == pItemName:
         return i
-      else:
-        return False
+    else:
+      return False
 
   def char_setup(self):
     finished = False

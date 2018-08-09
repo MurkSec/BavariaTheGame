@@ -88,8 +88,8 @@ class player:
     for i in self.inv:
       if i.iname == pItemName:
         return i
-      else:
-        return False
+    else:
+      return False
 
   def addArmor(self, armN, armRate, armwg, armType):
     #add Armor to our slot
