@@ -90,13 +90,14 @@ class gameWorld:
         return i
     return False
 
+
   def char_setup(self):
     finished = False
     while finished == False:
       #Setup Character
       helper_functions.clear_screen()
       self.graphics.CallArtByName("Logo").ShowArt()
-      self.player.pname=input('Please enter your name')
+      self.player.pname=input('Please enter your name: ')
       helper_functions.clear_screen()
       self.graphics.CallArtByName("Class Selection").ShowArt()
       print('')
@@ -439,7 +440,7 @@ class gameWorld:
       if tmp.lower() == "y":
         if self.player.gold >= rdn:
           print(' It will serve you well!')
-          self.addWeapon(wpn.wname, wpn.watk, wpn.w_hit, wpn.wType)
+          self.player.addWeapon(wpn.wname, wpn.watk, wpn.w_hit, wpn.wType)
           print(f'   ****{wpn.wname} equiped****')
           self.player.gold -= rdn
         else:
@@ -477,7 +478,7 @@ class gameWorld:
       if tmp.lower() == "y":
         if self.player.gold >= rdn:
           print(' It will serve you well!')
-          self.GiveItem(itm.iname)
+          self.player.GiveItem(itm.iname)
           print(f'   ****{itm.iname} added to your inventory****')
           self.player.gold -= rdn
         else:

@@ -90,6 +90,7 @@ class player:
         return i
     return False
 
+
   def addArmor(self, armN, armRate, armwg, armType):
     #add Armor to our slot
     if self.Armor:
