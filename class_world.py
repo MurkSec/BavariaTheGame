@@ -88,8 +88,7 @@ class gameWorld:
     for i in self.items:
       if i.iname == pItemName:
         return i
-      else:
-        return False
+    return False
 
   def char_setup(self):
     finished = False
@@ -238,8 +237,7 @@ class gameWorld:
   def GetMonsterByID(self, pid):
     if pid > -1 and pid <= len(self.moblist):
       return self.moblist[pid]
-    else:
-      return -1
+    return -1
 
   def GetMonsterbyName(self, pn):
     for m in self.moblist:
