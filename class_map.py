@@ -35,9 +35,9 @@ def createMap():
     return map
 
  def drawMap(map):
-  for row in map:
-    for col in row:
-      print(list(col))
+    for row in map:
+      for col in row:
+        print(list(col))
       
       
     
