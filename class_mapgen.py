@@ -1,3 +1,7 @@
+import random
+import BavariaTheGame
+import class_world
+
 CHARACTER_TILES = {'void': ' ', 'floor': '.', 'wall': '#'}
 
 class Generator():
@@ -9,7 +13,7 @@ class Generator():
         self.max_room_xy = max_room_xy #default set to 10
         self.rooms_overlap = rooms_overlap #default set to False
         self.random_connections = random_connections #default set to 1
-        self.random_spurs = random_spurs 3 default set to 3
+        self.random_spurs = random_spurs #3 default set to 3
         self.tiles = CHARACTER_TILES  #default set at top
         self.level = []
         self.room_list = []
@@ -156,14 +160,19 @@ class Generator():
         self.corridor_list = []
         max_iters = self.max_rooms * 5
         for a in range(max_iters):
+            #generate new room
             tmp_room = self.gen_room()
             if self.rooms_overlap or not self.room_list:
+                #if it doesn't overlap then added it
                 self.room_list.append(tmp_room)
             else:
+                #add new remove to temp list
+                #without check if it overlaps
                 tmp_room = self.gen_room()
                 tmp_room_list = self.room_list[:]
                 if self.room_overlapping(tmp_room, tmp_room_list) is False:
                     self.room_list.append(tmp_room)
+            #Max number of rooms so we quit
             if len(self.room_list) >= self.max_rooms:
                 break
         # connect the rooms
@@ -194,6 +203,7 @@ class Generator():
                 for height in range(abs(y1 - y2) + 1):
                     self.level[min(y1, y2) + height][
                         min(x1, x2) + width] = 'floor'
+        # paint corridors
             if len(corridor) == 3:
                 x3, y3 = corridor[2]
                 for width in range(abs(x2 - x3) + 1):

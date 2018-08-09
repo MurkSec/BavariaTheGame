@@ -7,10 +7,11 @@ import class_support
 import class_monster
 import helper_functions
 import class_graphics
+import class_mapgen
+
 
 #defining Variables
 mod_name = ""
-
 
 def Gen_Map():
   #randomly place the boss in the world
@@ -152,6 +153,7 @@ def Gen_Map():
       Y-=1
     X+=1
 
+
 def Move_Char(X,Y):
   #Checks for valid movement
   if X < 0:
@@ -189,6 +191,9 @@ def Move_Char(X,Y):
 #start of the game
 Calradia = class_world.gameWorld()
 while Calradia.running == True:
+  lvl = class_mapgen.Generator()
+  print(list(lvl))
+  input("")
   Gen_Map()
   Calradia.char_setup()
   helper_functions.clear_screen()
@@ -272,7 +277,6 @@ while Calradia.running == True:
       X+=1
     elif tmp.lower() == "debug":
       Calradia.Debug_Menu()
-
 
 
     #Check X field
