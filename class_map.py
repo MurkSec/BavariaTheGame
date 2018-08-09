@@ -29,8 +29,15 @@ def createMap():
         rows.append(cols)
     #
     map.append(row)
-    [print(row) for row in map]
+    #[print(row) for row in map]
+    drawmap(map)
     input("")
     return map
 
+ def drawMap(map)
+  for row in map:
+    for col in row:
+      print(list(col))
+      
+      
     
