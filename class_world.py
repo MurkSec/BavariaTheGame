@@ -83,36 +83,13 @@ class gameWorld:
       print('Items : ' + tmpStr)
     print(f'Location: {self.position}     Boss Loc: {self.boss[0]}')
 
-  def GiveItem(self, iname, iAmount=1):
-    #Check to see if player already has the Item
-    for item in self.player.inv:
-      if item.iname == iname:
-        if item.itype != "Key":
-          #Update Amount
-          item.iamount += iAmount
-          return True
-    #couldn't find the item so we are going to add it
-    for item in self.items:
-      if item.iname == iname:
-        self.player.inv.append(class_support.Item(item.iname, item.itype, iAmount, item.iDmg))
-        return True    
- 
-  def RemoveItem(self, pn, pA=1):
-    #Remove an item from our inventory
-    for i in self.player.inv:
-      if i.iname == pn:
-        if i.iamount > pA:
-          i.iamount -= pA
-        else:
-          del self.player.inv[self.GetItemIDbyName(pn)]
-        return True
-    return False
-
-  def GetItemIDbyName(self, pn):
-    for x,m in enumerate(self.inv):
-      if m.iname == pn:
-        return x
-    return -1
+  # Returns the item object by parameter input of the item name.
+  def GetItemByName(self, pItemName):
+    for i in self.items:
+      if i.iname == pItemName:
+        return i
+      else:
+        return False
 
   def char_setup(self):
     finished = False
@@ -192,19 +169,19 @@ class gameWorld:
         for item in self.weapons:
             if item.wname == weapon:
               wpn = item
-        self.addWeapon(wpn.wname, wpn.watk, wpn.w_hit, wpn.wType)
+        self.player.addWeapon(wpn.wname, wpn.watk, wpn.w_hit, wpn.wType)
         for item in self.armors:
             if item.aname == armor:
               amn = item
-        self.addArmor(amn.aname,amn.arate,amn.aweight, amn.aType)
+        self.player.addArmor(amn.aname,amn.arate,amn.aweight, amn.aType)
         self.player.inv.clear()
       else:
-        self.GiveItem("Door Key", 1)
-        self.GiveItem("Skull Key", 1)
-        self.GiveItem("Potion", 10)
-        self.GiveItem("Ether", 10)
-        self.addSpell("Cure")
-        self.addSpell("Fireball")
+        self.player.GiveItem(self.GetItemByName("Door Key"), 1)
+        self.player.GiveItem(self.GetItemByName("Skull Key"), 1)
+        self.player.GiveItem(self.GetItemByName("Potion"), 10)
+        self.player.GiveItem(self.GetItemByName("Ether"), 10)
+        self.player.addSpell("Cure")
+        self.player.addSpell("Fireball")
         self.player.health = 60
         self.player.max_health = self.player.health
         self.player.Evasion = 40
@@ -213,11 +190,11 @@ class gameWorld:
         for item in self.weapons:
             if item.wname == weapon:
               wpn = item
-        self.addWeapon(wpn.wname, wpn.watk, wpn.w_hit, wpn.wType)
+        self.player.addWeapon(wpn.wname, wpn.watk, wpn.w_hit, wpn.wType)
         for item in self.armors:
             if item.aname == armor:
               amn = item
-        self.addArmor(amn.aname,amn.arate,amn.aweight, amn.aType)
+        self.player.addArmor(amn.aname,amn.arate,amn.aweight, amn.aType)
       helper_functions.clear_screen()
       print("")
       print(f'You choose :')
@@ -277,50 +254,6 @@ class gameWorld:
         return True
     return False
 
-  def addArmor(self, armN, armRate, armwg, armType):
-    #add Armor to our slot
-    if len(self.player.Armor) > 0:
-      self.player.Armor[0].aname = armN
-      self.player.Armor[0].arate = armRate
-      self.player.Armor[0].aweight = armwg
-      self.player.Armor[0].aType = armType
-      return True
-    else:
-      self.player.Armor.append(class_support.Armor(armN, armRate, armwg, armType))
-      return True
-
-  def addWeapon(self, wn, watk, whit, wType):
-    #add an Weapons to our slot
-    if len(self.player.Weapon) > 0:
-      self.player.Weapon[0].wname = wn
-      self.player.Weapon[0].watk = watk
-      self.player.Weapon[0].w_hit = whit
-      self.player.Weapon[0].wType = wType
-      return True
-    else:
-      self.player.Weapon.append(class_support.Weapon(wn, watk, whit, wType))
-      return True
-
-  def addSpell(self, sname):
-    #Check to see if player already has the Spell
-    for spell in self.player.Spells:
-      if spell.sname == sname:
-        #Upgrade Spell
-        if spell.slevel <= 9:
-          spell.slevel += 1
-          print(f" You have Upgraded your {sname} spell to {spell.slevel}!")
-          spell.sCost += (spell.slevel*2)
-          spell.sDmg += (spell.slevel*int(random.randint(1,6)))
-          return True
-        return False
-    #couldn't find the spell so we are going to add it
-    for spell in self.Spells:
-      if spell.sname == sname:
-        self.player.Spells.append(class_support.Spell(spell.sname, spell.slevel, spell.stype, spell.sCost, spell.sDmg))
-        print(f" You have learned the {spell.sname} spell!")
-        return True
-    return False
-
   def lvl_up(self, plvl):
     print(f'You have leveled up!! You have gained {plvl} levels')
     self.player.lvl += plvl
@@ -333,9 +266,9 @@ class gameWorld:
     self.player.strength += int((plvl*(random.randint(1,4))))
     if self.player.pclass == "Mage":
       if self.player.lvl % 2:
-        self.addSpell("Cure")
+        self.player.addSpell("Cure")
       if self.player.lvl % 3:
-        self.addSpell("Fireball")
+        self.player.addSpell("Fireball")
     #lvl up mobs
     for bad in self.moblist:
       bad.lvl += plvl
@@ -389,14 +322,6 @@ class gameWorld:
       print(" You head back to Bavaria....")
       time.sleep(1)
       self.ending()
-    
-  def game_over(self):
-    options = ["Death One","Death Two", "Death Three", "Death Four", "Death Five", "Death Six", "Death Seven"]
-    helper_functions.clear_screen()
-    self.graphics.CallArtByName(random.choice(options)).ShowArt()
-    print("")
-    print("")
-    print("Press Enter to try again")
 
   def Cave_tunnel(self):
     helper_functions.clear_screen()
@@ -536,13 +461,13 @@ class gameWorld:
       #ask about equiping the stuff found
       tmp=input(f'Would you like to equip the {wpn.wname}? (y/n)')
       if tmp.lower() == "y":
-        self.addWeapon(wpn.wname, wpn.watk, wpn.w_hit, wpn.wType)
+        self.player.addWeapon(wpn.wname, wpn.watk, wpn.w_hit, wpn.wType)
         print(f'   **** {wpn.wname} equiped ****')
       else:
         print(f'   **** {wpn.wname} discarded ****')
       tmp=input(f'Would you like to equip the {arm.aname}? (y/n)')
       if tmp.lower() == "y":
-        self.addArmor(arm.aname, arm.arate, arm.aweight, arm.aType)
+        self.player.addArmor(arm.aname, arm.arate, arm.aweight, arm.aType)
         print(f'   **** {arm.aname} equiped ****')
       else:
         print(f'   **** {arm.aname} discarded ****')
@@ -589,10 +514,10 @@ class gameWorld:
       elif tmp.lower() == "lvl":
         self.lvl_up(1)
       elif tmp.lower() == "greed":
-        self.GiveItem("Door Key", 1)
-        self.GiveItem("Skull Key", 1)
-        self.GiveItem("Potion", 10)
-        self.GiveItem("Ether", 10)
+        self.player.GiveItem(self.GetItemByName("Door Key"), 1)
+        self.player.GiveItem(self.GetItemByName("Skull Key"), 1)
+        self.player.GiveItem(self.GetItemByName("Potion"), 10)
+        self.player.GiveItem(self.GetItemByName("Ether"), 10)
         working = False
       else:
         working = False
@@ -1076,22 +1001,22 @@ class gameWorld:
         rdnNum = random.randint(0,10)
         if rdnNum > 8:
           #used to heal your player
-          self.GiveItem("Potion")
+          self.player.GiveItem(self.GetItemByName("Potion"))
           itemAdr = "Potion"
         elif rdnNum == 7:
           #used to heal your player
-          self.GiveItem("Ether")
+          self.player.GiveItem(self.GetItemByName("Ether"))
           itemAdr = "Ether"
         elif self.enemy.mName == "Goblin King":
           #used to end the game
-          self.GiveItem("Kings Crown",1)
+          self.player.GiveItem(self.GetItemByName("Kings Crown"),1)
           itemAdr = "Crown"
         elif rdnNum == 2:
           #used to open doors
-          self.GiveItem("Door Key")
+          self.player.GiveItem(self.GetItemByName("Door Key"))
         elif rdnNum == 5 or len(self.badguys) <= 1:
           #needed for the Boss
-          self.GiveItem("Skull Key")
+          self.player.GiveItem(self.GetItemByName("Skull Key"))
    
         #print out the end of battle screen
         helper_functions.clear_screen()
