@@ -9,7 +9,7 @@ reference place by map[1][2]
 '''
 
 
-def createMap(self):
+def createMap():
     #define variables
     map=[]
     rows=[]
@@ -29,7 +29,7 @@ def createMap(self):
         rows.append(cols)
     #
     map.append(row)
-    [print(row) for row in self.map]
+    [print(row) for row in map]
     return map
 
     
