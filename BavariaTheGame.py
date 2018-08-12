@@ -441,6 +441,7 @@ if __name__ == '__main__':
 
 #start of the game
 Calradia = class_world.gameWorld()
+Map = class_map.Map_Gen()
 while Calradia.running == True:
   new_lvl = []
   new_lvl = class_map.createMap()
