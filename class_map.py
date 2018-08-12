@@ -70,11 +70,11 @@ class Map_Gen:
 
     # Check to ensure that the position is within the defined limits of the map. [-1 to keep it off sides]
     def CheckWithinLimits(self, p_posX, p_posY):
-        if p_posX > self._MAX_X:
+        if p_posX > self._MAX_X - 2:
             return False
         if p_posX < 1:
             return False
-        if p_posY > self._MAX_Y:
+        if p_posY > self._MAX_Y - 2:
             return False
         if p_posY < 1:
             return False
@@ -112,11 +112,12 @@ class Map_Gen:
             distance = random.randint(1, 4)
             oldPosition = self.turtlePos
             if distance > 1:
-
-                listOfTile = self.GenLineList(self.turtlePos, self.GetTgtPosition(distance), 1)
-                for tile in listOfTile:
-                    self.lvl_map[tile[0]][tile[1]] = self._PASSABLE
-                iterations -= len(listOfTile)
+                listOfTile = self.GenLineList(self.GetTgtPosition(distance), 1)
+                if listOfTile:
+                    for tile in listOfTile:
+                        self.lvl_map[tile[0]][tile[1]] = self._PASSABLE
+                        self.turtlePos = (tile[0], tile[1])
+                    iterations -= len(listOfTile)
             # print("Iterations rem: " + str(iterations) + " | Direction: " + str(direction),end='\r')
             self.turtle = self.MoveTurtle(self.turtlePos, self.turtleDirection)
             # if we hit the walls, lets not count it and move back to the old position.
@@ -169,8 +170,9 @@ class Map_Gen:
             for col in range(0, self._MAX_X):
                 # put walls everywhere
                 lvl[row].append(self._NOT_PASSABLE)
-        self.lvl_map = lvl
+        #DEBUG ***REMOVE ME***
         self.drawMap()
+        return lvl
 
 
     def drawMap(self):
