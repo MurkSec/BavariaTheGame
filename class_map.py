@@ -1,36 +1,18 @@
 #!/usr/bin/env python
 
-"""This module's docstring summary line.
+"""Map_Gen
 
-This is a multi-line docstring. Paragraphs are separated with blank lines.
-Lines conform to 79-column limit.
-Module and packages names should be short, lower_case_with_underscores.
-Notice that this in not PEP8-cheatsheet.py
-Seriously, use flake8. Atom.io with https://atom.io/packages/linter-flake8
-is awesome!
-See http://www.python.org/dev/peps/pep-0008/ for more PEP-8 details
+Map generation and tools module.  Allows for the generation of procedurally created maps.
 """
+
+__version__ = '0.16'
+__author__ = 'Gwa2100'
 
 import random
 
-'''
-This will return map=[[0,0,0,1,0,0,0,1],
-                      [0,0,0,1,0,0,0,1]]
-
-reference place by map[1][2]
-
-
-0 = Entry//
-1 = Tunnel
-2 = Wall
-
-0 = not passable
-1 = passable
-'''
-
-
 class Map_Gen:
-    def __init__(self, p_maxX=20, p_maxY=20, p_percentPassable=50, p_bias=(10, 10, 10, 10), p_startPoint=(1,1), p_legMin=1, p_legMax=10, p_debug=None):
+    def __init__(self, p_maxX=20, p_maxY=20, p_percentPassable=50, p_bias=(10, 10, 10, 10), p_startPoint=(1, 1),
+                 p_legMin=1, p_legMax=10, p_debug=None):
         # define constants
         self._NOT_PASSABLE = 0
         self._PASSABLE = 1
@@ -38,7 +20,7 @@ class Map_Gen:
         self._DOWN = (0, -1)
         self._LEFT = (-1, 0)
         self._RIGHT = (1, 0)
-        self._NUMBER_OF_PASSABLE_TILES = int(p_maxX * p_maxY * (p_percentPassable/100))
+        self._NUMBER_OF_PASSABLE_TILES = int(p_maxX * p_maxY * (p_percentPassable / 100))
         self._MAX_X = p_maxX
         self._MAX_Y = p_maxY
         self._LIMITS = [(0, 0), (0, self._MAX_Y - 1), (self._MAX_X - 1, 0), (self._MAX_X - 1, self._MAX_Y - 1)]
@@ -55,7 +37,7 @@ class Map_Gen:
         self.turtleDirection = 0
         self.options = []
 
-        #setup
+        # setup
         # Create our blank map to work off of.
         self.createBlankMap()
         self.createMap()
@@ -63,28 +45,29 @@ class Map_Gen:
             self.drawMap()
             input()
 
-    def GenLineList(self, p_targetPosition, p_horizontalFirst=1):
-        if self.CheckWithinLimits(p_targetPosition):
-            cells = []
-            if p_horizontalFirst:
-                for x in range(self.turtlePos[0], p_targetPosition[0]):
-                    cells.append((x, p_targetPosition[1]))
-                for y in range(self.turtlePos[1], p_targetPosition[1]):
-                    cells.append((p_targetPosition[0], y))
-            else:
-                for y in range(self.turtlePos[1], p_targetPosition[1]):
-                    cells.append((p_targetPosition[0], y))
-                for x in range(self.turtlePos[0], p_targetPosition[0]):
-                    cells.append((x, p_targetPosition[1]))
-            return cells
-
     def MoveTurtle(self, p_move):
+        """
+
+        :param p_move: a tuple containing x,y deltas
+        :type p_move: tuple(int,int)
+        """
         self.turtlePos = self.AddPositions(self.turtlePos, p_move)
 
     def EditTurtleTile(self, p_flag):
+        """
+
+        :param p_flag: the value to store at turtles position
+        :type p_flag: int
+        """
         self.lvl_map[self.turtlePos[0]][self.turtlePos[1]] = p_flag
 
     def GetCurrentPositionPassable(self, p_currentPosition):
+        """
+
+        :param p_currentPosition: The position you want to check for passable or not.
+        :type p_currentPosition: tuple(int,int)
+        :return: int
+        """
         return int(self.lvl_map[p_currentPosition[0]][p_currentPosition[1]])
 
     # Check to ensure that the position is within the defined limits of the map. [-1 to keep it off sides]
@@ -100,7 +83,7 @@ class Map_Gen:
         return True
 
     def AddPositions(self, p_tupleA, p_tupleB):
-        return tuple(map(sum,zip(p_tupleA,p_tupleB)))
+        return tuple(map(sum, zip(p_tupleA, p_tupleB)))
 
     def LoadBiasOptions(self):
         self.options = []
@@ -134,9 +117,9 @@ class Map_Gen:
                     self.EditTurtleTile(self._PASSABLE)
                     iterations -= 1
 
-
     def GetTgtPosition(self, distance):
-        return self.turtlePos[0] + (self.turtleDirection[0] * distance), self.turtlePos[1] + (self.turtleDirection[1] + distance)
+        return self.turtlePos[0] + (self.turtleDirection[0] * distance), self.turtlePos[1] + (
+                    self.turtleDirection[1] + distance)
 
     def createBlankMap(self):
         self.lvl_map = []
@@ -145,7 +128,6 @@ class Map_Gen:
             for col in range(0, self._MAX_X):
                 # put walls everywhere
                 self.lvl_map[row].append(self._NOT_PASSABLE)
-
 
     def drawMap(self):
         rowtoprint = ""
