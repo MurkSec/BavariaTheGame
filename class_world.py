@@ -10,7 +10,7 @@ import class_graphics
 class gameWorld:
   #Initialize our game world
   def __init__(self):
-    self.position = (0,0) #location x,y
+    self.position = (1,1) #location x,y
     self.Max_X = 15
     self.Max_Y = 15
     self.player = class_player.player()
@@ -34,7 +34,7 @@ class gameWorld:
     self.doors = []
     self.boss = []
     self.treasure = []
-    self.entrence = (0,0)
+    self.entrence = (1,1)
 
 
     #Creating Item list
