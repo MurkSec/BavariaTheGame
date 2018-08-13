@@ -1,3 +1,16 @@
+#!/usr/bin/env python
+
+"""This module's docstring summary line.
+
+This is a multi-line docstring. Paragraphs are separated with blank lines.
+Lines conform to 79-column limit.
+Module and packages names should be short, lower_case_with_underscores.
+Notice that this in not PEP8-cheatsheet.py
+Seriously, use flake8. Atom.io with https://atom.io/packages/linter-flake8
+is awesome!
+See http://www.python.org/dev/peps/pep-0008/ for more PEP-8 details
+"""
+
 import random
 
 '''
@@ -28,7 +41,7 @@ class Map_Gen:
         self._NUMBER_OF_PASSABLE_TILES = int(p_maxX * p_maxY * (p_percentPassable/100))
         self._MAX_X = p_maxX
         self._MAX_Y = p_maxY
-        self._LIMITS = [(0, 0), (0, self._MAX_Y), (self._MAX_X, 0), (self._MAX_X, self._MAX_Y)]
+        self._LIMITS = [(0, 0), (0, self._MAX_Y - 1), (self._MAX_X - 1, 0), (self._MAX_X - 1, self._MAX_Y - 1)]
         self._BIAS = p_bias
         self._START_POINT = p_startPoint
         self._LEG_MIN = p_legMin
@@ -144,6 +157,12 @@ class Map_Gen:
 
     def GetLevelMap(self):
         return self.lvl_map
+
+    def GetXLimit(self):
+        return self._MAX_X - 1
+
+    def GetYLimit(self):
+        return self._MAX_Y - 1
 
     def DebugGetLevelMap(self):
         self.drawMap(self.lvl_map)
