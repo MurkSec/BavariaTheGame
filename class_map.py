@@ -17,7 +17,7 @@ reference place by map[1][2]
 
 
 class Map_Gen:
-    def __init__(self, p_maxX=20, p_maxY=20, p_percentPassable=33, p_bias=(10, 10, 12, 12), p_startPoint = (1,1)):
+    def __init__(self, p_maxX=20, p_maxY=20, p_percentPassable=50, p_bias=(10, 10, 10, 10), p_startPoint = (1,1), p_debug=None):
         # define constants
         self._NOT_PASSABLE = 0
         self._PASSABLE = 1
@@ -44,6 +44,9 @@ class Map_Gen:
         # Create our blank map to work off of.
         self.createBlankMap()
         self.createMap()
+        if p_debug:
+            self.drawMap()
+            input()
 
     def GenLineList(self, p_targetPosition, p_horizontalFirst=1):
         if self.CheckWithinLimits(p_targetPosition):
@@ -61,7 +64,7 @@ class Map_Gen:
             return cells
 
     def MoveTurtle(self, p_move):
-        self.turtlePos += p_move
+        self.turtlePos = self.AddPositions(self.turtlePos, p_move)
 
     def EditTurtleTile(self, p_flag):
         self.lvl_map[self.turtlePos[0]][self.turtlePos[1]] = p_flag
@@ -100,9 +103,6 @@ class Map_Gen:
 
         self.LoadBiasOptions()
 
-        # Debug Text :::REMOVE:::
-        print("New")
-
         # Set entry point position to passable.
         self.lvl_map[1][1] = self._PASSABLE
 
@@ -110,42 +110,14 @@ class Map_Gen:
 
         # Loop over creation until we have the prescribed number of iterations(passable blocks)
         while iterations > 0:
-            print(str(iterations))
-            # print ("Iterations remaining: " + str(iterations),end='\r'
             # move from start point in random direction.
             self.turtleDirection = random.choice(self.options)
             distance = random.randint(1, 4)
-            #oldPosition = self.turtlePos
             for x in range(0, distance):
                 if self.CheckWithinLimits(self.AddPositions(self.turtlePos, self.turtleDirection)):
                     self.MoveTurtle(self.turtleDirection)
                     self.EditTurtleTile(self._PASSABLE)
                     iterations -= 1
-            # if distance > 1:
-            #     listOfTile = self.GenLineList(self.GetTgtPosition(distance), 1)
-            #     if listOfTile:
-            #         for tile in listOfTile:
-            #             if self.lvl_map != self._PASSABLE:
-            #                 self.lvl_map[tile[0]][tile[1]] = self._PASSABLE
-            #             self.turtlePos = (tile[0], tile[1])
-            #                 iterations -= 1
-            # # print("Iterations rem: " + str(iterations) + " | Direction: " + str(direction),end='\r')
-            # self.MoveTurtle(self.turtleDirection)
-            # if we hit the walls, lets not count it and move back to the old position.
-            # if not self.CheckWithinLimits(self.turtlePos[0], self.turtlePos[1]):
-            #     print(str(self.turtlePos) + "Iterations rem: " + str(iterations) + " | Direction: " + str(
-            #         self.turtleDirection) + " REM: HIT LIMIT", end='\r')
-            #     self.turtlePos = oldPosition
-            #     continue
-            # # if the current tile is already set to passable, we keep our position but do not count iteration
-            # if self.GetCurrentPositionPassable(self.turtlePos):
-            #     print(str(self.turtlePos) + "Iterations rem: " + str(iterations) + " | Direction: " + str(
-            #         self.turtleDirection) + " REM: Tile Already Passable", end='\r')
-            #     continue
-            # print(str(self.turtlePos) + "Iterations rem: " + str(iterations) + " | Direction: " + str(
-            #     self.turtleDirection) + "REM: G2G", end='\r')
-            # self.lvl_map[self.turtlePos[0]][self.turtlePos[1]] = self._PASSABLE
-            # iterations -= 1
 
 
     def GetTgtPosition(self, distance):
@@ -158,8 +130,6 @@ class Map_Gen:
             for col in range(0, self._MAX_X):
                 # put walls everywhere
                 self.lvl_map[row].append(self._NOT_PASSABLE)
-        #DEBUG ***REMOVE ME***
-        self.drawMap()
 
 
     def drawMap(self):
@@ -175,6 +145,4 @@ class Map_Gen:
 
     def DebugGetLevelMap(self):
         self.drawMap(self.lvl_map)
-        # Debug :::REMOVE ME:::
-        input()
         return self.lvl_map

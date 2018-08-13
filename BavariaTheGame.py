@@ -445,7 +445,6 @@ Map = class_map.Map_Gen()
 while Calradia.running == True:
   new_lvl = []
   new_lvl = class_map.Map_Gen()
-  input()
   #lvl = Generator()
   #print(list(lvl))
   Gen_Map()
