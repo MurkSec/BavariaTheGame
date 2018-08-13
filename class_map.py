@@ -17,7 +17,7 @@ reference place by map[1][2]
 
 
 class Map_Gen:
-    def __init__(self, p_maxX=20, p_maxY=20, p_percentPassable=50, p_bias=(10, 10, 10, 10), p_startPoint = (1,1), p_debug=None):
+    def __init__(self, p_maxX=20, p_maxY=20, p_percentPassable=50, p_bias=(10, 10, 10, 10), p_startPoint=(1,1), p_legMin=1, p_legMax=10, p_debug=None):
         # define constants
         self._NOT_PASSABLE = 0
         self._PASSABLE = 1
@@ -31,6 +31,8 @@ class Map_Gen:
         self._LIMITS = [(0, 0), (0, self._MAX_Y), (self._MAX_X, 0), (self._MAX_X, self._MAX_Y)]
         self._BIAS = p_bias
         self._START_POINT = p_startPoint
+        self._LEG_MIN = p_legMin
+        self._LEG_MAX = p_legMax
 
         # define variables
         self.lvl_map = []
@@ -112,7 +114,7 @@ class Map_Gen:
         while iterations > 0:
             # move from start point in random direction.
             self.turtleDirection = random.choice(self.options)
-            distance = random.randint(1, 4)
+            distance = random.randint(self._LEG_MIN, self._LEG_MAX)
             for x in range(0, distance):
                 if self.CheckWithinLimits(self.AddPositions(self.turtlePos, self.turtleDirection)):
                     self.MoveTurtle(self.turtleDirection)

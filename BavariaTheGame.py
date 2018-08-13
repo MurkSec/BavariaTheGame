@@ -444,7 +444,7 @@ Calradia = class_world.gameWorld()
 Map = class_map.Map_Gen()
 while Calradia.running == True:
   new_lvl = []
-  new_lvl = class_map.Map_Gen()
+  new_lvl = class_map.Map_Gen(30, 30, 60, (10, 10, 10, 10), (1,1), 3, 15, True)
   #lvl = Generator()
   #print(list(lvl))
   Gen_Map()
