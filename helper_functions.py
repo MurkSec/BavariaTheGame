@@ -9,8 +9,9 @@ def WrappedTextOutput(p_text, p_width=70):
     print(s)
     
 def clear_screen():
-  print('\033[H\033[J')
+  print('\033[J\033[H')
   print('\n'*250)
+  print('\033[H\033[J') \\adding again will clear the text from the bottom.
   time.sleep(0.1)
 
 """
